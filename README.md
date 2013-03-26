@@ -12,6 +12,10 @@ We're presenting you the work done by [3musket33rs](http://3musket33rs.github.co
 ## Step1: Scaffolding
 ### create-app
 grails create-app ThreeCircles
+### Get source code from repo
+```java
+git checkout step1_todo
+```
 ### BuildConfig.groovy
 add
 ```java
@@ -52,6 +56,12 @@ grails html-generate-all Place
 grails html-generate-all Comment
 grails html-generate-all Checkin
 ```
+
+### Get source code from repo
+```java
+git checkout step1_done
+```
+
 ## Step2: Boostrap
 
 In BootStrap.groovy
@@ -70,7 +80,11 @@ In BootStrap.groovy
 
 ## Step3: Render timeline with mock picture
 
-### 
+###  
 ```java
 
+```
+### Get source code from repo
+```java
+git checkout step1_done
 ```
