@@ -46,7 +46,7 @@ grails create-domain-class Checkin
 edit generated domain class and add content according to class diagram
 ![class diagram](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/classDiagram.png "class diagram")
 
-Generate HRML5 scaffolding for both controller and views
+### Generate HRML5 scaffolding for both controller and views
 ```java
 grails html-generate-all User
 grails html-generate-all Place
@@ -59,12 +59,19 @@ In BootStrap.groovy
 - add several users
 - add some places
 ```java
-        Place wien = new Place(name: "Wein", latitude:48.217349004974416, longitude: 16.407538767645292, address:  "Messe Wien Exhibition & Congress " )
+        Place wien = new Place(name: "Wein", 
+                               latitude:48.217349004974416, 
+                               longitude: 16.407538767645292, 
+                               address:  "Messe Wien Exhibition & Congress " )
         wien.save()
 ```
 - add a checkin at confess!
--
+
 [Solution Step2](https://github.com/fabricematrat/solution_step2.md)
+
+## Step3: Render timeline with mock picture
+
+### 
 ```java
 
 ```
