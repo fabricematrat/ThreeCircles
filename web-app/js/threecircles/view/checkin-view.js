@@ -10,11 +10,26 @@ threecircles.view.checkinview = function (model, elements) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
+            //-----------------------------------------------------------------------------
+            //  TODO render timeline
+            //-----------------------------------------------------------------------------
             renderElement(value);
+            //-----------------------------------------------------------------------------
+            //  end of TODO render timeline
+            //-----------------------------------------------------------------------------
         });
         $('#list-checkin').listview('refresh');
     });
 
+    //-----------------------------------------------------------------------------
+    //  TODO render timeline
+    //-----------------------------------------------------------------------------
+    var renderElementCustom = function (element) {
+    	
+    };
+    //-----------------------------------------------------------------------------
+    //  end of TODO render timeline
+    //-----------------------------------------------------------------------------
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
         if (data.item.errors) {
