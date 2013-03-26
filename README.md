@@ -124,8 +124,8 @@ you will get new folders and files containing mock screen for timeline
 - rename checkin-index.html into index.html
 
 ### Transform your index.html with css
-- add import css file (search for //TODO CSS)
-- In section with id "section-list-checkin" add header as shown in index-mockup.html (search for //TODO timeline view)
+- add import css file 
+- In section with id "section-list-checkin" add header as shown in index-mockup.html
 - revisit footer
 
 ### Display dynamic content
