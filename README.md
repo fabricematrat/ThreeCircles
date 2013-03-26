@@ -123,10 +123,15 @@ you will get new folders and files containing mock screen for timeline
 - delete index.html
 - rename checkin-index.html into index.html
 
-### Transform your index.html
-- add css file
-- In section with id section-list-checkin
-- replace TODO
+### Transform your index.html with css
+- add import css file (search for //TODO CSS)
+- In section with id "section-list-checkin" add header as shown in index-mockup.html (search for //TODO timeline view)
+- revisit footer
+
+### Display dynamic content
+- write renderElementCutom (search for //TODO render timeline)
+- Is it rendering as expected? 
+- In Checkin.groovy add deep relation reolution for as JSON (search for //TODO deep relation)
 
 
 ```java
