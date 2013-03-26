@@ -89,3 +89,6 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Html5 Mobile Scaffolding plugin:
+grails.converters.json.domain.include.version=true
