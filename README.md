@@ -1,4 +1,4 @@
-Step by step tutorial for [ConFESS](https://2013.con-fess.com/)
+ThreeCircles: step by step tutorial for [ConFESS](https://2013.con-fess.com/)
 --------------------------
 This github repository holds all the step by step tutoreial to build a clone of Fousquare in a few minutes. 
 The application we're going to build will be name ThreeCircle ;-)
@@ -115,7 +115,7 @@ git checkout step3_todo
 ```
 you will get new folders and files containing mock screen for timeline
 - web-app/css/my.css
--	web-app/img/
+- web-app/img/
 -	web-app/index_mock.html
 -	web-app/js/my.js
 
@@ -164,12 +164,35 @@ git checkout step4_done
 ```java
 git checkout step5_todo
 ```
-You will get a new file geolocation.js.js that you will complete for the time information.
+- You will get a new file geolocation.js that you will complete for the time information.
+- In index.html, include google API, section with id "section-show-checkin" has been refactored to apply CSS and match our use case
+- In checkin-view.js, we initialize our map with
+```java
+    $("#section-show-checkin").on( "pageshow", function (event) {
+        geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
+    });
+```
+### In geolocation.js seach // TODO search places
+In this method
 
-### Added JS file timeline.js
-- go to timeline.js
+- create map from canvas id
+
+Use Google API: [google.maps.Map](https://developers.google.com/maps/documentation/javascript/reference#Map)
+
+- once navigator got our current position, use google places API
+
+HTML5 navigator.geolocation, to get current position
+
+Use Google places API: [google.maps.places](https://developers.google.com/maps/documentation/javascript/reference#PlacesService)
+
+Use Google geometry API: [google.maps.geometry.spherical](https://developers.google.com/maps/documentation/javascript/reference#spherical)
+
+Use Google Marker API: [google.maps.Marker](https://developers.google.com/maps/documentation/javascript/reference#Marker)
+
+Use Google position API: [google.maps.LatLng](https://developers.google.com/maps/documentation/javascript/reference#LatLng)
 
 ### Get source code from repo
+
 ```java
 git checkout step5_done
 ```
