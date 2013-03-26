@@ -16,10 +16,11 @@ Fork this repo
 ```java
 git checkout step1_todo
 ```
-in this branch there is only one grails command that has been executed
-
+In this branch there is only one grails command that has been executed
+```java
 grails create-app ThreeCircles
-
+```
+Now let's start configuring and scaffolding all the classes we need
 ### BuildConfig.groovy
 add
 ```java
@@ -62,13 +63,23 @@ grails html-generate-all Checkin
 ```
 
 ### Get source code from repo
+Before you get the solution push your changes
+```java
+git add -a -m "your changes"
+git push
+```
+and if you want to check the solution
 ```java
 git checkout step1_done
 ```
-
 ## Step2: Boostrap
+### Get source code from repo
+```java
+git checkout step2_todo
+```
+and search for TODO in files
 
-In BootStrap.groovy
+### In BootStrap.groovy
 - add several users
 - add some places
 ```java
@@ -80,11 +91,23 @@ In BootStrap.groovy
 ```
 - add a checkin at confess!
 
+### Get source code from repo
+```java
+git checkout step2_done
+```
+or see the solution
 [Solution Step2](https://github.com/fabricematrat/solution_step2.md)
 
 ## Step3: Render timeline with mock picture
 
-###  
+### Get source code from repo
+```java
+git checkout step3_todo
+```
+and search for TODO in files
+
+
+
 ```java
 
 ```
