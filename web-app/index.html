@@ -8,6 +8,13 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-retina.png">
     <link rel="stylesheet" href="css/jquery/jquery.mobile-1.3.0.min.css"/>
+    <!--//------------------------------------------------------------------------------->
+    <!--//  TODO CSS-->
+    <!--//------------------------------------------------------------------------------->
+    <link rel="stylesheet" href="css/my.css"/>
+    <!--//------------------------------------------------------------------------------->
+    <!--//  end of TODO CSS-->
+    <!--//------------------------------------------------------------------------------->
     <link rel="stylesheet" href="css/jquery/validationEngine.jquery.css" type="text/css"/>
     <link rel="stylesheet" href="css/jquery/mobiscroll.custom-2.4.4.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/html5-mobile.css" type="text/css"/>
@@ -16,24 +23,62 @@
     <script src="js/jquery/jquery.mobile-1.3.0.min.js"></script>
 </head>
 <body>
-<section data-role="page" id="section-list-checkin">
-    <div data-role="header" data-position="fixed">
-        <a href="index.html" data-transition="slide" data-icon="arrow-l">Back</a>
-        <h1>Checkin</h1>
+
+<!-- Home -->
+<div data-role="page" id="section-list-checkin"class="flow">
+    <!--//------------------------------------------------------------------------------->
+    <!--//  TODO header-->
+    <!--//------------------------------------------------------------------------------->
+    <div data-role="panel" data-theme="a" id="mypanel">
+        <a href="#mypanel" data-role="button"  data-icon="home">Timeline</a>
+        <a href="place-index.html"  rel="external" data-role="button" data-icon="star">Places</a>
+        <a href="user-index.html"  rel="external" data-role="button" data-icon="alert">Friends</a>
+        <a href="#mypanel" data-role="button" data-icon="grid">Settings</a>
     </div>
-    <div data-role="content" id="list-checkin-parent">
-        <ul data-role="listview" data-inset="true" data-filter="true" id="list-checkin"/>
-    </div>
-    <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
+    <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
+        <div id="navbar" data-role="navbar" data-iconpos="top">
             <ul>
-                <li>
-                    <a data-transition="slide" data-role="button" data-icon="plus" id="add-checkin">Add</a>
+                <li class="list-icon">
+                    <a href="#mypanel" data-role="button" data-icon="bars" class="big">&nbsp;</a>
+                </li>
+                <li class="list-search">
+                    <input data-theme="c" class="search-header" placeholder="Find a place to go"/>
+                </li>
+                <li class="list-icon">
+                    <a href="#page1" data-role="button" data-icon="bars">&nbsp;</a>
                 </li>
             </ul>
         </div>
     </div>
-</section>
+    <!--//------------------------------------------------------------------------------->
+    <!--//  end of TODO header-->
+    <!--//------------------------------------------------------------------------------->
+    <div id="myContent"  data-role="content" class="flow">
+        <div id="map_canvas" class="map"></div>
+        <div id="list-checkin-parent">
+        </div>
+    </div>
+    <!--//------------------------------------------------------------------------------->
+    <!--//  TODO footer-->
+    <!--//------------------------------------------------------------------------------->
+    <div id="Footer" data-theme="a" data-role="footer" data-position="fixed" data-id="myFooter">
+        <div id="navbar-footer" data-role="navbar" data-iconpos="top">
+            <ul>
+                <li style="width: 20%;">
+                    <a id="add-checkin" href="#section-show-checkin" data-theme="b" data-icon="edit" data-role="button" data-iconpos="top">
+                        Check In</br>
+                    </a>
+                </li>
+                <li style="width: 80%;"><a href="http://3musket33rs.github.com">Cool Web Mobile with 3musket33rs</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--//------------------------------------------------------------------------------->
+    <!--//  end of TODO footer-->
+    <!--//------------------------------------------------------------------------------->
+</div>
+
 <section data-role="page" id="section-show-checkin">
     <div data-role="header" id="show-checkin" data-position="fixed">
         <a href="#section-list-checkin" data-transition="slide" data-icon="arrow-l">Cancel</a>

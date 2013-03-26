@@ -10,10 +10,48 @@ threecircles.view.checkinview = function (model, elements) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
-            renderElement(value);
+            renderElementCustom(value);
         });
         $('#list-checkin').listview('refresh');
     });
+
+    //-----------------------------------------------------------------------------
+    //  TODO render timeline
+    //-----------------------------------------------------------------------------
+    var renderElementCustom = function (element) {
+        $('#list-checkin-parent').append(createListItemCustom(element)).trigger("create");
+    };
+
+    var createListItemCustom = function (element) {
+        var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
+            '<span class="placeimage" ><img src="http://placehold.it/80x150/e88"/></span>' +
+            '<span class="description">' +
+            '<span class="name">' + element.owner.firstname + ' ' + element.owner.lastname  + '</span> at <span class="place">' +
+            element.place.name + '</span>' +
+            '<span class="address">' + element.place.address + '</span>' +
+            '</span></div>';
+
+        html += '<div class="comment">' + element.description;
+
+        $.each(element.friends, function(key, value) {
+            html += '<br/>with <span class="name">' + value.firstname +
+                '</span>';
+
+        });
+        html += '</div>';
+        html += '<img class="mainimage" src="http://placehold.it/640x480/88e" />';
+        html +='<span class="date">2 days ago</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
+            '</div>';
+
+        html += '<ul class="fs-list">' +
+            '<li><img src="img/ico-fire.png" />Back here after 5 months.</li>' +
+            '<li><img src="img/ico-fire.png" />First Bar in 2 months!</li></ul>';
+        return html;
+    };
+    //-----------------------------------------------------------------------------
+    //  end of TODO render timeline
+    //-----------------------------------------------------------------------------
+
 
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
