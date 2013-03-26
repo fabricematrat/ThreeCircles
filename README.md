@@ -33,7 +33,7 @@ remove
 ### Create domain classes
 grails create-domain-class User
 edit generated domain class and add content according to class diagram
-![alt text](https://github.com/fabricematrat/imagesTutorial/classDiagram.png "Logo Title Text 1")
+![class diagram](https://github.com/fabricematrat/ThreeCircles/blob/master/imagesTutorial/classDiagram.png "class diagram")
 ## Step2: Boostrap
 
 ### Speakers
