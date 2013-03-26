@@ -4,31 +4,27 @@ threecircles.view = threecircles.view || {};
 threecircles.view.checkinview = function (model, elements) {
 
     var that = grails.mobile.mvc.view(model, elements);
+    var timeline = threecirclesconfess.view.timeline();
 
     // Register events
     that.model.listedItems.attach(function (data) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
-            //-----------------------------------------------------------------------------
-            //  TODO render timeline
-            //-----------------------------------------------------------------------------
-            renderElementCustom(value);
-            //-----------------------------------------------------------------------------
-            //  TODO render timeline
-            //-----------------------------------------------------------------------------
+            var whenInfo = timeline.getWhenInformation(value.when);
+            renderElementCustom(value, whenInfo);
         });
         $('#list-checkin').listview('refresh');
     });
 
     //-----------------------------------------------------------------------------
-    //  TODO render timeline
+    //  TODO add when information
     //-----------------------------------------------------------------------------
-    var renderElementCustom = function (element) {
-        $('#list-checkin-parent').append(createListItemCustom(element)).trigger("create");
+    var renderElementCustom = function (element, timelineDate) {
+        $('#list-checkin-parent').append(createListItemCustom(element, timelineDate)).trigger("create");
     };
 
-    var createListItemCustom = function (element) {
+    var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
             '<span class="placeimage" ><img src="http://placehold.it/80x150/e88"/></span>' +
             '<span class="description">' +
@@ -46,7 +42,7 @@ threecircles.view.checkinview = function (model, elements) {
         });
         html += '</div>';
         html += '<img class="mainimage" src="http://placehold.it/640x480/88e" />';
-        html +='<span class="date">2 days ago</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
+        html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
             '</div>';
 
         html += '<ul class="fs-list">' +
@@ -55,7 +51,7 @@ threecircles.view.checkinview = function (model, elements) {
         return html;
     };
     //-----------------------------------------------------------------------------
-    //  end of TODO render timeline
+    //  end add when information
     //-----------------------------------------------------------------------------
 
 
