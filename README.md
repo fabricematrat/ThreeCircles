@@ -113,11 +113,20 @@ or see the solution
 ```java
 git checkout step3_todo
 ```
-and search for TODO in files
+you will get new folders and files containing mock screen for timeline
+- web-app/css/my.css
+-	web-app/img/
+-	web-app/index_mock.html
+-	web-app/js/my.js
 
 ### Main page: timeline
 - delete index.html
 - rename checkin-index.html into index.html
+
+### Transform your index.html
+- add css file
+- In section with id section-list-checkin
+- replace TODO
 
 
 ```java
