@@ -5,6 +5,9 @@ threecircles.view.checkinview = function (model, elements) {
 
     var that = grails.mobile.mvc.view(model, elements);
     var timeline = threecirclesconfess.view.timeline();
+    var geolocationSearch = threecirclesconfess.view.geolocation();
+    var geolocationCheckin = threecirclesconfess.view.geolocation();
+    var geolocationBackground = threecirclesconfess.view.geolocation()
 
     // Register events
     that.model.listedItems.attach(function (data) {
@@ -119,6 +122,7 @@ threecircles.view.checkinview = function (model, elements) {
     // user interface actions
     that.elements.list.on('pageinit', function (e) {
         that.listButtonClicked.notify();
+        geolocationBackground.showMapBackground('map_canvas', {}) ;
     });
 
     that.elements.save.on('click', function (event) {
@@ -166,6 +170,14 @@ threecircles.view.checkinview = function (model, elements) {
         $.mobile.changePage($('#section-show-checkin'));
         $('#delete-checkin').css('display', 'none');
     };
+
+    var storeLatLng = function(place) {
+        that.selectedPlace = place;
+    };
+
+    $("#section-show-checkin").on( "pageshow", function (event) {
+        geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
+    });
 
 
     var encode = function (data) {
