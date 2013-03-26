@@ -1,8 +1,13 @@
 package threecircles
 
 
-
+//-----------------------------------------------------------------------------
+//  TODO deep relation
+//-----------------------------------------------------------------------------
 import grails.converters.JSON
+//-----------------------------------------------------------------------------
+//  end of TODO deep relation
+//-----------------------------------------------------------------------------
 import org.grails.datastore.mapping.validation.ValidationErrors
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
