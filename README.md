@@ -54,12 +54,16 @@ grails create-domain-class Checkin
 edit generated domain class and add content according to class diagram
 ![class diagram](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/classDiagram.png "class diagram")
 
-### Generate HRML5 scaffolding for both controller and views
+### Generate HTML5 scaffolding for both controller and views
 ```java
 grails html-generate-all User
 grails html-generate-all Place
 grails html-generate-all Comment
 grails html-generate-all Checkin
+```
+### Run the app
+```java
+grails run-app
 ```
 
 ### Get source code from repo
@@ -91,6 +95,11 @@ and search for TODO in files
 ```
 - add a checkin at confess!
 
+### Run the app
+```java
+grails run-app
+```
+
 ### Get source code from repo
 ```java
 git checkout step2_done
@@ -106,6 +115,9 @@ git checkout step3_todo
 ```
 and search for TODO in files
 
+### Main page: timeline
+- delete index.html
+- rename checkin-index.html into index.html
 
 
 ```java
