@@ -1,4 +1,4 @@
-Presentation for [ConFESS](https://2013.con-fess.com/)
+Step by step tutorial for [ConFESS](https://2013.con-fess.com/)
 --------------------------
 This github repository hold all the slides material required to follow the step by step tutoreial to build a clone of Fousquare in a few minutes. The application we're going to build will be name ThreeCircle ;-)
 
@@ -33,7 +33,7 @@ remove
 ### Create domain classes
 grails create-domain-class User
 edit generated domain class and add content according to class diagram
-
+[alt text](classDiagram.png "Logo Title Text 1")
 ## Step2: Boostrap
 
 ### Speakers
