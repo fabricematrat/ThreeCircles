@@ -130,14 +130,28 @@ you will get new folders and files containing mock screen for timeline
 
 ### Display dynamic content
 - write renderElementCutom (search for //TODO render timeline)
+Put a breakpoint in checkin-view.js in callback attached to that.model.listedItems 
 - Is it rendering as expected? 
 - In Checkin.groovy add deep relation reolution for as JSON (search for //TODO deep relation)
 
-
-```java
-
-```
 ### Get source code from repo
 ```java
-git checkout step1_done
+git checkout step3_done
 ```
+
+## Step4: Get timeline with time information
+
+### Get source code from repo
+```java
+git checkout step4_todo
+```
+### Add JS file timeline.js
+- note 3muket33rs 
+-  (search for //TODO )
+
+### Get source code from repo
+```java
+git checkout step4_done
+```
+
+
