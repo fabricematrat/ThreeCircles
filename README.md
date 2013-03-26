@@ -55,4 +55,16 @@ grails html-generate-all Checkin
 ```
 ## Step2: Boostrap
 
+In BootStrap.groovy
+- add several users
+- add some places
+```java
+        Place wien = new Place(name: "Wein", latitude:48.217349004974416, longitude: 16.407538767645292, address:  "Messe Wien Exhibition & Congress " )
+        wien.save()
+```
+- add a checkin at confess!
+-
+[Solution Step2](https://github.com/fabricematrat/solution_step2.md)
+```java
 
+```
