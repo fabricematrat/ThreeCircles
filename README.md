@@ -10,12 +10,16 @@ Speakers
 We're presenting you the work done by [3musket33rs](http://3musket33rs.github.com/) team.
 
 ## Step1: Scaffolding
-### create-app
-grails create-app ThreeCircles
+### Setup
+Fork this repo
 ### Get source code from repo
 ```java
 git checkout step1_todo
 ```
+in this branch there is only one grails command that has been executed
+
+grails create-app ThreeCircles
+
 ### BuildConfig.groovy
 add
 ```java
