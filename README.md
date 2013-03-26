@@ -145,10 +145,11 @@ git checkout step3_done
 ```java
 git checkout step4_todo
 ```
+You will get a new file timeline.js that you will complete for the time information.
 ### Add JS file timeline.js
 - go to timeline.js
--- note 3muket33rs JS coding à la Crockford (function first!)
--- add a method which take a Date as long and returned information like just now, 11 minutes ago, 2 days ago, 3 months ago
+Note 3muket33rs JS coding à la Crockford (function first!).
+Add a method which take a Date as long and returned information like just now, 11 minutes ago, 2 days ago, 3 months ago
 - go to checkin-view.js (search for //TODO add when information)
 - go to index.html to include new js file
 
@@ -157,4 +158,18 @@ git checkout step4_todo
 git checkout step4_done
 ```
 
+## Step5: Google places
 
+### Get source code from repo
+```java
+git checkout step5_todo
+```
+You will get a new file geolocation.js.js that you will complete for the time information.
+
+### Added JS file timeline.js
+- go to timeline.js
+
+### Get source code from repo
+```java
+git checkout step5_done
+```
