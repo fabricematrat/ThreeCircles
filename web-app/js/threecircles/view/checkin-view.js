@@ -11,8 +11,10 @@ threecircles.view.checkinview = function (model, elements) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
-            var whenInfo = timeline.getWhenInformation(value.when);
-            renderElementCustom(value, whenInfo);
+            //-----------------------------------------------------------------------------
+            //  TODO add when information
+            //-----------------------------------------------------------------------------                       
+            renderElementCustom(value);
         });
         $('#list-checkin').listview('refresh');
     });
@@ -21,7 +23,7 @@ threecircles.view.checkinview = function (model, elements) {
     //  TODO add when information
     //-----------------------------------------------------------------------------
     var renderElementCustom = function (element, timelineDate) {
-        $('#list-checkin-parent').append(createListItemCustom(element, timelineDate)).trigger("create");
+        $('#list-checkin-parent').append(createListItemCustom(element)).trigger("create");
     };
 
     var createListItemCustom = function (element, timelineDate) {
@@ -42,7 +44,7 @@ threecircles.view.checkinview = function (model, elements) {
         });
         html += '</div>';
         html += '<img class="mainimage" src="http://placehold.it/640x480/88e" />';
-        html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
+        html +='<span class="date">2 days ago</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
             '</div>';
 
         html += '<ul class="fs-list">' +
