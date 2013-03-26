@@ -146,8 +146,11 @@ git checkout step3_done
 git checkout step4_todo
 ```
 ### Add JS file timeline.js
-- note 3muket33rs 
--  (search for //TODO )
+- go to timeline.js
+-- note 3muket33rs JS coding à la Crockford (function first!)
+-- add a method which take a Date as long and returned information like just now, 11 minutes ago, 2 days ago, 3 months ago
+- go to checkin-view.js (search for //TODO add when information)
+- go to index.html to include new js file
 
 ### Get source code from repo
 ```java
