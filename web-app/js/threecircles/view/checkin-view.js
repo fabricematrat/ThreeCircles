@@ -11,17 +11,14 @@ threecircles.view.checkinview = function (model, elements) {
 
     // Register events
     that.model.listedItems.attach(function (data) {
-        $('#list-checkin').empty();
-        var key, items = model.getItems();
-        $.each(items, function(key, value) {
-            var whenInfo = timeline.getWhenInformation(value.when);
-            renderElementCustom(value, whenInfo);
-        });
-        $('#list-checkin').listview('refresh');
+    $('#list-checkin').empty();
+    var key, items = model.getItems();
+    $.each(items, function(key, value) {
+        var whenInfo = timeline.getWhenInformation(value.when);
+        $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
     });
-    var renderElementCustom = function (element, timelineDate) {
-        $('#list-checkin-parent').append(createListItemCustom(element, timelineDate)).trigger("create");
-    };
+    $('#list-checkin').listview('refresh');
+});
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
@@ -62,16 +59,15 @@ threecircles.view.checkinview = function (model, elements) {
         } else if (data.item.message) {
             showGeneralMessage(data, event);
         } else {
+            resetForm('form-update-checkin');
+
+            $('#list-checkin').listview('refresh');
             if (!data.item.NOTIFIED) {
-                resetForm('form-update-checkin');
-                renderElementCustom(data.item, "just now");
-                $('#list-checkin').listview('refresh');
                 $.mobile.changePage($('#section-list-checkin'));
-            }  else {
-                resetForm('form-update-checkin');
-                renderElementCustom(data.item, "just now");
-                $('#list-checkin').listview('refresh');
+            } else {
+                $('#list-checkin-parent').append(createListItemCustom(data.item, "justnow")).trigger("create");
             }
+            $('#list-checkin').listview('refresh');
 		}
     });
 
@@ -269,6 +265,10 @@ threecircles.view.checkinview = function (model, elements) {
     };
 
     var resetForm = function (form) {
+        //-----------------------------------------------------------------------------
+        //  TODO on checkin submit
+        //-----------------------------------------------------------------------------
+        $('#textarea-1').val('');
         $('input[data-type="date"]').each(function() {
             $(this).scroller('destroy').scroller({
                 preset: 'date',
