@@ -19,10 +19,6 @@ threecircles.view.checkinview = function (model, elements) {
         });
         $('#list-checkin').listview('refresh');
     });
-
-    //-----------------------------------------------------------------------------
-    //  TODO add when information
-    //-----------------------------------------------------------------------------
     var renderElementCustom = function (element, timelineDate) {
         $('#list-checkin-parent').append(createListItemCustom(element, timelineDate)).trigger("create");
     };
@@ -54,10 +50,8 @@ threecircles.view.checkinview = function (model, elements) {
         return html;
     };
     //-----------------------------------------------------------------------------
-    //  end add when information
+    //  TODO on checkin submit
     //-----------------------------------------------------------------------------
-
-
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
         if (data.item.errors) {
@@ -68,10 +62,15 @@ threecircles.view.checkinview = function (model, elements) {
         } else if (data.item.message) {
             showGeneralMessage(data, event);
         } else {
-            renderElement(data.item);
-            $('#list-checkin').listview('refresh');
             if (!data.item.NOTIFIED) {
+                resetForm('form-update-checkin');
+                renderElementCustom(data.item, "just now");
+                $('#list-checkin').listview('refresh');
                 $.mobile.changePage($('#section-list-checkin'));
+            }  else {
+                resetForm('form-update-checkin');
+                renderElementCustom(data.item, "just now");
+                $('#list-checkin').listview('refresh');
             }
 		}
     });
@@ -149,7 +148,6 @@ threecircles.view.checkinview = function (model, elements) {
     });
 
     that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         $('#form-update-checkin').validationEngine({promptPosition: 'bottomLeft'});
@@ -179,6 +177,32 @@ threecircles.view.checkinview = function (model, elements) {
         geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
     });
 
+    $("#checkin").on( "pageshow", function (event) {
+        geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
+    });
+
+    //-----------------------------------------------------------------------------
+    //  TODO on checkin submit
+    //-----------------------------------------------------------------------------
+    $("#checkin-submit").on( "click", function (event) {
+        event.stopPropagation();
+        $('#form-update-checkin').validationEngine('hide');
+        if($('#form-update-checkin').validationEngine('validate')) {
+            //$(this).addClass('ui-disabled');
+            var placeObj = {name: that.selectedPlace.name, address: that.selectedPlace.address, latitude: that.selectedPlace.lat, longitude: that.selectedPlace.lng};
+            var description = $('#textarea-1').val();
+            var obj = {
+                description: description,
+                'owner.id': "1",
+                place: placeObj,
+                when: new Date().getTime()
+            };
+            var newElement = {
+                checkin: JSON.stringify(obj)
+            };
+            that.createButtonClicked.notify(newElement, event);
+        }
+    });
 
     var encode = function (data) {
         var str = "";
