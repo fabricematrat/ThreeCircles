@@ -276,6 +276,10 @@ threecircles.view.checkinview = function (model, elements) {
 
     var resetForm = function (form) {
         $('#textarea-1').val('');
+        //-----------------------------------------------------------------------------
+        //  TODO picture
+        //-----------------------------------------------------------------------------
+        $('#input-checkin-photo').parent().css('background-image', 'url("images/camera.png")');
         $('input[data-type="date"]').each(function() {
             $(this).scroller('destroy').scroller({
                 preset: 'date',
