@@ -14,17 +14,10 @@ threecircles.view.checkinview = function (model, elements) {
             //-----------------------------------------------------------------------------
             //  TODO add when information
             //-----------------------------------------------------------------------------                       
-            renderElementCustom(value);
+            $('#list-checkin-parent').append(createListItemCustom(value)).trigger("create");
         });
         $('#list-checkin').listview('refresh');
     });
-
-    //-----------------------------------------------------------------------------
-    //  TODO add when information
-    //-----------------------------------------------------------------------------
-    var renderElementCustom = function (element, timelineDate) {
-        $('#list-checkin-parent').append(createListItemCustom(element)).trigger("create");
-    };
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
