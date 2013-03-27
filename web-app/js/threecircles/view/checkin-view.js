@@ -13,9 +13,9 @@ threecircles.view.checkinview = function (model, elements) {
             //-----------------------------------------------------------------------------
             //  TODO render timeline
             //-----------------------------------------------------------------------------
-            renderElementCustom(value);
+            $('#list-checkin-parent').append(createListItemCustom(value)).trigger("create");
             //-----------------------------------------------------------------------------
-            //  TODO render timeline
+            //  end of TODO render timeline
             //-----------------------------------------------------------------------------
         });
         $('#list-checkin').listview('refresh');
@@ -24,10 +24,6 @@ threecircles.view.checkinview = function (model, elements) {
     //-----------------------------------------------------------------------------
     //  TODO render timeline
     //-----------------------------------------------------------------------------
-    var renderElementCustom = function (element) {
-        $('#list-checkin-parent').append(createListItemCustom(element)).trigger("create");
-    };
-
     var createListItemCustom = function (element) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
             '<span class="placeimage" ><img src="http://placehold.it/80x150/e88"/></span>' +
