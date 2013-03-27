@@ -25,19 +25,7 @@ class CheckinController {
       def jsonObject = JSON.parse(params.checkin)
 
       // If place is not know by ThreeCircles, store it
-      if (!jsonObject["place.id"]) {
-          def placeJsonObject = jsonObject["place"]
-
-          Place placeInstance = new Place(placeJsonObject)
-
-          if (!placeInstance.save(flush: true)) {
-              ValidationErrors validationErrors = placeInstance.errors
-              render validationErrors as JSON
-              return
-          }
-          jsonObject["place.id"] = placeInstance.id
-
-      }
+      //TODO
 
 
       def comments = []

@@ -62,16 +62,7 @@ threecircles.view.checkinview = function (model, elements) {
         } else if (data.item.message) {
             showGeneralMessage(data, event);
         } else {
-            if (!data.item.NOTIFIED) {
-                resetForm('form-update-checkin');
-                renderElementCustom(data.item, "just now");
-                $('#list-checkin').listview('refresh');
-                $.mobile.changePage($('#section-list-checkin'));
-            }  else {
-                resetForm('form-update-checkin');
-                renderElementCustom(data.item, "just now");
-                $('#list-checkin').listview('refresh');
-            }
+            //TODO
 		}
     });
 
@@ -185,23 +176,7 @@ threecircles.view.checkinview = function (model, elements) {
     //  TODO on checkin submit
     //-----------------------------------------------------------------------------
     $("#checkin-submit").on( "click", function (event) {
-        event.stopPropagation();
-        $('#form-update-checkin').validationEngine('hide');
-        if($('#form-update-checkin').validationEngine('validate')) {
-            //$(this).addClass('ui-disabled');
-            var placeObj = {name: that.selectedPlace.name, address: that.selectedPlace.address, latitude: that.selectedPlace.lat, longitude: that.selectedPlace.lng};
-            var description = $('#textarea-1').val();
-            var obj = {
-                description: description,
-                'owner.id': "1",
-                place: placeObj,
-                when: new Date().getTime()
-            };
-            var newElement = {
-                checkin: JSON.stringify(obj)
-            };
-            that.createButtonClicked.notify(newElement, event);
-        }
+        //TODO
     });
 
     var encode = function (data) {
