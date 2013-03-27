@@ -129,7 +129,7 @@ you will get new folders and files containing mock screen for timeline
 - revisit footer
 
 ### Display dynamic content
-- write renderElementCutom (search for //TODO render timeline)
+- for the callback associated to that.model.listedItems event, write rendering of timeline (search for //TODO render timeline)
 Put a breakpoint in checkin-view.js in callback attached to that.model.listedItems 
 - Is it rendering as expected? 
 - In Checkin.groovy add deep relation reolution for as JSON (search for //TODO deep relation)
