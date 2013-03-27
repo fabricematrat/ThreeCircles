@@ -11,18 +11,14 @@ threecircles.view.checkinview = function (model, elements) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
+            //-----------------------------------------------------------------------------
+            //  TODO add when information
+            //-----------------------------------------------------------------------------
             var whenInfo = timeline.getWhenInformation(value.when);
-            renderElementCustom(value, whenInfo);
+            $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
         });
         $('#list-checkin').listview('refresh');
     });
-
-    //-----------------------------------------------------------------------------
-    //  TODO add when information
-    //-----------------------------------------------------------------------------
-    var renderElementCustom = function (element, timelineDate) {
-        $('#list-checkin-parent').append(createListItemCustom(element, timelineDate)).trigger("create");
-    };
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
