@@ -13,7 +13,7 @@ threecircles.view.checkinview = function (model, elements) {
             //-----------------------------------------------------------------------------
             //  TODO render timeline
             //-----------------------------------------------------------------------------
-            renderElement(value);
+
             //-----------------------------------------------------------------------------
             //  end of TODO render timeline
             //-----------------------------------------------------------------------------
@@ -24,12 +24,13 @@ threecircles.view.checkinview = function (model, elements) {
     //-----------------------------------------------------------------------------
     //  TODO render timeline
     //-----------------------------------------------------------------------------
-    var renderElementCustom = function (element) {
-    	
+    var createListItemCustom = function (element) {
+        //TODO
     };
     //-----------------------------------------------------------------------------
     //  end of TODO render timeline
     //-----------------------------------------------------------------------------
+
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
         if (data.item.errors) {
