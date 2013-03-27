@@ -256,7 +256,6 @@ threecircles.view.checkinview = function (model, elements) {
             });
         }
     };
-    
 
     var refreshSelectDropDown = function (select, newOptions) {
         var options = null;
