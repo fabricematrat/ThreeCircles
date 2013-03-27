@@ -85,9 +85,6 @@ threecirclesconfess.view.geolocation = function () {
             });
             span.append(textarea);
             html.append(span);
-            //-----------------------------------------------------------------------------
-            //  TODO picture
-            //-----------------------------------------------------------------------------
             span = $('<span>');
             span.attr({
                 id: "div-for-upload"
