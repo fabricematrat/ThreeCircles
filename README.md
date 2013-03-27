@@ -227,7 +227,7 @@ git checkout step6_todo
 
 ### CheckinController.groovy, once a place is found with Google Places, save it to ThreeCircles database.
 
-### On created, in checkin-view.js, deal with event push and dipalyed it only once
+### On created, in checkin-view.js, deal with event push and displayed it only once
 ```java
    if (!data.item.NOTIFIED) {
      // I'm being notified of a new checkin
@@ -235,6 +235,7 @@ git checkout step6_todo
      // I've just checked in successfully
    }
 ```
+### On created, add clear text area to resetForm method
 
 ### Get source code from repo
 ```java
@@ -257,6 +258,7 @@ git checkout step7_todo
 ### in checkin-view.js,
 - on checkin-submit click send picture within the form
 - modify createListItemCustom to dispplay picture if present
+- On created, add clear file input to resetForm method
 
 ### Get source code from repo
 ```java
