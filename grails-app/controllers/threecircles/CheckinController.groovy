@@ -18,9 +18,6 @@ class CheckinController {
       render Checkin.list(params) as JSON
     }
 
-    //-----------------------------------------------------------------------------
-    //  TODO on checkin submit
-    //-----------------------------------------------------------------------------
     def save() {
       def jsonObject = JSON.parse(params.checkin)
 

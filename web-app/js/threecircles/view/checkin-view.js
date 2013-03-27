@@ -40,7 +40,13 @@ threecircles.view.checkinview = function (model, elements) {
 
         });
         html += '</div>';
-        html += '<img class="mainimage" src="http://placehold.it/640x480/88e" />';
+        //-----------------------------------------------------------------------------
+        //  TODO picture
+        //-----------------------------------------------------------------------------
+        if(element.photo) {
+            var base64 = encode(element.photo);
+            html += '<img class="mainimage" src="' + base64 + '"/>';
+        }
         html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
             '</div>';
 
@@ -49,9 +55,7 @@ threecircles.view.checkinview = function (model, elements) {
             '<li><img src="img/ico-fire.png" />First Bar in 2 months!</li></ul>';
         return html;
     };
-    //-----------------------------------------------------------------------------
-    //  TODO on checkin submit
-    //-----------------------------------------------------------------------------
+
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
         if (data.item.errors) {
@@ -181,9 +185,6 @@ threecircles.view.checkinview = function (model, elements) {
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 
-    //-----------------------------------------------------------------------------
-    //  TODO on checkin submit
-    //-----------------------------------------------------------------------------
     $("#checkin-submit").on( "click", function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
@@ -191,11 +192,20 @@ threecircles.view.checkinview = function (model, elements) {
             //$(this).addClass('ui-disabled');
             var placeObj = {name: that.selectedPlace.name, address: that.selectedPlace.address, latitude: that.selectedPlace.lat, longitude: that.selectedPlace.lng};
             var description = $('#textarea-1').val();
+            //-----------------------------------------------------------------------------
+            //  TODO picture
+            //-----------------------------------------------------------------------------
+            var photo = $('#input-checkin-photo');
+            var photoValue = "";
+            if (photo.attr('data-value')) {
+                photoValue = photo.attr('data-value');
+            }
             var obj = {
                 description: description,
                 'owner.id': "1",
                 place: placeObj,
-                when: new Date().getTime()
+                when: new Date().getTime(),
+                photo: photoValue
             };
             var newElement = {
                 checkin: JSON.stringify(obj)
@@ -352,6 +362,9 @@ threecircles.view.checkinview = function (model, elements) {
             show(element.id, event);
         });
         
+        var image = '<img src="'+ encode(element.photo) +'"/>';
+        a.append(image);
+
         if (element.offlineStatus === 'NOT-SYNC') {
             li =  $('<li>').attr({'data-theme': 'e'});
             li.append(a);
