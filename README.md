@@ -240,4 +240,25 @@ git checkout step6_todo
 ```java
 git checkout step6_done
 ```
+## Step7: Let's take a picture
 
+### Get source code from repo
+```java
+git checkout step7_todo
+```
+### Add a new attribute in Checkin.groovy search for // TODO picture
+- By convention every attribute of type "byte[]" is considerer as a photo, html5-mobile-scaffolding will scaffold all needed for deling with photo
+- Photo is optional and are big. See add to define [constraints](http://grails.org/doc/latest/ref/Constraints/Usage.html) in Grails.
+- No need to re-generate scaffolded view: be carefull not to loose all your work on checkin view!
+
+### in geolocation.js, 
+- add in the bubble window, take a pciture button
+
+### in checkin-view.js,
+- on checkin-submit click send picture within the form
+- modify createListItemCustom to dispplay picture if present
+
+### Get source code from repo
+```java
+git checkout step7_done
+```
