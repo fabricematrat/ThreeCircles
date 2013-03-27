@@ -44,8 +44,7 @@ threecircles.view.checkinview = function (model, elements) {
         //  TODO picture
         //-----------------------------------------------------------------------------
         if(element.photo) {
-            var base64 = encode(element.photo);
-            html += '<img class="mainimage" src="' + base64 + '"/>';
+
         }
         html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
             '</div>';
@@ -195,17 +194,11 @@ threecircles.view.checkinview = function (model, elements) {
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
-            var photo = $('#input-checkin-photo');
-            var photoValue = "";
-            if (photo.attr('data-value')) {
-                photoValue = photo.attr('data-value');
-            }
             var obj = {
                 description: description,
                 'owner.id': "1",
                 place: placeObj,
-                when: new Date().getTime(),
-                photo: photoValue
+                when: new Date().getTime()
             };
             var newElement = {
                 checkin: JSON.stringify(obj)

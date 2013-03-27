@@ -88,23 +88,7 @@ threecirclesconfess.view.geolocation = function () {
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
-            span = $('<span>');
-            span.attr({
-                id: "div-for-upload"
-            });
-            var input = $('<input>');
-            input.attr({
-                type: "file",
-                accept:"image/*",
-                "data-role": "none",
-                class: "null upload ui-input-text",
-                name: "photo",
-                id: "input-checkin-photo",
-                onchange: "readURL(this);",
-                onclick: "readURL(this);"
-            });
-            span.append(input);
-            html.append(span);
+
         } else {
             html = $('#div-bubble');
         }
