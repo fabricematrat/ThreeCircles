@@ -196,3 +196,48 @@ Use Google position API: [google.maps.LatLng](https://developers.google.com/maps
 ```java
 git checkout step5_done
 ```
+## Step6: Checkin!
+
+### Get source code from repo
+```java
+git checkout step6_todo
+```
+- In index.html, section with id "checkin" has been refactored to apply CSS and match our use case
+- In checkin-view.js, we initialize our third map (canvas_map3) with
+```java
+    $("#checkin").on( "pageshow", function (event) {
+        geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
+    });
+```
+- In geolocation.js, uses [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
+
+### Add behaviour on button id  "checkin-submit"
+- search for // TODO on checkin submit
+- format the object before sending
+```java
+            {
+               checkin: "{
+                  description: description,
+                  'owner.id': "1",
+                   place: placeObj,
+                  when: new Date().getTime()
+               }"
+           }
+```
+
+### CheckinController.groovy, once a place is found with Google Places, save it to ThreeCircles database.
+
+### On created, in checkin-view.js, deal with event push and dipalyed it only once
+```java
+   if (!data.item.NOTIFIED) {
+     // I'm being notified of a new checkin
+   }  else {
+     // I've just checked in successfully
+   }
+```
+
+### Get source code from repo
+```java
+git checkout step6_done
+```
+
