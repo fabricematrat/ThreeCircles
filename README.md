@@ -209,7 +209,7 @@ git checkout step6_todo
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 ```
-- In checkin-view.js, **addAndSort** method added to render timelinewith latest checkin first.
+- In checkin-view.js, *addAndSort* method added to render timelinewith latest checkin first.
 - In geolocation.js, uses [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
 
 ### Add behaviour on button id  "checkin-submit"
