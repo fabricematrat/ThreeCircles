@@ -60,9 +60,10 @@ class CheckinController {
         render validationErrors as JSON
         return
       }
-      
-      event topic:"save-checkin", data: checkinInstance
-      render checkinInstance as JSON
+
+        def asJson = checkinInstance as JSON
+        event topic:"save-checkin", data: asJson.toString()
+        render checkinInstance as JSON
     }
     
     def show() {
