@@ -14,7 +14,6 @@ class CheckinController {
     }
 	
     def list() {
-      params.max = Math.min(params.max ? params.int('max') : 10, 100)
       render Checkin.list(params) as JSON
     }
 
@@ -60,8 +59,8 @@ class CheckinController {
         render validationErrors as JSON
         return
       }
-      
-      event topic:"save-checkin", data: checkinInstance
+      def asJson = checkinInstance as JSON
+      event topic:"save-checkin", data: asJson.toString()
       render checkinInstance as JSON
     }
     
