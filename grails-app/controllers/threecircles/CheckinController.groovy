@@ -51,7 +51,8 @@ class CheckinController {
         render validationErrors as JSON
         return
       }
-      
+
+      // TODO deep JSONify checkinIntance and passed it as a String in event method
       event topic:"save-checkin", data: checkinInstance
       render checkinInstance as JSON
     }
