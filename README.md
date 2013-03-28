@@ -225,9 +225,16 @@ git checkout step6_todo
            }
 ```
 
-### CheckinController.groovy, once a place is found with Google Places, save it to ThreeCircles database.
+### CheckinController.groovy, 
+- once a place is found with Google Places, save it to ThreeCircles database.
+- look at event method that trigger the event push
 
-### On created, in checkin-view.js, deal with event push and displayed it only once
+### On created, in checkin-view.js, deal with event push
+
+Event push (GRails plugin using Atmosphere browser push fwk) is doing broadcast to all browsers.  
+3musketeers PushManager is dealing with excluding "myself". In order to know in your code if you're the one triggering 
+created callback you can user the NOTIFIED tag. NOTIFIED boolean is set when you are notidied of somebody else event.
+
 ```java
    if (!data.item.NOTIFIED) {
      // I'm being notified of a new checkin
