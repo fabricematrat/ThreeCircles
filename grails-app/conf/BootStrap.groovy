@@ -6,7 +6,6 @@ import threecircles.Checkin
 class BootStrap {
 
     def init = { servletContext ->
-
         def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'password')
         testUser.save()
 
@@ -42,11 +41,10 @@ class BootStrap {
             Cool to meet female speaker""", user: testUser)
         comment2.save()
 
-        Checkin confess = new Checkin(description: "confess", when: new Date().time, place: wien, owner: testUser, photo: "")
+        Checkin confess = new Checkin(description: "confess", when: new Date().time, place: wien, owner: testUser, photo:  "")
         confess.save()
         confess.addToFriends(fabrice)
         confess.save()
-
 
         Checkin devfestw = new Checkin(description: "devfestw", when: (new Date() - 25).time, place: paris, owner: testUser, photo:  "")
         devfestw.save()
