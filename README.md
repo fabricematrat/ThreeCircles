@@ -150,7 +150,7 @@ You will get a new file timeline.js that you will complete for the time informat
 - go to timeline.js
 Note 3muket33rs JS coding à la Crockford (function first!).
 Add a method which take a Date as long and returned information like just now, 11 minutes ago, 2 days ago, 3 months ago
-- go to checkin-view.js (search for //TODO add when information)
+- go to checkin-view.js (search for //TODO) add call to newly created method to add time information.
 - go to index.html to include new js file
 
 ### Get source code from repo
@@ -209,6 +209,7 @@ git checkout step6_todo
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 ```
+- In checkin-view.js, **addAndSort** method added to render timelinewith latest checkin first.
 - In geolocation.js, uses [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
 
 ### Add behaviour on button id  "checkin-submit"
