@@ -11,14 +11,26 @@ threecircles.view.checkinview = function (model, elements) {
 
     // Register events
     that.model.listedItems.attach(function (data) {
-    $('#list-checkin').empty();
-    var key, items = model.getItems();
-    $.each(items, function(key, value) {
-        var whenInfo = timeline.getWhenInformation(value.when);
-        $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
+        $('#list-checkin').empty();
+        var key, items = model.getItems();
+        addAndSort(items);
+        $('#list-checkin').listview('refresh');
     });
-    $('#list-checkin').listview('refresh');
-});
+
+    var addAndSort = function(items, item) {
+        $('#list-checkin-parent').empty();
+
+        var arr = [];
+        $.each(items, function () { arr.push(this); });
+        if (item) {
+            arr.push(item);
+        }
+        var itemsSortedWhen = arr.sort(function(a,b){return a.when - b.when}).reverse();
+        $.each(itemsSortedWhen, function(key, value) {
+            var whenInfo = timeline.getWhenInformation(value.when);
+            $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
+        });
+    }
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
@@ -46,6 +58,7 @@ threecircles.view.checkinview = function (model, elements) {
             '<li><img src="img/ico-fire.png" />First Bar in 2 months!</li></ul>';
         return html;
     };
+
     //-----------------------------------------------------------------------------
     //  TODO on checkin submit
     //-----------------------------------------------------------------------------
@@ -61,14 +74,13 @@ threecircles.view.checkinview = function (model, elements) {
         } else {
             resetForm('form-update-checkin');
 
-            $('#list-checkin').listview('refresh');
             if (!data.item.NOTIFIED) {
+                addAndSort(model.getItems(), data.item);
                 $.mobile.changePage($('#section-list-checkin'));
             } else {
-                $('#list-checkin-parent').append(createListItemCustom(data.item, "justnow")).trigger("create");
+                addAndSort(model.getItems(), data.item);
             }
-            $('#list-checkin').listview('refresh');
-		}
+        }
     });
 
     that.model.updatedItem.attach(function (data, event) {
