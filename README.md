@@ -272,3 +272,22 @@ git checkout step7_todo
 ```java
 git checkout step7_done
 ```
+
+## Step8: Put all together
+
+### Get source code from repo
+```java
+git checkout step8_done
+```
+
+## Step9: Loging
+
+### Get source code from repo
+```java
+git checkout step9_todo
+```
+
+### Get source code from repo
+```java
+git checkout step9_done
+```
