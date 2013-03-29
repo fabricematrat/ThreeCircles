@@ -52,9 +52,10 @@ class CheckinController {
         return
       }
 
-      // TODO deep JSONify checkinIntance and passed it as a String in event method
-      event topic:"save-checkin", data: checkinInstance
-      render checkinInstance as JSON
+        // Deep JSONify to add relationship
+        def asJson = checkinInstance as JSON
+        event topic:"save-checkin", data: asJson.toString()
+        render checkinInstance as JSON
     }
     
     def show() {
