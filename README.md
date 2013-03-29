@@ -132,7 +132,7 @@ you will get new folders and files containing mock screen for timeline
 - for the callback associated to that.model.listedItems event, write rendering of timeline (search for //TODO render timeline)
 Put a breakpoint in checkin-view.js in callback attached to that.model.listedItems 
 - Is it rendering as expected? 
-- In Checkin.groovy add deep relation reolution for as JSON (search for //TODO deep relation)
+- In CheckinController.groovy add deep relationship resolution for **as JSON** (search for //TODO deep relation)
 
 ### Get source code from repo
 ```java
@@ -232,7 +232,7 @@ git checkout step6_todo
 
 ### On created, in checkin-view.js, deal with event push
 
-Event push (GRails plugin using Atmosphere browser push fwk) is doing broadcast to all browsers.  
+Event push (Grails plugin using Atmosphere framework) is doing broadcast to all browsers.  
 3musketeers PushManager is dealing with excluding "myself". In order to know in your code if you're the one triggering 
 created callback you can user the NOTIFIED tag. NOTIFIED boolean is set when you are notidied of somebody else event.
 
@@ -243,7 +243,8 @@ created callback you can user the NOTIFIED tag. NOTIFIED boolean is set when you
      // I've just checked in successfully
    }
 ```
-### On created, add clear text area to resetForm method
+### On created, in checkin-view.js
+- add clear text area to resetForm method
 
 ### Get source code from repo
 ```java
