@@ -33,7 +33,7 @@ threecircles.view.userview = function (model, elements) {
         });
         a.append(img);
         a.append(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         

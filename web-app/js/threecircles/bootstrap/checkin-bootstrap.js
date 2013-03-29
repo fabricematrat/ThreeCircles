@@ -11,7 +11,7 @@ threecircles.loadcheckin = (function () {
             'remove': $('#delete-checkin')
         },
         hasOneRelations: [ {type: 'user', name: 'owner'} , {type: 'place', name: 'place'} ],
-        oneToManyRelations: [ {type: 'comment', name: 'comments'}, {type: 'user', name: 'friends'} ] ,
+        oneToManyRelations: [{type: 'user', name: 'friends'} ] ,
         options: {
             offline: true,
             eventPush: true

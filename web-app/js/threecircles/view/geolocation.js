@@ -70,7 +70,8 @@ threecirclesconfess.view.geolocation = function () {
 
         that.map.setCenter(new google.maps.LatLng(place.lat, place.lng));
         var html = null;
-        if($('#textarea-1').size() == 0) {
+        var init = ($('#textarea-1').size() == 0);
+        if(init) {
             html = $('<div>');
             html.attr({
                 id: "div-bubble",
@@ -96,20 +97,24 @@ threecirclesconfess.view.geolocation = function () {
                 "data-role": "none",
                 class: "null upload ui-input-text",
                 name: "photo",
-                id: "input-checkin-photo",
-                onchange: "readURL(this);",
-                onclick: "readURL(this);"
+                id: "input-checkin-photo"
             });
             span.append(input);
             html.append(span);
         } else {
             html = $('#div-bubble');
         }
+
+        myInfoWindow.setOptions({maxWidth:400})
         that.infowindow = new google.maps.InfoWindow({
             map: that.map,
             position: pos,
             content: html.html()
         });
+
+        if(init) {
+            grails.mobile.camera.getPicture($("#input-checkin-photo"));
+        }
     };
 
 
@@ -153,7 +158,7 @@ threecirclesconfess.view.geolocation = function () {
 
                         a.attr({
                             href: "#checkin",
-                            'data-transition': "slide"
+                            'data-transition': "fade"
                         });
 
                         a.append('<img src="'+ img+'"/><h2>'+ name + '</h2><p>' + distance + ' km</p>');

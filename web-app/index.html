@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/jquery/validationEngine.jquery.css" type="text/css"/>
     <link rel="stylesheet" href="css/jquery/mobiscroll.custom-2.4.4.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/html5-mobile.css" type="text/css"/>
+    <script src="cordova.js"></script>
     <script src="js/jquery/jquery-1.9.1.min.js"></script>
     <script src="js/grails/energize.js"></script>
     <script src="js/jquery/jquery.mobile-1.3.0.min.js"></script>
@@ -36,7 +37,7 @@
                     <input data-theme="c" class="search-header" placeholder="Find a place to go"/>
                 </li>
                 <li class="list-icon">
-                    <a href="#page1" data-role="button" data-icon="bars">&nbsp;</a>
+                    <a href="#page1" data-role="button" data-transition="fade" data-icon="bars">&nbsp;</a>
                 </li>
             </ul>
         </div>
@@ -50,7 +51,7 @@
         <div id="navbar-footer" data-role="navbar" data-iconpos="top">
             <ul>
                 <li style="width: 20%;">
-                    <a id="add-checkin" href="#section-show-checkin" data-theme="b" data-icon="edit" data-role="button" data-iconpos="top">
+                    <a id="add-checkin" href="#section-show-checkin" data-transition="fade" data-theme="b" data-icon="edit" data-role="button" data-iconpos="top">
                         Check In</br>
                     </a>
                 </li>
@@ -78,11 +79,11 @@
 
 <div data-role="page" id="checkin" data-theme="a">
     <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
-        <a href="#section-list-checkin" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+        <a href="#section-list-checkin" data-transition="fade" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
         <h1>Check In</h1>
     </div>
     <div data-role="content">
-        <div id="map_canvas3" class="big-map"></div>
+        <div id="map_canvas3" class="middle-map"></div>
         <button id="checkin-submit" data-theme="e">Check in Here</button>
     </div>
 </div>
@@ -108,7 +109,6 @@
     <script src="js/grails/mobile/mvc/manager.js"></script>
     <script src="js/threecircles/view/user-view.js"></script>
     <script src="js/threecircles/view/place-view.js"></script>
-    <script src="js/threecircles/view/comment-view.js"></script>
     <script src="js/threecircles/view/user-view.js"></script>
     <script src="js/threecircles/view/geolocation.js"></script>
     <script src="js/threecircles/view/timeline.js"></script>
@@ -117,10 +117,8 @@
     <script src="js/threecircles/bootstrap/checkin-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/place-bootstrap.js"></script>
-    <script src="js/threecircles/bootstrap/comment-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/manager-bootstrap.js"></script>
     <script src="js/jquery/mobiscroll.custom-2.4.4.min.js"></script>
-    <script src="cordova.js"></script>
 </body>
 </html>
