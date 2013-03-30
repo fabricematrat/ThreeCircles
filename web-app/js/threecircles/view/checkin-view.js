@@ -30,7 +30,15 @@ threecircles.view.checkinview = function (model, elements) {
             var whenInfo = timeline.getWhenInformation(value.when);
             $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
         });
-    }
+    };
+
+    $('#section-list-checkin').on('swiperight', function(event) {
+        $('#mypanel').panel('open');
+    });
+
+    $('#section-list-checkin').on('swipeleft', function(event) {
+        $('#mypanel').panel('close');
+    });
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
