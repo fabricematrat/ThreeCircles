@@ -9,6 +9,7 @@ threecircles.loadcheckin = (function () {
             'add': $('#add-checkin'),
             'show': $('a[id^="checkin-list-"]'),
             'remove': $('#delete-checkin')
+
         },
         hasOneRelations: [ {type: 'user', name: 'owner'} , {type: 'place', name: 'place'} ],
         oneToManyRelations: [{type: 'user', name: 'friends'} ] ,

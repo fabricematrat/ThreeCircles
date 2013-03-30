@@ -4,6 +4,42 @@ threecircles.view = threecircles.view || {};
 threecircles.view.checkinview = function (model, elements) {
 
     var that = grails.mobile.mvc.view(model, elements);
+
+
+    that.loginButtonClicked = grails.mobile.event();
+    that.model.logged.attach(function (data, event) {
+        if (data.item.errors) {
+            $.each(data.item.errors, function(index, error) {
+                $('#input-user-' + error.field).validationEngine('showPrompt',error.message, 'fail');
+            });
+            event.stopPropagation();
+        } else if (data.item.message) {
+            showGeneralMessage(data, event);
+        } else {
+            if (grails.mobile.helper.getCookie("grails_remember_me")) {//)$.cookie('grails_remember_me')) {
+                $('#login').replaceWith('<a id="login" class="ui-btn-right" href="#section-show-user">Logout</a>');
+            } else {
+                $('#login').replaceWith('<a id="login" class="ui-btn-right" href="#section-show-user">Login</a>');
+            }
+            $('#login').button();
+            if (!data.item.NOTIFIED) {
+                that.listButtonClicked.notify();
+                $.mobile.changePage($('#section-list-checkin'));
+            }
+        }
+    });
+
+    $('#submit-login').on('click', function (event) {
+        event.stopPropagation();
+        $('#form-update-user').validationEngine('hide');
+        if($('#form-update-user').validationEngine('validate')) {
+            var obj = grails.mobile.helper.toObject($('#form-update-user').find('input, select'));
+            var newElement = obj;
+            that.loginButtonClicked.notify(newElement, event);
+
+        }
+    });
+
     var timeline = threecirclesconfess.view.timeline();
     var geolocationSearch = threecirclesconfess.view.geolocation();
     var geolocationCheckin = threecirclesconfess.view.geolocation();
@@ -16,6 +52,13 @@ threecircles.view.checkinview = function (model, elements) {
         addAndSort(items);
         $('#list-checkin').listview('refresh');
     });
+
+    var timelineListed = function (data) {
+        $('#list-checkin').empty();
+        var key, items = model.getItems();
+        addAndSort(items);
+        $('#list-checkin').listview('refresh');
+    };
 
     var addAndSort = function(items, item) {
         $('#list-checkin-parent').empty();

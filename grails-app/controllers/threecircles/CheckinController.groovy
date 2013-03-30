@@ -4,7 +4,9 @@ import grails.converters.deep.JSON
 import org.grails.datastore.mapping.validation.ValidationErrors
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
+import org.springframework.security.access.annotation.Secured
 
+@Secured(['IS_AUTHENTICATED_REMEMBERED'])
 class CheckinController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

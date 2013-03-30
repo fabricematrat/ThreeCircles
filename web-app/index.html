@@ -88,6 +88,46 @@
     </div>
 </div>
 
+<section data-role="page" id="login-page">
+    <div data-role="header" id="show-user" data-position="fixed" data-id="myHeader">
+        <a href="#section-list-checkin" data-icon="arrow-l">Cancel</a>
+        <h1>User</h1>
+    </div>
+    <form id="form-update-user" name="form-update-user" action='j_spring_security_check' method='POST'>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="fieldcontain">
+                <label for="username">Username</label>
+                <input type="text" class="validate[required]" name="j_username" id="username" value=""/>
+
+            </li>
+            <li data-role="fieldcontain">
+                <label for="password">Password</label>
+                <input type="password" class="validate[required]" name="j_password" id="password" value=""/>
+
+            </li>
+            <li data-role="fieldcontain">
+                <label for='remember_me'>Remember me</label>
+                <input type='checkbox' class='chk' id='remember_me'
+                       name='_spring_security_remember_me'/>
+            </li>
+
+        </ul>
+        <input type="hidden" name="id" id="input-user-id"/>
+        <input type="hidden" name="ajax" id="ajax" value="true"/>
+        <input type="hidden" name="version" id="input-user-version"/>
+        <input type="hidden" name="class" id="input-user-class"/>
+    </form>
+    <div data-role="footer" data-position="fixed" data-id="myFooter">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a data-role="button" data-icon="save" id="submit-login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
     <script src="js/jquery/jquery.validationEngine.js"></script>
     <script src="js/jquery/jquery.validationEngine-en.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,geometry"></script>
@@ -109,10 +149,15 @@
     <script src="js/grails/mobile/mvc/manager.js"></script>
     <script src="js/threecircles/view/user-view.js"></script>
     <script src="js/threecircles/view/place-view.js"></script>
-    <script src="js/threecircles/view/user-view.js"></script>
     <script src="js/threecircles/view/geolocation.js"></script>
     <script src="js/threecircles/view/timeline.js"></script>
     <script src="js/threecircles/view/checkin-view.js"></script>
+    <script src="js/threecircles/controller/checkin-controller.js"></script>
+    <script src="js/threecircles/controller/user-controller.js"></script>
+    <script src="js/threecircles/controller/place-controller.js"></script>
+    <script src="js/threecircles/model/checkin-model.js"></script>
+    <script src="js/threecircles/model/user-model.js"></script>
+    <script src="js/threecircles/model/place-model.js"></script>
     <script src="js/threecircles/configuration-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/checkin-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
