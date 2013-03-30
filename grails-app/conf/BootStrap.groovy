@@ -2,21 +2,29 @@ import threecircles.User
 import threecircles.Place
 import threecircles.Comment
 import threecircles.Checkin
+import threecircles.UserRole
+import threecircles.Role
 
 class BootStrap {
 
     def init = { servletContext ->
+        def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+
         def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'password')
         testUser.save()
+        UserRole.create testUser, userRole, true
 
         User fabrice = new User(firstname: "Fabrice", lastname: "Matrat", username: "fabricematrat", password: "password", enabled: true);
         fabrice.save()
+        UserRole.create fabrice, userRole, true
 
         User sebastien = new User(firstname: "Sebastien", lastname: "Blanc", username: "sebastienblanc", password: "password", enabled: true);
         sebastien.save()
+        UserRole.create sebastien, userRole, true
 
         User mathieu = new User(firstname: "Mathieu", lastname: "Bruyen", username: "mathieubruyen", password: "password", enabled: true);
         mathieu.save()
+        UserRole.create mathieu, userRole, true
 
         Place nice = new Place(name: "Nice", latitude:43.7, longitude: 7.2, address: "town center" )
         nice.save()

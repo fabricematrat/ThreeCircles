@@ -7,6 +7,10 @@ threecircles.loadConfiguration = (function () {
         //baseURL: "http://ThreeCircles.cloudfoundry.com/",
         namespace: "threecircles",
         domain:[]
+        ,
+        on401: function() {
+            $.mobile.changePage($('#login-page'));
+        }
     };
 })();
 
