@@ -3,15 +3,15 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    width: 78%;
+    width: 50%;
     background: no-repeat;
-    background-size: 80px;
+    background-size: 40px;
     background-position: center center;
     background-image: url('../images/camera.png');
 }
 #div-for-upload .upload{
     opacity: 0;
-    height: 80px;
+    height: 60px;
     padding: 0;
     position: relative;
     left: -moz-calc(50% - 5em);

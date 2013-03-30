@@ -92,20 +92,21 @@ threecircles.view.placeview = function (model, elements) {
         }
     });
 
-    $('#list-all-place').on('click', function (e, ui) {
+    $('#list-all-place').on('vclick', function (e, ui) {
         hideMapDisplay();
         showListDisplay();
     });
 
-    $('#map-all-place').on('click', function (e, ui) {
+    $('#map-all-place').on('vclick', function (e, ui) {
         hideListDisplay();
         showMapDisplay();
     });
+
     that.elements.list.on('pageinit', function (e) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-place').validationEngine('hide');
         if($('#form-update-place').validationEngine('validate')) {
@@ -122,13 +123,13 @@ threecircles.view.placeview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-place-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
+    that.elements.add.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         $('#form-update-place').validationEngine('hide');
@@ -147,14 +148,6 @@ threecircles.view.placeview = function (model, elements) {
         resetForm('form-update-place');
         $.mobile.changePage($('#section-show-place'));
         $('#delete-place').css('display', 'none');
-    };
-
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
     };
 
     var showElement = function (id) {
@@ -231,7 +224,7 @@ threecircles.view.placeview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         

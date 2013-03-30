@@ -92,3 +92,8 @@ log4j = {
 
 // Added by the Html5 Mobile Scaffolding plugin:
 grails.converters.json.domain.include.version=true
+
+
+phonegapbuild.username="corinnekrych@gmail.com"
+phonegapbuild.password="password"
+phonegapbuild.phonegapversion="2.3.0"

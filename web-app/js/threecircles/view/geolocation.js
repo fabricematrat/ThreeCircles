@@ -46,12 +46,14 @@ threecirclesconfess.view.geolocation = function () {
             content: content
         };
         that.map.setCenter(options.position);
-    }
+    };
 
     that.showMapBackground = function(canvas, place) {
         var pos = new google.maps.LatLng(43.7, 7.2);
         if (!that.map) {
             that.map = new google.maps.Map(document.getElementById(canvas), mapOptions);
+        } else {
+            google.maps.event.trigger(that.map, 'resize');
         }
 
         that.map.setCenter(pos);
@@ -66,28 +68,37 @@ threecirclesconfess.view.geolocation = function () {
         var pos = new google.maps.LatLng(place.lat, place.lng);
         if (!that.map) {
             that.map = new google.maps.Map(document.getElementById(canvas), mapOptions);
+        } else {
+            google.maps.event.trigger(that.map, 'resize');
         }
 
         that.map.setCenter(new google.maps.LatLng(place.lat, place.lng));
         var html = null;
-        if($('#textarea-1').size() == 0) {
-            html = $('<div>');
+        var init = ($('#textarea-1').size() == 0);
+        if(init) {
+            html = $('<div=>');
             html.attr({
+                style: "display: table",
                 id: "div-bubble",
-                style: "width:500px%; display:inline;"
+                style: "display:inline;"
             });
             var span = $('<span>');
+            span.attr({
+                style:"display: table-cell;width: 60%;"
+            });
             var textarea = $('<textarea>');
             textarea.attr({
                 name: "textarea-1",
                 id: "textarea-1",
+                style:'width: 70%; height: 60px; font-size:12px;',
                 placeholder: "What are you up to?"
             });
             span.append(textarea);
             html.append(span);
             span = $('<span>');
             span.attr({
-                id: "div-for-upload"
+                id: "div-for-upload",
+                style:"display: table-cell;width: 20%;"
             });
             var input = $('<input>');
             input.attr({
@@ -96,20 +107,25 @@ threecirclesconfess.view.geolocation = function () {
                 "data-role": "none",
                 class: "null upload ui-input-text",
                 name: "photo",
-                id: "input-checkin-photo",
-                onchange: "readURL(this);",
-                onclick: "readURL(this);"
+                id: "input-checkin-photo"
             });
             span.append(input);
             html.append(span);
         } else {
             html = $('#div-bubble');
         }
+
         that.infowindow = new google.maps.InfoWindow({
             map: that.map,
             position: pos,
+            pixelOffset: new google.maps.Size(-10, 80),
+            maxWidth:200,
             content: html.html()
         });
+
+        if(init) {
+            grails.mobile.camera.getPicture($("#input-checkin-photo"));
+        }
     };
 
 
@@ -122,6 +138,7 @@ threecirclesconfess.view.geolocation = function () {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+                google.maps.event.trigger(that.map, 'resize');
                 that.map.setCenter(pos);
 
                 var request = {
@@ -153,7 +170,7 @@ threecirclesconfess.view.geolocation = function () {
 
                         a.attr({
                             href: "#checkin",
-                            'data-transition': "slide"
+                            'data-transition': "fade"
                         });
 
                         a.append('<img src="'+ img+'"/><h2>'+ name + '</h2><p>' + distance + ' km</p>');

@@ -12,10 +12,23 @@ class CheckinController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+
     def list() {
-      render Checkin.list(params) as JSON
+        def me = User.findByUsername("me")
+        def checkins = Checkin.findAllByOwner(me)
+        me.friends.each {
+            def result = Checkin.findAllByOwner(it)
+            if (result.size() > 0) {
+                result.each { itt ->
+                    checkins << itt
+                }
+            }
+        }
+        render checkins as JSON
     }
+//    def list() {
+//      render Checkin.list(params) as JSON
+//    }
 
     def save() {
       def jsonObject = JSON.parse(params.checkin)
@@ -59,9 +72,11 @@ class CheckinController {
         render validationErrors as JSON
         return
       }
+
       def asJson = checkinInstance as JSON
       event topic:"save-checkin", data: asJson.toString()
       render checkinInstance as JSON
+
     }
     
     def show() {
