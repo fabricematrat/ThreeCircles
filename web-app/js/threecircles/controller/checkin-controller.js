@@ -8,6 +8,25 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
         login(item, context);
     });
 
+    view.logoutButtonClicked.attach(function (item, context) {
+        logout(item, context);
+    });
+
+    var logout = function (data, context) {
+        var loggedOut = function (data) {
+            return that.model.logout(data, context);
+        };
+
+        var callback = function (response) {
+            if (loggedOut(response)) {
+                var success = true;
+            }  else {
+                var error = false;
+            }
+        };
+        send(data, "j_spring_security_logout", callback);
+    };
+
     var login = function (data, context) {
         var logged = function (data) {
             return that.model.login(data, context);
@@ -17,15 +36,10 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
             if (logged(response)) {
                 var success = true;
             }  else {
-                //error
                 var error = false;
             }
         };
-        if (grails.mobile.helper.getCookie("grails_remember_me")) {
-            send(data, "j_spring_security_logout", callback);
-        } else {
-            send(data, "j_spring_security_check" , callback);
-        }
+        send(data, "j_spring_security_check" , callback);
     };
 
     var send = function (item, url, callback) {
@@ -43,10 +57,14 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
                 callback(data, item);
             },
             error: function (xhr) {
-                var data = [];
-                data['item'] = [];
-                data['item']['message'] = xhr.responseText;
-                callback(data, item);
+                if(xhr.status  == 200) {
+                    callback(data, item);
+                } else {
+                    var data = [];
+                    data['item'] = [];
+                    data['item']['message'] = xhr.responseText;
+                    callback(data, item);
+                }
             }
         });
     };

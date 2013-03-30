@@ -9,6 +9,8 @@ import org.springframework.security.access.annotation.Secured
 @Secured(['IS_AUTHENTICATED_REMEMBERED'])
 class CheckinController {
 
+    def springSecurityService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -16,17 +18,28 @@ class CheckinController {
     }
 
     def list() {
-        def me = User.findByUsername("me")
-        def checkins = Checkin.findAllByOwner(me)
+
+        User me = User.get(springSecurityService.principal.id)
+        //def me = User.findByUsername("me")
+        def listOfCheckins = Checkin.findAllByOwner(me)
+        def listOfCheckins2 = Checkin.list()
         me.friends.each {
             def result = Checkin.findAllByOwner(it)
             if (result.size() > 0) {
                 result.each { itt ->
-                    checkins << itt
+                    listOfCheckins << itt
                 }
             }
         }
-        render checkins as JSON
+        def builder = new groovy.json.JsonBuilder()
+        def checkinsJSON = listOfCheckins as JSON
+        def checkinString =  checkinsJSON.toString()
+        def info = builder  {
+            firstname me.firstname
+            checkins checkinString
+        }
+        String builderString = builder.toString();
+        render builderString
     }
 //    def list() {
 //      render Checkin.list(params) as JSON

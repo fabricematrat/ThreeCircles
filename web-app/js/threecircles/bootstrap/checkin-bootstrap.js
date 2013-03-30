@@ -14,7 +14,7 @@ threecircles.loadcheckin = (function () {
         hasOneRelations: [ {type: 'user', name: 'owner'} , {type: 'place', name: 'place'} ],
         oneToManyRelations: [{type: 'user', name: 'friends'} ] ,
         options: {
-            offline: true,
+            offline: false,
             eventPush: true
         }
 
