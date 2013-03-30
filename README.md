@@ -281,14 +281,47 @@ git checkout step7_done
 git checkout step8_done
 ```
 
-## Step9: Loging
+
+
+## Step9: Logging with Spring-Security
 
 ### Get source code from repo
 ```java
 git checkout step9_todo
+```
+You get spring-security-core installed, seein BuildConfig:
+```java
+plugins {
+  ...
+  compile ":webxml:1.4.1"
+  compile ':spring-security-core:1.2.7.3'
+}
+```
+Run run-app to fetch dependecies and install SpringSecurity
+
+### Create User and UserRole domain class 
+```java
+grails s2-quickstart threecircles User Role
 ```
 
 ### Get source code from repo
 ```java
 git checkout step9_done
 ```
+
+
+
+package threecircles
+
+class User {
+    String firstname
+    String lastname
+    String username
+    String password
+
+    static hasMany = [friends:User]
+
+    static constraints = {
+    }
+}
+
