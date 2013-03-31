@@ -89,47 +89,25 @@
 </div>
 
 <section data-role="page" id="login-page" data-theme="a">
-    <!--<div data-role="header" id="show-user" data-position="fixed" data-theme="a" data-id="myHeader">-->
-        <!--<div data-role="navbar" data-iconpos="top">-->
-            <!--<ul>-->
-                <!--<li class="list-icon"><a href="#section-list-checkin" data-icon="arrow-l"></a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div data-role="content">-->
-        <form id="form-update-user" name="form-update-user" action='j_spring_security_check' method='POST'>
-            <!--<ul data-role="listview" data-inset="true">-->
-                <li data-role="fieldcontain" >
-                    <input data-theme="e" type="text" class="validate[required]" placeholder="username" name="j_username" id="username" value=""/>
 
-                </li>
-                <li data-role="fieldcontain">
-                    <input type="password" class="validate[required]" placeholder="password" name="j_password" id="password" value=""/>
+    <img style="display: block;margin: auto;padding:1em" src="img/ThreeCircle.png"/>
 
-                </li>
-                <li data-role="fieldcontain">
-                    <label for='remember_me'>Remember me</label>
-                    <input type='checkbox' class='chk' id='remember_me'
-                           name='_spring_security_remember_me'/>
-                </li>
+    <form id="form-update-user" name="form-update-user" action='j_spring_security_check' method='POST'>
+        <div style="padding-left:3em;padding-right:3em">
+            <input style="text-align: center;" data-theme="e" type="text" class="validate[required]" placeholder="username" name="j_username" id="username" value=""/>
+            <input style="text-align: center;" data-theme="e" type="password" placeholder="password" name="j_password" id="password" value=""/>
+            <label  style="text-align: center;" for='remember_me'>Remember me</label>
+            <input type='checkbox' class='chk' id='remember_me'
+                   name='_spring_security_remember_me'/>
+             <br/>
+            <a data-role="button" data-theme="e" id="submit-login">Login</a>
+        </div>
 
-            <!--</ul>-->
-            <a data-role="button" data-icon="save" id="submit-login">Login</a>
-            <input type="hidden" name="id" id="input-user-id"/>
-            <input type="hidden" name="ajax" id="ajax" value="true"/>
-            <input type="hidden" name="version" id="input-user-version"/>
-            <input type="hidden" name="class" id="input-user-class"/>
-        </form>
-    <!--</div>-->
-    <!--<div data-role="footer" data-position="fixed" data-id="myFooter">-->
-        <!--<div data-role="navbar">-->
-            <!--<ul>-->
-                <!--<li>-->
-                    <!---->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
+        <input type="hidden" name="id" id="input-user-id"/>
+        <input type="hidden" name="ajax" id="ajax" value="true"/>
+        <input type="hidden" name="version" id="input-user-version"/>
+        <input type="hidden" name="class" id="input-user-class"/>
+    </form>
 </section>
 
     <script src="js/jquery/jquery.validationEngine.js"></script>
