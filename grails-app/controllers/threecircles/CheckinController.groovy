@@ -20,9 +20,7 @@ class CheckinController {
     def list() {
 
         User me = User.get(springSecurityService.principal.id)
-        //def me = User.findByUsername("me")
         def listOfCheckins = Checkin.findAllByOwner(me)
-        def listOfCheckins2 = Checkin.list()
         me.friends.each {
             def result = Checkin.findAllByOwner(it)
             if (result.size() > 0) {
@@ -41,10 +39,6 @@ class CheckinController {
         String builderString = builder.toString();
         render builderString
     }
-//    def list() {
-//      render Checkin.list(params) as JSON
-//    }
-
     def save() {
       def jsonObject = JSON.parse(params.checkin)
 
