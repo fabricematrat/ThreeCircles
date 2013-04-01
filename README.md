@@ -9,8 +9,9 @@ Speakers
  
 We're presenting you the work done by [3musket33rs](http://3musket33rs.github.com/) team.
 
-## Step1: Scaffolding
-### Setup
+## Setup
+### GitHub Repos
+#### With Confess VM Environment
 In the vm, given to you, you will find in ~/work a clone of this repository and 3musketeers plugins
 Please update this version
 ```java
@@ -20,11 +21,28 @@ cd ~/work/ThreeCircles
 git pull
 ```
 
+#### Without
 If you do not have the confess vm environment, fork or clone this repo but also the 3musket33rs plugins
 ```java
 git clone https://github.com/3musket33rs/html5-mobile-scaffolding
 git clone https://github.com/3musket33rs/phonegapbuild.git
 ```
+You will need also grails 2.2.1, jdk1.7, a modern browser (no IE6!)
+
+### Working with branches
+The step by step tutorial works with git branches. For each step you will find a branch **stepXX_todo** and **stepXX_done**
+Here will be the list of git commands you will need to know
+```java
+git checkout [stepXX_todo]
+git branch // to check in which branch you are
+git status // to know which files you modified in the current branch
+git add ... // to add files to be committed
+git commit -m "Some usefule comments" //To commit locally your changes
+git pull // to fetch the latest changes from the remote repo
+git push // to send your committed changes to the remote repo
+```
+
+## Step1: Scaffolding
 
 ### Get source code from repo
 ```java
