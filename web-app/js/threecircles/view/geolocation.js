@@ -85,6 +85,23 @@ threecirclesconfess.view.geolocation = function () {
             });
             span.append(textarea);
             html.append(span);
+            span = $('<span>');
+            span.attr({
+                id: "div-for-upload"
+            });
+            var input = $('<input>');
+            input.attr({
+                type: "file",
+                accept:"image/*",
+                "data-role": "none",
+                class: "null upload ui-input-text",
+                name: "photo",
+                id: "input-checkin-photo",
+                onchange: "readURL(this);",
+                onclick: "readURL(this);"
+            });
+            span.append(input);
+            html.append(span);
         } else {
             html = $('#div-bubble');
         }
@@ -116,7 +133,7 @@ threecirclesconfess.view.geolocation = function () {
                 var service = new google.maps.places.PlacesService(that.map);
                 service.nearbySearch(request, function (results, status) {
                     if (status != google.maps.places.PlacesServiceStatus.OK) {
-                        alert(status);
+                        console.log('Error getting Google Place Service');
                         return;
                     }
                     for (var i = 0, result; result = results[i]; i++) {

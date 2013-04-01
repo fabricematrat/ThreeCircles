@@ -31,7 +31,8 @@ class CommentController {
         return
       }
       
-      event topic:"save-comment", data: commentInstance
+      def asJson = commentInstance as JSON
+      event topic:"save-comment", data: asJson.toString()
       render commentInstance as JSON
     }
     
@@ -85,7 +86,8 @@ class CommentController {
         return
       }
       
-      event topic:"update-comment", data: commentInstance
+      def asJson = commentInstance as JSON
+      event topic:"update-comment", data: asJson.toString()
       render commentInstance as JSON
     }
 

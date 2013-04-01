@@ -19,7 +19,6 @@ threecirclesconfess.view.timeline = function () {
         var earlier = date;
         var diff = now - earlier;
         if (diff < TEN_MINUTES) {    // less than 10 mins
-           console && console.log('less than 10mins');
            return "just now";
         }
         if (TEN_MINUTES <diff && diff < ONE_DAY) {  // between 10 mins to one day
@@ -27,9 +26,9 @@ threecirclesconfess.view.timeline = function () {
             var hours = integerDivision(diff, ONE_HOUR);
             if (hours.quotient) {
                 var minutesLeft = integerDivision(hours.remainder, ONE_MINUTE);
-                return hours.quotient + " hours " + minutesLeft.quotient + " minutes ago";
+                return hours.quotient + " h " + minutesLeft.quotient + " min ago";
             } else {
-                return minutes.quotient + " minutes ago";
+                return minutes.quotient + " min ago";
             }
         }
         if (ONE_DAY < diff && diff < ONE_MONTH) {
