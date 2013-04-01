@@ -26,6 +26,7 @@ If you do not have the confess vm environment, fork or clone this repo but also 
 ```java
 git clone https://github.com/3musket33rs/html5-mobile-scaffolding
 git clone https://github.com/3musket33rs/phonegapbuild.git
+git clone https://github.com/fabricematrat/ThreeCircles.git
 ```
 You will need also grails 2.2.1, jdk1.7, a modern browser (no IE6!)
 
