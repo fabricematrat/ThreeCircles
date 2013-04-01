@@ -33,7 +33,7 @@ You will need also grails 2.2.1, jdk1.7, a modern browser (no IE6!)
 The step by step tutorial works with git branches. For each step you will find a branch **stepXX_todo** and **stepXX_done**
 Here will be the list of git commands you will need to know
 ```java
-git checkout [stepXX_todo]
+git checkout stepXX_todo
 git branch // to check in which branch you are
 git status // to know which files you modified in the current branch
 git add ... // to add files to be committed
