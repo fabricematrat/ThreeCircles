@@ -11,7 +11,12 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
     var that = grails.mobile.mvc.view(model, elements);<% if (geolocated) { %>
     var mapServiceList = grails.mobile.map.googleMapService();
     var mapServiceForm = grails.mobile.map.googleMapService();<% } %>
-
+    <%  props.eachWithIndex { p, i ->
+            if (p.type==([] as Byte[]).class || p.type==([] as byte[]).class) { %>
+    \$(function () {
+        grails.mobile.camera.getPicture(\$('#input-${classNameLowerCase}-${p.name}'));
+    });
+    <% } }%>
     // Register events
     that.model.listedItems.attach(function (data) {<% if (geolocated) { %>
         mapServiceList.emptyMap('map-canvas-list-${classNameLowerCase}');<% } %>
@@ -107,12 +112,12 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
         }
     });
 
-    \$('#list-all-${classNameLowerCase}').on('click', function (e, ui) {
+    \$('#list-all-${classNameLowerCase}').on('vclick', function (e, ui) {
         hideMapDisplay();
         showListDisplay();
     });
 
-    \$('#map-all-${classNameLowerCase}').on('click', function (e, ui) {
+    \$('#map-all-${classNameLowerCase}').on('vclick', function (e, ui) {
         hideListDisplay();
         showMapDisplay();
     });<% } %>
@@ -120,7 +125,7 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         \$('#form-update-${classNameLowerCase}').validationEngine('hide');
         if(\$('#form-update-${classNameLowerCase}').validationEngine('validate')) {
@@ -137,14 +142,13 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         \$(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: \$('#input-${classNameLowerCase}-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        \$(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         \$('#form-update-${classNameLowerCase}').validationEngine('hide');
         \$('#form-update-${classNameLowerCase}').validationEngine({promptPosition: 'bottomLeft'});<% if(oneToOneProps || oneToManyProps) { %>
@@ -156,22 +160,16 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
         event.stopPropagation();
         \$('#form-update-${classNameLowerCase}').validationEngine('hide');
         \$('#form-update-${classNameLowerCase}').validationEngine({promptPosition: 'bottomLeft'});<% if(oneToOneProps || oneToManyProps) { %>
-        that.editButtonClicked.notify();<%}%>
-        showElement(dataId);
+        that.editButtonClicked.notify(function() {
+            showElement(dataId);
+        });<%} else {%>
+        showElement(dataId);<%}%>
     };
 
     var createElement = function () {
         resetForm('form-update-${classNameLowerCase}');
         \$.mobile.changePage(\$('#section-show-${classNameLowerCase}'));
         \$('#delete-${classNameLowerCase}').css('display', 'none');
-    };
-
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
     };
 
     var showElement = function (id) {
@@ -210,7 +208,7 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -246,6 +244,7 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
                     \$(input).val('');
                 } else {
                     \$(input).parent().css('background-image', 'url("images/camera.png")');
+                    \$(input).attr('data-value', '');
                 }
             });
         }
@@ -284,6 +283,7 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
             });
             select.val(options[0]);
         }
+        select.selectmenu('refresh');
     };
 
     var renderDependentList = function (dependentName, items) {
@@ -324,14 +324,14 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         <%
             props.eachWithIndex { p, i ->
             if (p.type==([] as Byte[]).class || p.type==([] as byte[]).class) {
         %>
-        var image = '<img src="'+ encode(element.${p.name}) +'"/>';
+        var image = '<img src="'+ grails.mobile.camera.encode(element.${p.name}) +'"/>';
         a.append(image);
         <% } } %>
         if (element.offlineStatus === 'NOT-SYNC') {

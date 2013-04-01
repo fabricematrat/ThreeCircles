@@ -4,7 +4,7 @@ threecircles.view = threecircles.view || {};
 threecircles.view.userview = function (model, elements) {
 
     var that = grails.mobile.mvc.view(model, elements);
-
+    
     // Register events
     that.model.listedItems.attach(function (data) {
         $('#list-user').empty();
@@ -73,7 +73,7 @@ threecircles.view.userview = function (model, elements) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         if($('#form-update-user').validationEngine('validate')) {
@@ -90,14 +90,13 @@ threecircles.view.userview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-user-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         $('#form-update-user').validationEngine({promptPosition: 'bottomLeft'});
@@ -117,14 +116,6 @@ threecircles.view.userview = function (model, elements) {
         $('#delete-user').css('display', 'none');
     };
 
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
-
     var showElement = function (id) {
         resetForm('form-update-user');
         var element = that.model.items[id];
@@ -133,7 +124,7 @@ threecircles.view.userview = function (model, elements) {
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -164,6 +155,7 @@ threecircles.view.userview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
@@ -177,7 +169,7 @@ threecircles.view.userview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         

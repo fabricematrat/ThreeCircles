@@ -31,7 +31,8 @@ class UserController {
         return
       }
       
-      event topic:"save-user", data: userInstance
+      def asJson = userInstance as JSON
+      event topic:"save-user", data: asJson.toString()
       render userInstance as JSON
     }
     
@@ -85,7 +86,8 @@ class UserController {
         return
       }
       
-      event topic:"update-user", data: userInstance
+      def asJson = userInstance as JSON
+      event topic:"update-user", data: asJson.toString()
       render userInstance as JSON
     }
 
