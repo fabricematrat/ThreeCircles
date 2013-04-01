@@ -25,7 +25,8 @@ threecircles.view.checkinview = function (model, elements) {
     //  TODO render timeline
     //-----------------------------------------------------------------------------
     var createListItemCustom = function (element) {
-        var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
+        var html = '<div class="fs-object">';
+        html += '<div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
             '<span class="placeimage" ><img src="http://placehold.it/80x150/e88"/></span>' +
             '<span class="description">' +
             '<span class="name">' + element.owner.firstname + ' ' + element.owner.lastname  + '</span> at <span class="place">' +
@@ -34,20 +35,20 @@ threecircles.view.checkinview = function (model, elements) {
             '</span></div>';
 
         html += '<div class="comment">' + element.description;
-
         $.each(element.friends, function(key, value) {
-            html += '<br/>with <span class="name">' + value.firstname +
-                '</span>';
-
+            html += '<br/>with <span class="name">' + value.firstname + '</span>';
         });
         html += '</div>';
+
         html += '<img class="mainimage" src="http://placehold.it/640x480/88e" />';
-        html +='<span class="date">2 days ago</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
-            '</div>';
+        html +='<span class="date">2 days ago</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>';
+
+        html += '</div>';
 
         html += '<ul class="fs-list">' +
             '<li><img src="img/ico-fire.png" />Back here after 5 months.</li>' +
             '<li><img src="img/ico-fire.png" />First Bar in 2 months!</li></ul>';
+
         return html;
     };
     //-----------------------------------------------------------------------------
@@ -121,7 +122,7 @@ threecircles.view.checkinview = function (model, elements) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         if($('#form-update-checkin').validationEngine('validate')) {
@@ -138,14 +139,13 @@ threecircles.view.checkinview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-checkin-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         $('#form-update-checkin').validationEngine({promptPosition: 'bottomLeft'});
@@ -165,14 +165,6 @@ threecircles.view.checkinview = function (model, elements) {
         resetForm('form-update-checkin');
         $.mobile.changePage($('#section-show-checkin'));
         $('#delete-checkin').css('display', 'none');
-    };
-
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
     };
 
     var showElement = function (id) {
@@ -221,7 +213,7 @@ threecircles.view.checkinview = function (model, elements) {
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -252,10 +244,12 @@ threecircles.view.checkinview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
     };
+
 
     var refreshSelectDropDown = function (select, newOptions) {
         var options = null;
@@ -311,7 +305,7 @@ threecircles.view.checkinview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         

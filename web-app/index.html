@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
     <title>Checkin</title>
-    <link rel="shortcut icon" href="images/apple-touch-icon.png" type="image/x-icon">
+    <script src="cordova.js"></script>
+    <link rel="shortcut icon" href="images/apple-touch-icon.png" type="images/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-retina.png">
     <link rel="stylesheet" href="css/jquery/jquery.mobile-1.3.0.min.css"/>
@@ -25,7 +26,7 @@
 <body>
 
 <!-- Home -->
-<div data-role="page" id="section-list-checkin"class="flow">
+<section data-role="page" id="section-list-checkin"class="flow">
     <!--//------------------------------------------------------------------------------->
     <!--//  TODO header-->
     <!--//------------------------------------------------------------------------------->
@@ -77,7 +78,7 @@
     <!--//------------------------------------------------------------------------------->
     <!--//  end of TODO footer-->
     <!--//------------------------------------------------------------------------------->
-</div>
+</section>
 
 <section data-role="page" id="section-show-checkin">
     <div data-role="header" id="show-checkin" data-position="fixed">
@@ -127,18 +128,19 @@
         <input type="hidden" name="version" id="input-checkin-version"/>
         <input type="hidden" name="class" id="input-checkin-class"/>
     </form>
-    <div data-role="footer" data-position="fixed">
+    <div data-role="footer" data-position="fixed" data-id="myFooter">
         <div data-role="navbar">
             <ul>
                 <li>
-                    <a data-transition="slide" data-role="button" data-icon="delete" id="delete-checkin">Delete</a>
+                    <a data-transition="fade" data-role="button" data-icon="delete" id="delete-checkin">Delete</a>
                 </li>
                 <li>
-                    <a data-transition="slide" data-role="button" data-icon="save" id="submit-checkin">Save</a>
+                    <a data-transition="fade" data-role="button" data-icon="save" id="submit-checkin">Save</a>
                 </li>
             </ul>
         </div>
     </div>
+</section>
 
     <script src="js/jquery/jquery.validationEngine.js"></script>
     <script src="js/jquery/jquery.validationEngine-en.js"></script>
@@ -159,21 +161,25 @@
     <script src="js/grails/mobile/push/pushmanager.js"></script>
     <script src="js/grails/mobile/camera/camera.js"></script>
     <script src="js/grails/mobile/mvc/manager.js"></script>
+    <script src="js/threecircles/model/user-model.js"></script>
     <script src="js/threecircles/view/user-view.js"></script>
+    <script src="js/threecircles/controller/user-controller.js"></script>
+    <script src="js/threecircles/model/place-model.js"></script>
     <script src="js/threecircles/view/place-view.js"></script>
+    <script src="js/threecircles/controller/place-controller.js"></script>
+    <script src="js/threecircles/model/comment-model.js"></script>
     <script src="js/threecircles/view/comment-view.js"></script>
-    <script src="js/threecircles/view/user-view.js"></script>
+    <script src="js/threecircles/controller/comment-controller.js"></script>
+    <script src="js/threecircles/model/checkin-model.js"></script>
     <script src="js/threecircles/view/checkin-view.js"></script>
+    <script src="js/threecircles/controller/checkin-controller.js"></script>
     <script src="js/threecircles/configuration-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/checkin-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/place-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/comment-bootstrap.js"></script>
-    <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/manager-bootstrap.js"></script>
     <script src="js/jquery/mobiscroll.custom-2.4.4.min.js"></script>
-    <script src="cordova.js"></script>
 
-</section>
 </body>
 </html>
