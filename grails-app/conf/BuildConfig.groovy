@@ -5,8 +5,11 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-grails.plugin.location."html5-mobile-scaffolding" = "../html5-mobile-scaffolding"
-grails.plugin.location."phonegapbuild" = "../phonegapbuild"
+
+// uncomment (and adjust settings) to fork the JVM to isolate classpaths
+//grails.project.fork = [
+//   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
+//]
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -16,6 +19,7 @@ grails.project.dependency.resolution = {
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
+    legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
@@ -32,25 +36,28 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
-
-        mavenRepo "http://maven.springframework.org/milestone/"
     }
-    dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        // runtime 'mysql:mysql-connector-java:5.1.20'
+    dependencies {
+        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
+
+        // runtime 'mysql:mysql-connector-java:5.1.22'
     }
 
     plugins {
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.9.1"
-        //runtime ":resources:1.1.6"
+        runtime ":jquery:1.8.3"
+        runtime ":resources:1.1.6"
+
+        // Uncomment these (or add new ones) to enable additional resources capabilities
+        //runtime ":zipped-resources:1.0"
+        //runtime ":cached-resources:1.0"
+        //runtime ":yui-minify-resources:0.1.5"
+
         build ":tomcat:$grailsVersion"
-        runtime ":database-migration:1.1"
-        //compile ':cache:1.0.0'
-        // http://support.cloudfoundry.com/entries/21014643-Grails-Spring-Security-deployment-problem
-        // to fix cf/springsecurity issue
-        compile ":webxml:1.4.1"
-        compile ':spring-security-core:1.2.7.3'
+
+        runtime ":database-migration:1.3.2"
+
+        compile ':cache:1.0.1'
     }
 }
