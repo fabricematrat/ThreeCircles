@@ -219,24 +219,23 @@ git checkout step4_done
 ```java
 git checkout step5_todo
 ```
-- You will get a new file geolocation.js that you will complete for the time information.
-- In index.html, include google API, section with id "section-show-checkin" has been refactored to apply CSS and match our use case
-- In checkin-view.js, we initialize our map with
+- you will get a new file geolocation.js that you will complete.
+- in index.html, google API  and geolocation.js has been included
+- in index.html, section with id "section-show-checkin" has been refactored to apply CSS and match our use case. 
+- in checkin-view.js, we initialized our maps with
 ```java
     $("#section-show-checkin").on( "pageshow", function (event) {
         geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
     });
 ```
 ### In geolocation.js seach // TODO search places
-In this method
+In the method **showMapWithPlaces**
 
-- create map from canvas id
+- a google map is created from canvas from canvas id
 
-Use Google API: [google.maps.Map](https://developers.google.com/maps/documentation/javascript/reference#Map)
+Using Google API: [google.maps.Map](https://developers.google.com/maps/documentation/javascript/reference#Map)
 
-- once navigator got our current position, use google places API
-
-HTML5 navigator.geolocation, to get current position
+- once navigator got our current position with HTML5 **navigator.geolocation**, use google places API
 
 Use Google places API: [google.maps.places](https://developers.google.com/maps/documentation/javascript/reference#PlacesService)
 
@@ -264,7 +263,7 @@ git checkout step6_todo
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 ```
-- In checkin-view.js, *addAndSort* method added to render timelinewith latest checkin first.
+- In checkin-view.js, *addAndSort* method added to render timeline with latest checkin first.
 - In geolocation.js, uses [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
 
 ### Add behaviour on button id  "checkin-submit"
@@ -283,14 +282,17 @@ git checkout step6_todo
 
 ### CheckinController.groovy, 
 - once a place is found with Google Places, save it to ThreeCircles database.
-- look at event method that trigger the event push
+- look at **event** method that triggers the event push (we'll use event push next step on view)
 
 ### On created, in checkin-view.js, deal with event push
 
 Event push (Grails plugin using Atmosphere framework) is doing broadcast to all browsers.  
 3musketeers PushManager is dealing with excluding "myself". In order to know in your code if you're the one triggering 
-created callback you can user the NOTIFIED tag. NOTIFIED boolean is set when you are notidied of somebody else event.
-
+created callback you can user the NOTIFIED tag. NOTIFIED boolean is set true when you are notidied of somebody else event.
+In **that.model.createdItem** callback
+- add **resetForm('form-update-checkin')** call to clear the form. 
+- in **resetForm** method clear checkin bubble's text area.
+- always in **that.model.createdItem** callback, add newly created value. Use **addAndSort** for the display.
 ```java
    if (!data.item.NOTIFIED) {
      // I'm being notified of a new checkin
@@ -298,9 +300,6 @@ created callback you can user the NOTIFIED tag. NOTIFIED boolean is set when you
      // I've just checked in successfully
    }
 ```
-### On created, in checkin-view.js
-- add clear text area to resetForm method
-
 ### Get source code from repo
 ```java
 git checkout step6_done
