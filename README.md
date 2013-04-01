@@ -124,7 +124,7 @@ git checkout step1_done
 ```java
 git checkout step2_todo
 ```
-and search for TODO in files
+and search for TODO in grails-app/conf/Bootstrap.groovy
 
 ### In BootStrap.groovy
 - add several users
@@ -166,6 +166,8 @@ you will get new folders and files containing mock screen for timeline
 -	web-app/index_mock.html
 -	web-app/js/my.js
 
+Search for TODO in the project
+
 ### Main page: timeline
 - delete index.html
 - rename checkin-index.html into index.html
@@ -173,7 +175,8 @@ you will get new folders and files containing mock screen for timeline
 ### Transform your index.html with css
 - add import css file 
 - In section with id "section-list-checkin" add header as shown in index-mockup.html
-- revisit footer
+- In section with id "section-list-checkin" revisit footer as shown in index-mockup.html
+- In section with id myContent, add canvas map
 
 ### Display dynamic content
 - for the callback associated to that.model.listedItems event, write rendering of timeline (search for //TODO render timeline)
