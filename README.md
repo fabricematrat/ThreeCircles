@@ -53,7 +53,7 @@ In this branch there is only one grails command that has been executed
 ```java
 grails create-app ThreeCircles
 ```
-Now let's start configuring and scaffolding all the classes we need
+Now let's start configuring, adding the required plugins.
 ### BuildConfig.groovy
 add
 ```java
@@ -87,13 +87,14 @@ remove
 ```
 
 ### Create domain classes
+Ready to do scaffold all the domain classes we need!
 ```java
 grails create-domain-class User
 grails create-domain-class Place
 grails create-domain-class Comment
 grails create-domain-class Checkin
 ```
-edit generated domain class and add content according to class diagram
+Now, edit generated domain classes and add content according to class diagram
 ![class diagram](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/classDiagram.png "class diagram")
 
 ### Generate HTML5 scaffolding for both controller and views
