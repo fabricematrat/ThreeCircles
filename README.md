@@ -11,7 +11,21 @@ We're presenting you the work done by [3musket33rs](http://3musket33rs.github.co
 
 ## Step1: Scaffolding
 ### Setup
-Fork this repo
+In the vm, given to you, you will find in ~/work a clone of this repository and 3musketeers plugins
+Please update this version
+```java
+cd ~/work/html5-scaffolding-plugin
+git pull
+cd ~/work/ThreeCircles
+git pull
+```
+
+If you do not have the confess vm environment, fork or clone this repo but also the 3musket33rs plugins
+```java
+git clone https://github.com/3musket33rs/html5-mobile-scaffolding
+git clone https://github.com/3musket33rs/phonegapbuild.git
+```
+
 ### Get source code from repo
 ```java
 git checkout step1_todo
@@ -39,11 +53,20 @@ in plugins
         compile ":webxml:1.4.1"
     }
 ```
+in resolution change **legacyResolve**
+```java
+    grails.project.dependency.resolution = {    
+    ....
+        legacyResolve true
+    ...
+    }
+```
 in UrlMappings.groovy
 remove
 ```java
     "/"(view:"/index")
 ```
+
 ### Create domain classes
 ```java
 grails create-domain-class User
