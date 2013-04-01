@@ -117,7 +117,70 @@ threecirclesconfess.view.geolocation = function () {
         //-----------------------------------------------------------------------------
         //  TODO search places nearby with google places
         //-----------------------------------------------------------------------------
+        if (!that.map) {
+            that.map = new google.maps.Map(document.getElementById(canvas), mapOptions);
+        }
 
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                that.map.setCenter(pos);
+
+                var request = {
+                    bounds: that.map.getBounds()
+                };
+
+                removeMarkers();
+
+                var service = ?????? // TODO: Please initiate service with Place Service ;
+                // TODO: Use service to find places close by
+                service.??????(request, function (results, status) {
+                    if (status != google.maps.places.PlacesServiceStatus.OK) {
+                        alert(status);
+                        return;
+                    }
+                    for (var i = 0, result; result = results[i]; i++) {
+
+                        var img = result.icon;
+                        var name = result.name;
+
+                        // TODO: Calculate the distance between you current location and the point of interest
+                        var distance = ??????????;
+
+                        var lat = result.geometry.location.lat();
+                        var lng = result.geometry.location.lng();
+                        var name = result.name;
+                        var address = result.vicinity;
+                        var li = $('<li>');
+                        var a = $('<a>')
+                        a.on('click tap', function(event) {
+                            myFunction({lat: lat, lng: lng, name: name, address: address});
+                        });
+
+                        a.attr({
+                            href: "#checkin",
+                            'data-transition': "slide"
+                        });
+
+                        a.append('<img src="'+ img+'"/><h2>'+ name + '</h2><p>' + distance + ' km</p>');
+
+                        li.append(a);
+                        $("#" + pois).append(li);
+
+
+                        // TODO: Create a marker and add it to the map
+                        var marker = ?????????;
+
+                        markers.push(marker);
+                    }
+                    $("#" + pois).listview("refresh");
+                });
+            }, onError);
+        } else {
+            // Browser doesn't support Geolocation
+            handleNoGeolocation(false);
+        }
     };
     return that;
 };
