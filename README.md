@@ -142,6 +142,10 @@ and search for TODO in files
 ```java
 grails run-app
 ```
+- Test the application
+- Play with offline mode (in chrome switch off network, in Firefox File-> Work Offline)
+- Add/Delete Users for example
+- Get back online
 
 ### Get source code from repo
 ```java
