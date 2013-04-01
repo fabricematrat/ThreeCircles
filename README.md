@@ -295,6 +295,7 @@ In **that.model.createdItem** callback
 - add **resetForm('form-update-checkin')** call to clear the form. 
 - in **resetForm** method clear checkin bubble's text area.
 - always in **that.model.createdItem** callback, add newly created value. Use **addAndSort** for the display.
+
 ```java
    if (!data.item.NOTIFIED) {
      // I'm being notified of a new checkin
@@ -313,17 +314,18 @@ git checkout step6_done
 git checkout step7_todo
 ```
 ### Add a new attribute in Checkin.groovy search for // TODO picture
-- By convention every attribute of type "byte[]" is considerer as a photo, html5-mobile-scaffolding will scaffold all needed for deling with photo
-- Photo is optional and are big. See add to define [constraints](http://grails.org/doc/latest/ref/Constraints/Usage.html) in Grails.
-- No need to re-generate scaffolded view: be carefull not to loose all your work on checkin view!
+- By convention every attribute of type **byte[]** is considerered as a photo. 
+No need to re-generate scaffolded view: be carefull not to loose all your work on checkin view!
+- Photo should be optional. See how to add to define 
+[constraints](http://grails.org/doc/latest/ref/Constraints/Usage.html) in Grails.
+- Photo should have size of 20Mb
 
 ### in geolocation.js, 
-- add in the bubble window, take a pciture button
+- in the bubble window, add an input of type *file* with id *input-checkin-photo*
 
 ### in checkin-view.js,
-- on checkin-submit click send picture within the form
-- modify createListItemCustom to dispplay picture if present
-- On created, add clear file input to resetForm method
+- on *checkin-submit* click send picture within the form
+- modify **createListItemCustom** to display picture if present
 
 ### Get source code from repo
 ```java
@@ -336,50 +338,21 @@ git checkout step7_done
 ```java
 git checkout step8_done
 ```
+- in checkin-view.js, generated code has been cleaned to leave only what's needed
+- place-index.html & place-view.js has been modified with CSS. 
+- friend-index.html & friend-view.js has been modified with CSS. 
 
-
-
-## Step9: Logging with Spring-Security
+## Step9: Login
 
 ### Get source code from repo
 ```java
 git checkout step9_todo
-```
-You get spring-security-core installed, seein BuildConfig:
-```java
-plugins {
-  ...
-  compile ":webxml:1.4.1"
-  compile ':spring-security-core:1.2.7.3'
-}
-```
-Run run-app to fetch dependecies and install SpringSecurity
-
-### Create User and UserRole domain class 
-```java
-grails s2-quickstart threecircles User Role
 ```
 
 ### Get source code from repo
 ```java
 git checkout step9_done
 ```
-
-
-
-package threecircles
-
-class User {
-    String firstname
-    String lastname
-    String username
-    String password
-
-    static hasMany = [friends:User]
-
-    static constraints = {
-    }
-}
 
 ## Step10: In the Cloud
 ### Get source code from repo
