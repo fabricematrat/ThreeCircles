@@ -38,7 +38,8 @@ class PlaceController {
         return
       }
       
-      event topic:"save-place", data: placeInstance
+      def asJson = placeInstance as JSON
+      event topic:"save-place", data: asJson.toString()
       render placeInstance as JSON
     }
     
@@ -92,7 +93,8 @@ class PlaceController {
         return
       }
       
-      event topic:"update-place", data: placeInstance
+      def asJson = placeInstance as JSON
+      event topic:"update-place", data: asJson.toString()
       render placeInstance as JSON
     }
 
