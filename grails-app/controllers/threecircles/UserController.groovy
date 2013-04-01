@@ -14,7 +14,7 @@ class UserController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+
     def list() {
       params.max = Math.min(params.max ? params.int('max') : 10, 100)
       render User.list(params) as JSON
@@ -22,19 +22,28 @@ class UserController {
 
     def save() {
       def jsonObject = JSON.parse(params.user)
-      
+
+      def friends = []
+      jsonObject.friends.each() {
+         friends << User.get(it.id)
+      }
+      jsonObject.friends = null
+
       User userInstance = new User(jsonObject)
-      
+
+      userInstance.friends = friends
+
       if (!userInstance.save(flush: true)) {
         ValidationErrors validationErrors = userInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"save-user", data: userInstance
+
+      def asJson = userInstance as JSON
+      event topic:"save-user", data: asJson.toString()
       render userInstance as JSON
     }
-    
+
     def show() {
       def userInstance = User.get(params.id)
       if (!userInstance) {
@@ -42,7 +51,7 @@ class UserController {
         render flash as JSON
         return
       }
-      
+
       render userInstance as JSON
     }
 
@@ -78,20 +87,29 @@ class UserController {
             userInstance[it.name] = userReceived[it.name]
           }
       }
-      
+
+      userInstance.friends = []
+      jsonObject.friends.each() {
+        userInstance.friends << User.get(it.id)
+      }
       if (!userInstance.save(flush: true)) {
         ValidationErrors validationErrors = userInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"update-user", data: userInstance
+
+      def asJson = userInstance as JSON
+      event topic:"update-user", data: asJson.toString()
       render userInstance as JSON
     }
 
     def delete() {
       def userInstance = User.get(params.id)
-      
+
+      userInstance.friends.each() {
+        User.get(it.getId());
+      }
+
       if (!userInstance) {
         flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])
         render flash as JSON
@@ -105,9 +123,9 @@ class UserController {
         render flash as JSON
         return
       }
-      
+
       event topic:"delete-user", data: userInstance
       render userInstance as JSON
     }
-    
+
 }

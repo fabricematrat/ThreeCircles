@@ -14,7 +14,7 @@ class PlaceController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+
     def list() {
       params.max = Math.min(params.max ? params.int('max') : 10, 100)
       render Place.list(params) as JSON
@@ -22,7 +22,7 @@ class PlaceController {
 
     def save() {
       def jsonObject = JSON.parse(params.place)
-      
+
       Place placeInstance = new Place(jsonObject)
       if (jsonObject.latitude && jsonObject.longitude) {
         placeInstance.longitude = Double.parseDouble(jsonObject.longitude)
@@ -31,17 +31,18 @@ class PlaceController {
         placeInstance.errors.reject( 'default.null.message', ['longitude,latitude', 'class Place'] as Object[], 'Property [{0}] of class [{1}] cannot be null')
         placeInstance.errors.rejectValue('longitude,latitude', 'default.null.message')
       }
-      
+
       if (!placeInstance.save(flush: true)) {
         ValidationErrors validationErrors = placeInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"save-place", data: placeInstance
+
+      def asJson = placeInstance as JSON
+      event topic:"save-place", data: asJson.toString()
       render placeInstance as JSON
     }
-    
+
     def show() {
       def placeInstance = Place.get(params.id)
       if (!placeInstance) {
@@ -49,7 +50,7 @@ class PlaceController {
         render flash as JSON
         return
       }
-      
+
       render placeInstance as JSON
     }
 
@@ -85,20 +86,21 @@ class PlaceController {
             placeInstance[it.name] = placeReceived[it.name]
           }
       }
-      
+
       if (!placeInstance.save(flush: true)) {
         ValidationErrors validationErrors = placeInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"update-place", data: placeInstance
+
+      def asJson = placeInstance as JSON
+      event topic:"update-place", data: asJson.toString()
       render placeInstance as JSON
     }
 
     def delete() {
       def placeInstance = Place.get(params.id)
-      
+
       if (!placeInstance) {
         flash.message = message(code: 'default.not.found.message', args: [message(code: 'place.label', default: 'Place'), params.id])
         render flash as JSON
@@ -112,9 +114,9 @@ class PlaceController {
         render flash as JSON
         return
       }
-      
+
       event topic:"delete-place", data: placeInstance
       render placeInstance as JSON
     }
-    
+
 }
