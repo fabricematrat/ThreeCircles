@@ -53,7 +53,7 @@ threecircles.view.checkinview = function (model, elements) {
         //  TODO picture
         //-----------------------------------------------------------------------------
         if(element.photo) {
-            var base64 = encode(element.photo);
+            var base64 = grails.mobile.camera.encode(element.photo);
             html += '<img class="mainimage" src="' + base64 + '"/>';
         }
         html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
@@ -364,7 +364,7 @@ threecircles.view.checkinview = function (model, elements) {
             show(element.id, event);
         });
         
-        var image = '<img src="'+ encode(element.photo) +'"/>';
+        var image = '<img src="'+ grails.mobile.camera.encode(element.photo) +'"/>';
         a.append(image);
 
         if (element.offlineStatus === 'NOT-SYNC') {
