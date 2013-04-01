@@ -203,7 +203,8 @@ You will get a new file timeline.js that you will complete for the time informat
 ### Add JS file timeline.js
 - go to timeline.js
 Note 3muket33rs JS coding à la Crockford (function first!).
-Add a method which take a Date as long and returned information like just now, 11 minutes ago, 2 days ago, 3 months ago
+Add a method which takes a Date as long and returned information like:
+*just now* (when under 10mins), *11 min ago*, *2h23 min*, *2 days ago*, *3 months ago* and we don't care when it's over one year.
 - go to checkin-view.js (search for //TODO) add call to newly created method to add time information.
 - go to index.html to include new js file
 
