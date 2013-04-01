@@ -46,10 +46,6 @@ threecircles.view.checkinview = function (model, elements) {
             '<li><img src="img/ico-fire.png" />First Bar in 2 months!</li></ul>';
         return html;
     };
-    //-----------------------------------------------------------------------------
-    //  end add when information
-    //-----------------------------------------------------------------------------
-
 
     that.model.createdItem.attach(function (data, event) {
         $(that.elements.save).removeClass('ui-disabled');
