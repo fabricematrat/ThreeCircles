@@ -37,7 +37,7 @@ git checkout stepXX_todo
 git branch // to check in which branch you are
 git status // to know which files you modified in the current branch
 git add ... // to add files to be committed
-git commit -m "Some usefule comments" //To commit locally your changes
+git commit -m "Some usefull comments" //To commit locally your changes
 git pull // to fetch the latest changes from the remote repo
 git push // to send your committed changes to the remote repo
 ```
@@ -365,4 +365,47 @@ class User {
     static constraints = {
     }
 }
+
+## Step10: In the Cloud
+### Get source code from repo
+```java
+git checkout step10_todo
+```
+### Create a cloud foundry account
+Sign up at [www.cloudfoundry.com](http://www.cloudfoundry.com)
+
+### Config
+Install cloud foundry plugin
+```java
+grails install-plugin cloud-foundry
+```
+Configure your global setting
+```java
+cd ~/.grails
+touch setting.groovy
+```
+in settings.grrovy add your cloud founcdry credentials
+```
+grails.plugin.cloudfoundry.username="..."
+grails.plugin.cloudfoundry.password="..."
+```
+### Get source code from repo
+```java
+git checkout step10_done
+```
+
+## Step11: PhoneGap Build
+
+### Get source code from repo
+```java
+git checkout step11_todo
+```
+### Configure your PhoneGap Build account
+Sign up at [build.phonegap.com](http://build.phonegap.com)
+### Config.groovy
+```java
+phonegapbuild.username="..."
+phonegapbuild.password="..."
+phonegapbuild.phonegapversion="2.3.0"
+```
 
