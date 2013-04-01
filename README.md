@@ -258,7 +258,8 @@ git checkout step6_todo
 ```
 - In index.html, section with id "checkin" has been refactored to apply CSS and match our use case
 - In checkin-view.js, we initialize our third map (canvas_map3) with
-```javascript
+
+```java
     $("#checkin").on( "pageshow", function (event) {
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
@@ -269,6 +270,7 @@ git checkout step6_todo
 ### Add behaviour on button id  "checkin-submit"
 - search for // TODO on checkin submit
 - format the object before sending
+
 ```java
             {
                checkin: "{
