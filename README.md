@@ -174,15 +174,19 @@ Search for TODO in the project
 
 ### Transform your index.html with css
 - add import css file 
-- In section with id "section-list-checkin" add header as shown in index-mockup.html
-- In section with id "section-list-checkin" revisit footer as shown in index-mockup.html
-- In section with id myContent, add canvas map
+- in section with id "section-list-checkin" add header as shown in **index-mockup.html**
+- in section with id "section-list-checkin" revisit footer as shown in **index-mockup.html**
+- in section with id myContent, add canvas map (for later use step5)
 
 ### Display dynamic content
-- for the callback associated to that.model.listedItems event, write rendering of timeline (search for //TODO render timeline)
-Put a breakpoint in checkin-view.js in callback attached to that.model.listedItems 
-- Is it rendering as expected? 
-- In CheckinController.groovy add deep relationship resolution for **as JSON** (search for //TODO deep relation)
+The js file **web-app/js/threecircles/checkin-view.js** contains the JavaScript assocated with your view. 
+Let's make the content dynamic!
+- Go to the callback associated to that.model.listedItems event:
+Put a breakpoint in checkin-view.js to see the data structure returned by the server
+- is it rendering as expected? hummm.... It would be easier with embedded relationship. 
+In CheckinController.groovy add deep relationship resolution for **as JSON** (search for //TODO deep relation)
+- working with **index-mockup.html**, loop for all checkins: display dynamic content for owner, 
+where the checkin is, checkin description. Leave harcoded place holder for pictures.
 
 ### Get source code from repo
 ```java
