@@ -23,7 +23,15 @@ class UserController {
     def save() {
       def jsonObject = JSON.parse(params.user)
       
+      def friends = []
+      jsonObject.friends.each() {
+         friends << User.get(it.id)
+      }
+      jsonObject.friends = null
+      
       User userInstance = new User(jsonObject)
+      
+      userInstance.friends = friends
       
       if (!userInstance.save(flush: true)) {
         ValidationErrors validationErrors = userInstance.errors
@@ -80,6 +88,10 @@ class UserController {
           }
       }
       
+      userInstance.friends = []
+      jsonObject.friends.each() {
+        userInstance.friends << User.get(it.id)
+      }
       if (!userInstance.save(flush: true)) {
         ValidationErrors validationErrors = userInstance.errors
         render validationErrors as JSON
@@ -93,6 +105,10 @@ class UserController {
 
     def delete() {
       def userInstance = User.get(params.id)
+      
+      userInstance.friends.each() {
+        User.get(it.getId());
+      }
       
       if (!userInstance) {
         flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])

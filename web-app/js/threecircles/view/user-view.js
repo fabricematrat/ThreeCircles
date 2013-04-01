@@ -67,6 +67,14 @@ threecircles.view.userview = function (model, elements) {
             }
         }
     });
+    that.model.listedDependentItems.attach(function (data) {
+        if (data.relationType === 'many-to-one') {
+            renderDependentList(data.dependentName, data.items);
+        }
+        if (data.relationType === 'one-to-many') {
+            renderMultiChoiceDependentList(data.dependentName, data.items);
+        }
+    });
 
     // user interface actions
     that.elements.list.on('pageinit', function (e) {
@@ -100,6 +108,7 @@ threecircles.view.userview = function (model, elements) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         $('#form-update-user').validationEngine({promptPosition: 'bottomLeft'});
+        that.editButtonClicked.notify();
         createElement();
     });
 
@@ -107,6 +116,7 @@ threecircles.view.userview = function (model, elements) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         $('#form-update-user').validationEngine({promptPosition: 'bottomLeft'});
+        that.editButtonClicked.notify();
         showElement(dataId);
     };
 
@@ -119,6 +129,16 @@ threecircles.view.userview = function (model, elements) {
     var showElement = function (id) {
         resetForm('form-update-user');
         var element = that.model.items[id];
+        var friendsSelected = element.friends;
+        $.each(friendsSelected, function (key, value) {
+            var selector;
+            if (value === Object(value)) {
+              selector= '#checkbox-friends-' + value.id;
+            } else {
+              selector= '#checkbox-friends-' + value;
+            }
+            $(selector).attr('checked','checked').checkboxradio('refresh');
+        });
         $.each(element, function (name, value) {
             var input = $('#input-user-' + name);
             if (input.attr('type') != 'file') {
@@ -159,6 +179,53 @@ threecircles.view.userview = function (model, elements) {
                 }
             });
         }
+    };
+    
+
+    var refreshSelectDropDown = function (select, newOptions) {
+        var options = null;
+        if(select.prop) {
+            options = select.prop('options');
+        } else {
+            options = select.attr('options');
+        }
+        if (options) {
+            $('option', select).remove();
+            $.each(newOptions, function(val, text) {
+                options[options.length] = new Option(text, val);
+            });
+            select.val(options[0]);
+        }
+    };
+
+    var renderDependentList = function (dependentName, items) {
+        var manyToOneSelectForDependent = $('select[data-gorm-relation="many-to-one"][name=' + dependentName + ']');
+        var options = {};
+        $.each(items, function() {
+            var key = this.id;
+            var value = getText(this);
+            options[key] = value;
+        });
+        refreshSelectDropDown(manyToOneSelectForDependent, options);
+    };
+
+    var refreshMultiChoices = function (oneToMany, dependentName, newOptions) {
+        oneToMany.empty();
+        $.each(newOptions, function(key, val) {
+            oneToMany.append('<input type="checkbox" data-gorm-relation="one-to-many" name="'+ dependentName +'" id="checkbox-'+ dependentName +'-' + key + '"/><label for="checkbox-'+ dependentName +'-'+key+'">'+val+'</label>');
+        });
+        oneToMany.parent().trigger('create');
+    };
+
+    var renderMultiChoiceDependentList = function (dependentName, items) {
+        var oneToMany = $('#multichoice-' + dependentName);
+        var options = {};
+        $.each(items, function() {
+            var key = this.id;
+            var value = getText(this);
+            options[key] = value;
+        });
+        refreshMultiChoices(oneToMany, dependentName, options);
     };
     
     var createListItem = function (element) {

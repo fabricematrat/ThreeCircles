@@ -62,6 +62,11 @@
                 <input type="text" class="validate[required]" name="username" id="input-user-username" value=""/>
                 
             </li>
+            <li>
+                <label for="multichoice-friends" class="select">Choose some friends</label>
+                <fieldset id="multichoice-friends" data-gorm-relation="one-to-many" data-role="controlgroup">
+                </fieldset>
+            </li>
         </ul>
         <input type="hidden" name="id" id="input-user-id"/>
         <input type="hidden" name="version" id="input-user-version"/>

@@ -160,10 +160,8 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
         event.stopPropagation();
         \$('#form-update-${classNameLowerCase}').validationEngine('hide');
         \$('#form-update-${classNameLowerCase}').validationEngine({promptPosition: 'bottomLeft'});<% if(oneToOneProps || oneToManyProps) { %>
-        that.editButtonClicked.notify(function() {
-            showElement(dataId);
-        });<%} else {%>
-        showElement(dataId);<%}%>
+        that.editButtonClicked.notify();<%}%>
+        showElement(dataId);
     };
 
     var createElement = function () {
@@ -283,7 +281,6 @@ ${projectName}.view.${classNameLowerCase}view = function (model, elements) {
             });
             select.val(options[0]);
         }
-        select.selectmenu('refresh');
     };
 
     var renderDependentList = function (dependentName, items) {

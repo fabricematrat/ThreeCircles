@@ -116,9 +116,8 @@ threecircles.view.commentview = function (model, elements) {
         event.stopPropagation();
         $('#form-update-comment').validationEngine('hide');
         $('#form-update-comment').validationEngine({promptPosition: 'bottomLeft'});
-        that.editButtonClicked.notify(function() {
-            showElement(dataId);
-        });
+        that.editButtonClicked.notify();
+        showElement(dataId);
     };
 
     var createElement = function () {
@@ -196,7 +195,6 @@ threecircles.view.commentview = function (model, elements) {
             });
             select.val(options[0]);
         }
-        select.selectmenu('refresh');
     };
 
     var renderDependentList = function (dependentName, items) {

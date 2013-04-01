@@ -10,6 +10,7 @@ threecircles.loaduser = (function () {
             'show': $('a[id^="user-list-"]'),
             'remove': $('#delete-user')
         },
+        oneToManyRelations: [ {type: 'user', name: 'friends'} ] ,
         options: {
             offline: true,
             eventPush: true
