@@ -81,7 +81,7 @@ threecircles.view.commentview = function (model, elements) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-comment').validationEngine('hide');
         if($('#form-update-comment').validationEngine('validate')) {
@@ -98,14 +98,13 @@ threecircles.view.commentview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-comment-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-comment').validationEngine('hide');
         $('#form-update-comment').validationEngine({promptPosition: 'bottomLeft'});
@@ -127,14 +126,6 @@ threecircles.view.commentview = function (model, elements) {
         $('#delete-comment').css('display', 'none');
     };
 
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
-
     var showElement = function (id) {
         resetForm('form-update-comment');
         var element = that.model.items[id];
@@ -146,13 +137,13 @@ threecircles.view.commentview = function (model, elements) {
            value = element.user.id;
         }
         $('select[data-gorm-relation="many-to-one"][name="user"]').val(value).trigger("change");
-        
+
         $.each(element, function (name, value) {
             var input = $('#input-comment-' + name);
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -183,11 +174,12 @@ threecircles.view.commentview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
     };
-    
+
 
     var refreshSelectDropDown = function (select, newOptions) {
         var options = null;
@@ -234,7 +226,7 @@ threecircles.view.commentview = function (model, elements) {
         });
         refreshMultiChoices(oneToMany, dependentName, options);
     };
-    
+
     var createListItem = function (element) {
         var li, a = $('<a>');
         a.attr({
@@ -243,10 +235,10 @@ threecircles.view.commentview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
-        
+
         if (element.offlineStatus === 'NOT-SYNC') {
             li =  $('<li>').attr({'data-theme': 'e'});
             li.append(a);

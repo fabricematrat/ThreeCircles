@@ -92,12 +92,12 @@ threecircles.view.placeview = function (model, elements) {
         }
     });
 
-    $('#list-all-place').on('click', function (e, ui) {
+    $('#list-all-place').on('vclick', function (e, ui) {
         hideMapDisplay();
         showListDisplay();
     });
 
-    $('#map-all-place').on('click', function (e, ui) {
+    $('#map-all-place').on('vclick', function (e, ui) {
         hideListDisplay();
         showMapDisplay();
     });
@@ -105,7 +105,7 @@ threecircles.view.placeview = function (model, elements) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-place').validationEngine('hide');
         if($('#form-update-place').validationEngine('validate')) {
@@ -122,14 +122,13 @@ threecircles.view.placeview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-place-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-place').validationEngine('hide');
         $('#form-update-place').validationEngine({promptPosition: 'bottomLeft'});
@@ -149,14 +148,6 @@ threecircles.view.placeview = function (model, elements) {
         $('#delete-place').css('display', 'none');
     };
 
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
-
     var showElement = function (id) {
         resetForm('form-update-place');
         var element = that.model.items[id];
@@ -165,7 +156,7 @@ threecircles.view.placeview = function (model, elements) {
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -201,11 +192,12 @@ threecircles.view.placeview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
     };
-    
+
     var hideListDisplay = function () {
         $('#list-place-parent').css('display', 'none');
     };
@@ -222,7 +214,7 @@ threecircles.view.placeview = function (model, elements) {
     var hideMapDisplay = function () {
         $('#map-place-parent').css('display', 'none');
     };
-    
+
     var createListItem = function (element) {
         var li, a = $('<a>');
         a.attr({
@@ -231,10 +223,10 @@ threecircles.view.placeview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
-        
+
         if (element.offlineStatus === 'NOT-SYNC') {
             li =  $('<li>').attr({'data-theme': 'e'});
             li.append(a);
