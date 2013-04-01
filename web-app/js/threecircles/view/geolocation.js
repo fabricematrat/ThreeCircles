@@ -91,22 +91,6 @@ threecirclesconfess.view.geolocation = function () {
             });
             span.append(textarea);
             html.append(span);
-            span = $('<span>');
-            span.attr({
-                id: "div-for-upload",
-                style:"display: table-cell;width: 30%;"
-            });
-            var input = $('<input>');
-            input.attr({
-                type: "file",
-                accept:"image/*",
-                "data-role": "none",
-                class: "null upload ui-input-text",
-                name: "photo",
-                id: "input-checkin-photo"
-            });
-            span.append(input);
-            html.append(span);
         } else {
             html = $('#div-bubble');
         }
@@ -119,9 +103,6 @@ threecirclesconfess.view.geolocation = function () {
             content: html.html()
         });
 
-        if(init) {
-            grails.mobile.camera.getPicture($("#input-checkin-photo"));
-        }
     };
 
 
