@@ -45,7 +45,8 @@ class CheckinController {
         return
       }
       
-      event topic:"save-checkin", data: checkinInstance
+      def asJson = checkinInstance as JSON
+      event topic:"save-checkin", data: asJson.toString()
       render checkinInstance as JSON
     }
     
@@ -107,7 +108,8 @@ class CheckinController {
         return
       }
       
-      event topic:"update-checkin", data: checkinInstance
+      def asJson = checkinInstance as JSON
+      event topic:"update-checkin", data: asJson.toString()
       render checkinInstance as JSON
     }
 
