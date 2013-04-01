@@ -70,33 +70,73 @@ threecirclesconfess.view.geolocation = function () {
 
         that.map.setCenter(new google.maps.LatLng(place.lat, place.lng));
         var html = null;
-        if($('#textarea-1').size() == 0) {
+        var init = ($('#textarea-1').size() == 0);
+        if(init) {
             html = $('<div>');
             html.attr({
+                style: "display: table",
                 id: "div-bubble",
-                style: "width:500px%; display:inline;"
+                style: "display:inline;"
             });
             var span = $('<span>');
+            span.attr({
+                style:"display: table-cell;width: 60%;"
+            });
             var textarea = $('<textarea>');
             textarea.attr({
                 name: "textarea-1",
                 id: "textarea-1",
+                style:'width: 60%; height: 60px; font-size:12px;',
                 placeholder: "What are you up to?"
             });
             span.append(textarea);
             html.append(span);
+
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
-
+            // <span id="div-for-upload"><input type="file" class="upload ui-input-text" accept=......
+            //
+//            span = $('<span>');
+//            span.attr({
+//                id: "div-for-upload",
+//                style:"display: table-cell;width: 30%;"
+//            });
+//            var input = $('<input>');
+//            input.attr({
+//                type: "file",
+//                accept:"image/*",
+//                "data-role": "none",
+//                class: "upload ui-input-text",
+//                name: "photo",
+//                id: "input-checkin-photo"
+//            });
+//            span.append(input);
+//            html.append(span);
+            //-----------------------------------------------------------------------------
+            //  TODO picture
+            //-----------------------------------------------------------------------------
         } else {
             html = $('#div-bubble');
         }
+
         that.infowindow = new google.maps.InfoWindow({
             map: that.map,
             position: pos,
+            pixelOffset: new google.maps.Size(-10, 80),
+            maxWidth:200,
             content: html.html()
         });
+
+        if(init) {
+            //-----------------------------------------------------------------------------
+            //  TODO picture
+            //-----------------------------------------------------------------------------
+            /// grails.mobile.camera.getPicture($("#input-checkin-photo"));
+            //-----------------------------------------------------------------------------
+            //  TODO picture
+            //-----------------------------------------------------------------------------
+        }
     };
 
 
@@ -120,7 +160,7 @@ threecirclesconfess.view.geolocation = function () {
                 var service = new google.maps.places.PlacesService(that.map);
                 service.nearbySearch(request, function (results, status) {
                     if (status != google.maps.places.PlacesServiceStatus.OK) {
-                        alert(status);
+                        console.log('Error getting Google Place Service');
                         return;
                     }
                     for (var i = 0, result; result = results[i]; i++) {

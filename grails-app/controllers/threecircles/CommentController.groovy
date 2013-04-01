@@ -14,7 +14,7 @@ class CommentController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+
     def list() {
       params.max = Math.min(params.max ? params.int('max') : 10, 100)
       render Comment.list(params) as JSON
@@ -22,19 +22,20 @@ class CommentController {
 
     def save() {
       def jsonObject = JSON.parse(params.comment)
-      
+
       Comment commentInstance = new Comment(jsonObject)
-      
+
       if (!commentInstance.save(flush: true)) {
         ValidationErrors validationErrors = commentInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"save-comment", data: commentInstance
+
+      def asJson = commentInstance as JSON
+      event topic:"save-comment", data: asJson.toString()
       render commentInstance as JSON
     }
-    
+
     def show() {
       def commentInstance = Comment.get(params.id)
       if (!commentInstance) {
@@ -42,7 +43,7 @@ class CommentController {
         render flash as JSON
         return
       }
-      
+
       render commentInstance as JSON
     }
 
@@ -78,20 +79,21 @@ class CommentController {
             commentInstance[it.name] = commentReceived[it.name]
           }
       }
-      
+
       if (!commentInstance.save(flush: true)) {
         ValidationErrors validationErrors = commentInstance.errors
         render validationErrors as JSON
         return
       }
-      
-      event topic:"update-comment", data: commentInstance
+
+      def asJson = commentInstance as JSON
+      event topic:"update-comment", data: asJson.toString()
       render commentInstance as JSON
     }
 
     def delete() {
       def commentInstance = Comment.get(params.id)
-      
+
       if (!commentInstance) {
         flash.message = message(code: 'default.not.found.message', args: [message(code: 'comment.label', default: 'Comment'), params.id])
         render flash as JSON
@@ -105,9 +107,9 @@ class CommentController {
         render flash as JSON
         return
       }
-      
+
       event topic:"delete-comment", data: commentInstance
       render commentInstance as JSON
     }
-    
+
 }
