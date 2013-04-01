@@ -67,13 +67,21 @@ threecircles.view.userview = function (model, elements) {
             }
         }
     });
+    that.model.listedDependentItems.attach(function (data) {
+        if (data.relationType === 'many-to-one') {
+            renderDependentList(data.dependentName, data.items);
+        }
+        if (data.relationType === 'one-to-many') {
+            renderMultiChoiceDependentList(data.dependentName, data.items);
+        }
+    });
 
     // user interface actions
     that.elements.list.on('pageinit', function (e) {
         that.listButtonClicked.notify();
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         if($('#form-update-user').validationEngine('validate')) {
@@ -90,17 +98,17 @@ threecircles.view.userview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-user-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         $('#form-update-user').validationEngine({promptPosition: 'bottomLeft'});
+        that.editButtonClicked.notify();
         createElement();
     });
 
@@ -108,6 +116,7 @@ threecircles.view.userview = function (model, elements) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         $('#form-update-user').validationEngine({promptPosition: 'bottomLeft'});
+        that.editButtonClicked.notify();
         showElement(dataId);
     };
 
@@ -117,23 +126,25 @@ threecircles.view.userview = function (model, elements) {
         $('#delete-user').css('display', 'none');
     };
 
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
-
     var showElement = function (id) {
         resetForm('form-update-user');
         var element = that.model.items[id];
+        var friendsSelected = element.friends;
+        $.each(friendsSelected, function (key, value) {
+            var selector;
+            if (value === Object(value)) {
+              selector= '#checkbox-friends-' + value.id;
+            } else {
+              selector= '#checkbox-friends-' + value;
+            }
+            $(selector).attr('checked','checked').checkboxradio('refresh');
+        });
         $.each(element, function (name, value) {
             var input = $('#input-user-' + name);
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -164,11 +175,59 @@ threecircles.view.userview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
     };
-    
+
+
+    var refreshSelectDropDown = function (select, newOptions) {
+        var options = null;
+        if(select.prop) {
+            options = select.prop('options');
+        } else {
+            options = select.attr('options');
+        }
+        if (options) {
+            $('option', select).remove();
+            $.each(newOptions, function(val, text) {
+                options[options.length] = new Option(text, val);
+            });
+            select.val(options[0]);
+        }
+    };
+
+    var renderDependentList = function (dependentName, items) {
+        var manyToOneSelectForDependent = $('select[data-gorm-relation="many-to-one"][name=' + dependentName + ']');
+        var options = {};
+        $.each(items, function() {
+            var key = this.id;
+            var value = getText(this);
+            options[key] = value;
+        });
+        refreshSelectDropDown(manyToOneSelectForDependent, options);
+    };
+
+    var refreshMultiChoices = function (oneToMany, dependentName, newOptions) {
+        oneToMany.empty();
+        $.each(newOptions, function(key, val) {
+            oneToMany.append('<input type="checkbox" data-gorm-relation="one-to-many" name="'+ dependentName +'" id="checkbox-'+ dependentName +'-' + key + '"/><label for="checkbox-'+ dependentName +'-'+key+'">'+val+'</label>');
+        });
+        oneToMany.parent().trigger('create');
+    };
+
+    var renderMultiChoiceDependentList = function (dependentName, items) {
+        var oneToMany = $('#multichoice-' + dependentName);
+        var options = {};
+        $.each(items, function() {
+            var key = this.id;
+            var value = getText(this);
+            options[key] = value;
+        });
+        refreshMultiChoices(oneToMany, dependentName, options);
+    };
+
     var createListItem = function (element) {
         var li, a = $('<a>');
         a.attr({
@@ -177,10 +236,10 @@ threecircles.view.userview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
-        
+
         if (element.offlineStatus === 'NOT-SYNC') {
             li =  $('<li>').attr({'data-theme': 'e'});
             li.append(a);

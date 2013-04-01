@@ -11,15 +11,14 @@ threecircles.view.checkinview = function (model, elements) {
 
     // Register events
     that.model.listedItems.attach(function (data) {
-        that.model.listedItems.attach(function (data) {
-            $('#list-checkin').empty();
-            var key, items = model.getItems();
-            $.each(items, function(key, value) {
-                var whenInfo = timeline.getWhenInformation(value.when);
-                $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
-            });
-            $('#list-checkin').listview('refresh');
+        $('#list-checkin').empty();
+        var key, items = model.getItems();
+        $.each(items, function(key, value) {
+            var whenInfo = timeline.getWhenInformation(value.when);
+            $('#list-checkin-parent').append(createListItemCustom(value, whenInfo)).trigger("create");
         });
+        $('#list-checkin').listview('refresh');
+    });
 
     var createListItemCustom = function (element, timelineDate) {
         var html = '<div class="fs-object"><div class="header"><span class="ownerimage" ><img src="http://placehold.it/100x150/8e8"/></span>' +
@@ -119,7 +118,7 @@ threecircles.view.checkinview = function (model, elements) {
         geolocationBackground.showMapBackground('map_canvas', {}) ;
     });
 
-    that.elements.save.on('click', function (event) {
+    that.elements.save.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         if($('#form-update-checkin').validationEngine('validate')) {
@@ -136,14 +135,13 @@ threecircles.view.checkinview = function (model, elements) {
         }
     });
 
-    that.elements.remove.on('click', function (event) {
+    that.elements.remove.on('vclick', function (event) {
         $(this).addClass('ui-disabled');
         event.stopPropagation();
         that.deleteButtonClicked.notify({ id: $('#input-checkin-id').val() }, event);
     });
 
-    that.elements.add.on('click', function (event) {
-        $(this).addClass('ui-disabled');
+    that.elements.add.on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         $('#form-update-checkin').validationEngine({promptPosition: 'bottomLeft'});
@@ -169,17 +167,9 @@ threecircles.view.checkinview = function (model, elements) {
         that.selectedPlace = place;
     };
 
-    $("#section-show-checkin").on( "pageshow", function (event) {
-        geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
+    $('#section-show-checkin').on( 'pageshow', function (event) {
+        geolocationSearch.showMapWithPlaces('map_canvas2', 'list-place', storeLatLng);
     });
-
-
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
 
     var showElement = function (id) {
         resetForm('form-update-checkin');
@@ -227,7 +217,7 @@ threecircles.view.checkinview = function (model, elements) {
             if (input.attr('type') != 'file') {
                 input.val(value);
             } else {
-                var img = encode(value);
+                var img = grails.mobile.camera.encode(value);
                 input.parent().css('background-image', 'url("' + img + '")');
             }
             if (input.attr('data-type') == 'date') {
@@ -258,6 +248,7 @@ threecircles.view.checkinview = function (model, elements) {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }
@@ -318,7 +309,7 @@ threecircles.view.checkinview = function (model, elements) {
             'data-transition': 'fade'
         });
         a.text(getText(element));
-        a.on('click', function(event) {
+        a.on('vclick', function(event) {
             show(element.id, event);
         });
         
