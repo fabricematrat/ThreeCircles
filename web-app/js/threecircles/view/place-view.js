@@ -24,7 +24,7 @@ threecircles.view.placeview = function (model, elements) {
             $.each(data.item.errors, function(index, error) {
                 $('#input-place-' + error.field).validationEngine('showPrompt',error.message, 'fail');
             });
-            event.stopPropagation();
+            event.stopPropagation();                                c
         } else if (data.item.message) {
             showGeneralMessage(data, event);
         } else {
@@ -130,7 +130,7 @@ threecircles.view.placeview = function (model, elements) {
     });
 
     that.elements.add.on('vclick', function (event) {
-        $(this).addClass('ui-disabled');
+        //$(this).addClass('ui-disabled');
         event.stopPropagation();
         $('#form-update-place').validationEngine('hide');
         $('#form-update-place').validationEngine({promptPosition: 'bottomLeft'});

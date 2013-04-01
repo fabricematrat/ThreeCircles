@@ -87,9 +87,6 @@ grails.mobile.mvc.manager = function (configuration) {
         funcToApply = resolveNamespace(controllerName);
         var controller = funcToApply.call(this, feed, model, view);
 
-        //var controller = grails.mobile.mvc.controller(feed, model, view);
-
-
         var sync = grails.mobile.sync.syncmanager(baseURL + this.name + '/', domainName, controller, store, model, this.options);
 
         var push = grails.mobile.push.pushmanager(grailsEvents, domainName, store, model, this.options);
