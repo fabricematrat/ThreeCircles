@@ -50,7 +50,7 @@ threecircles.view.checkinview = function (model, elements) {
         });
         html += '</div>';
         if(element.photo) {
-            var base64 = encode(element.photo);
+            var base64 = grails.mobile.camera.encode(element.photo);
             html += '<img class="mainimage" src="' + base64 + '"/>';
         }
         html +='<span class="date">' + timelineDate + '</span><a class="commentbutton"><img src="img/comments.png"/></a><a class="likebutton"><img src="img/like.png"/></a>' +
@@ -93,15 +93,15 @@ threecircles.view.checkinview = function (model, elements) {
         that.selectedPlace = place;
     };
 
-    $("#section-show-checkin").on( "pageshow", function (event) {
-        geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
+    $('#section-show-checkin').on( 'pageshow', function (event) {
+        geolocationSearch.showMapWithPlaces('map_canvas2', 'list-place', storeLatLng);
     });
 
-    $("#checkin").on( "pageshow", function (event) {
+    $('#checkin').on( 'pageshow', function (event) {
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 
-    $("#checkin-submit").on( "click", function (event) {
+    $('#checkin-submit').on( 'vclick', function (event) {
         event.stopPropagation();
         $('#form-update-checkin').validationEngine('hide');
         if($('#form-update-checkin').validationEngine('validate')) {
@@ -126,16 +126,8 @@ threecircles.view.checkinview = function (model, elements) {
         }
     });
 
-    var encode = function (data) {
-        var str = "";
-        for (var i = 0; i < data.length; i++)
-            str += String.fromCharCode(data[i]);
-        return str;
-    };
-
     var resetForm = function (form) {
         $('#textarea-1').val('');
-        $('#input-checkin-photo').parent().css('background-image', 'url("images/camera.png")');
         $('input[data-type="date"]').each(function() {
             $(this).scroller('destroy').scroller({
                 preset: 'date',
@@ -146,13 +138,16 @@ threecircles.view.checkinview = function (model, elements) {
             });
         });
         var div = $("#" + form);
-        if(div && div[0]) {
+        if(div) {
+            if (div[0]) {
             div[0].reset();
+            }
             $.each(div.find('input:hidden'), function(id, input) {
                 if ($(input).attr('type') != 'file') {
                     $(input).val('');
                 } else {
                     $(input).parent().css('background-image', 'url("images/camera.png")');
+                    $(input).attr('data-value', '');
                 }
             });
         }

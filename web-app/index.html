@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
     <title>Checkin</title>
-    <link rel="shortcut icon" href="images/apple-touch-icon.png" type="image/x-icon">
+    <script src="cordova.js"></script>
+    <link rel="shortcut icon" href="images/apple-touch-icon.png" type="images/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-retina.png">
     <link rel="stylesheet" href="css/jquery/jquery.mobile-1.3.0.min.css"/>
@@ -19,7 +20,7 @@
 <body>
 
 <!-- Home -->
-<div data-role="page" id="section-list-checkin"class="flow">
+<section data-role="page" id="section-list-checkin"class="flow">
     <div data-role="panel" data-theme="a" id="mypanel">
         <a href="#mypanel" data-role="button"  data-icon="home">Timeline</a>
         <a href="place-index.html"  rel="external" data-role="button" data-icon="star">Places</a>
@@ -59,9 +60,9 @@
             </ul>
         </div>
     </div>
-</div>
+</section>
 
-<div data-role="page" id="section-show-checkin" data-theme="c">
+<section data-role="page" id="section-show-checkin">
     <div data-role="header" data-position="fixed" data-theme="a" data-id="myHeader">
         <div data-role="navbar" data-iconpos="top">
             <ul>
@@ -74,9 +75,9 @@
         <ul class="list-place" style="border-radius: 0 0 0 0 !important; " data-role="listview" data-filter="true" data-theme="c" id="list-place">
         </ul>
     </div>
-</div>
+</section>
 
-<div data-role="page" id="checkin" data-theme="a">
+<section data-role="page" id="checkin" data-theme="a">
     <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
         <a href="#section-list-checkin" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
         <h1>Check In</h1>
@@ -85,11 +86,11 @@
         <div id="map_canvas3" class="big-map"></div>
         <button id="checkin-submit" data-theme="e">Check in Here</button>
     </div>
-</div>
+</section>
 
     <script src="js/jquery/jquery.validationEngine.js"></script>
     <script src="js/jquery/jquery.validationEngine-en.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,geometry"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,geometry"></script>
     <script src="js/grails/grailsEvents.js"></script>
     <script src="js/jquery/jquery.atmosphere.js" type="text/javascript" ></script>
     <script src="js/grails/mobile/map/googleMapService.js"></script>
@@ -106,19 +107,23 @@
     <script src="js/grails/mobile/push/pushmanager.js"></script>
     <script src="js/grails/mobile/camera/camera.js"></script>
     <script src="js/grails/mobile/mvc/manager.js"></script>
+    <script src="js/threecircles/model/user-model.js"></script>
     <script src="js/threecircles/view/user-view.js"></script>
+    <script src="js/threecircles/controller/user-controller.js"></script>
+    <script src="js/threecircles/model/place-model.js"></script>
     <script src="js/threecircles/view/place-view.js"></script>
-    <script src="js/threecircles/view/user-view.js"></script>
+    <script src="js/threecircles/controller/place-controller.js"></script>
     <script src="js/threecircles/view/geolocation.js"></script>
     <script src="js/threecircles/view/timeline.js"></script>
+    <script src="js/threecircles/model/checkin-model.js"></script>
     <script src="js/threecircles/view/checkin-view.js"></script>
+    <script src="js/threecircles/controller/checkin-controller.js"></script>
     <script src="js/threecircles/configuration-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/checkin-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/bootstrap/place-bootstrap.js"></script>
-    <script src="js/threecircles/bootstrap/user-bootstrap.js"></script>
     <script src="js/threecircles/manager-bootstrap.js"></script>
     <script src="js/jquery/mobiscroll.custom-2.4.4.min.js"></script>
-    <script src="cordova.js"></script>
+
 </body>
 </html>

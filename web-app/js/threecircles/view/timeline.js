@@ -26,9 +26,9 @@ threecirclesconfess.view.timeline = function () {
             var hours = integerDivision(diff, ONE_HOUR);
             if (hours.quotient) {
                 var minutesLeft = integerDivision(hours.remainder, ONE_MINUTE);
-                return hours.quotient + " hours " + minutesLeft.quotient + " minutes ago";
+                return hours.quotient + " h " + minutesLeft.quotient + " min ago";
             } else {
-                return minutes.quotient + " minutes ago";
+                return minutes.quotient + " min ago";
             }
         }
         if (ONE_DAY < diff && diff < ONE_MONTH) {

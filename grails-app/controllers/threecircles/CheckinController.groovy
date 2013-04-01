@@ -124,7 +124,8 @@ class CheckinController {
         return
       }
       
-      event topic:"update-checkin", data: checkinInstance
+      def asJson = checkinInstance as JSON
+      event topic:"update-checkin", data: asJson.toString()
       render checkinInstance as JSON
     }
 
