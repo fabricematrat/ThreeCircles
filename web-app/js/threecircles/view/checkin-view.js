@@ -357,7 +357,7 @@ threecircles.view.checkinview = function (model, elements) {
             show(element.id, event);
         });
         
-        var image = '<img src="'+ encode(element.photo) +'"/>';
+        var image = '<img src="'+ grails.mobile.camera.encode(element.photo) +'"/>';
         a.append(image);
 
         if (element.offlineStatus === 'NOT-SYNC') {
