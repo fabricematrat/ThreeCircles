@@ -97,22 +97,6 @@ threecirclesconfess.view.geolocation = function () {
             //-----------------------------------------------------------------------------
             // <span id="div-for-upload"><input type="file" class="upload ui-input-text" accept=......
             //
-//            span = $('<span>');
-//            span.attr({
-//                id: "div-for-upload",
-//                style:"display: table-cell;width: 30%;"
-//            });
-//            var input = $('<input>');
-//            input.attr({
-//                type: "file",
-//                accept:"image/*",
-//                "data-role": "none",
-//                class: "upload ui-input-text",
-//                name: "photo",
-//                id: "input-checkin-photo"
-//            });
-//            span.append(input);
-//            html.append(span);
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
@@ -132,7 +116,6 @@ threecirclesconfess.view.geolocation = function () {
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
-            /// grails.mobile.camera.getPicture($("#input-checkin-photo"));
             //-----------------------------------------------------------------------------
             //  TODO picture
             //-----------------------------------------------------------------------------
