@@ -350,7 +350,9 @@ git checkout step9_todo
 ```
 ### MVC
 3musket33rs includes a very easy custom MCV in JavaScript.
-![class diagram](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/classDiagram.png "class diagram")
+![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/mvc.png "3musket33rs MVC")
+To custom
+![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/custom.png "3musket33rs MVC")
 
 ### Add login to
 
@@ -417,3 +419,5 @@ phonegapbuild.phonegapversion="2.3.0"
 ```java
 git checkout step12_done
 ```
+
+![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/final_app.png "3musket33rs MVC")
