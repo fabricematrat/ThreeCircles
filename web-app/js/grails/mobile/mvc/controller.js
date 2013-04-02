@@ -21,8 +21,9 @@ var grails = grails || {};
 grails.mobile = grails.mobile || {};
 grails.mobile.mvc = grails.mobile.mvc || {};
 
-grails.mobile.mvc.controller = function (feed, model, view) {
+grails.mobile.mvc.controller = function (feed, model, view, cfg) {
     var that = {};
+    that.cfg = cfg;
     that.model = model;
     var feed = feed;
 
