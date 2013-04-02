@@ -348,16 +348,33 @@ git checkout step8_done
 ```java
 git checkout step9_todo
 ```
+### MVC
+3musket33rs includes a very easy custom MCV in JavaScript.
+![class diagram](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/classDiagram.png "class diagram")
+
+### Add login to
 
 ### Get source code from repo
 ```java
 git checkout step9_done
 ```
 
-## Step10: In the Cloud
+## Step10: Display my friends
+
 ### Get source code from repo
 ```java
 git checkout step10_todo
+```
+
+### Get source code from repo
+```java
+git checkout step10_done
+```
+
+## Step11: In the Cloud
+### Get source code from repo
+```java
+git checkout step11_todo
 ```
 ### Create a cloud foundry account
 Sign up at [www.cloudfoundry.com](http://www.cloudfoundry.com)
@@ -379,10 +396,10 @@ grails.plugin.cloudfoundry.password="..."
 ```
 ### Get source code from repo
 ```java
-git checkout step10_done
+git checkout step11_done
 ```
 
-## Step11: PhoneGap Build
+## Step12: PhoneGap Build
 
 ### Get source code from repo
 ```java
@@ -396,4 +413,7 @@ phonegapbuild.username="..."
 phonegapbuild.password="..."
 phonegapbuild.phonegapversion="2.3.0"
 ```
-
+### Get source code from repo
+```java
+git checkout step12_done
+```
