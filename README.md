@@ -446,6 +446,25 @@ in settings.grrovy add your cloud founcdry credentials
 grails.plugin.cloudfoundry.username="..."
 grails.plugin.cloudfoundry.password="..."
 ```
+### Change your URL
+in **configuration-bootstrap.js**, comment localhost URL, uncomment your cloud foundry one
+```
+threecircles.loadConfiguration = (function () {
+    threecircles.configuration = {
+        //baseURL: "http://localhost:8080/ThreeCircles/",
+        //Uncomment before pushing to cloudfoundry
+        baseURL: "http://ThreeCircles.cloudfoundry.com/",
+        namespace: "threecircles",
+        domain:[]
+    };
+})();
+```
+### Push to cloud foundry
+Simply run the command
+```
+grails prod cf-push
+```
+
 ### Get source code from repo
 ```java
 git checkout step11_done
@@ -465,6 +484,14 @@ phonegapbuild.username="..."
 phonegapbuild.password="..."
 phonegapbuild.phonegapversion="2.3.0"
 ```
+
+### Pacakge you HTML and JS
+Using [3musket33rs](http://3musket33rs.github.com/) PhoneGap Build plugin, simply go to
+```java
+http://localhost:8080/ThreeCircles/app/initBuild
+```
+Use the Psuh button and refresh from time to time. Once ready use QRcode to download your App.
+
 ### Get source code from repo
 ```java
 git checkout step12_done
