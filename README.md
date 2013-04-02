@@ -414,6 +414,10 @@ git checkout step9_done
 git checkout step10_todo
 ```
 
+### Add sesssion
+- in **CheckinController.groovy**, once logged store user insession
+- in **UserController.groovy**, retrieve user and display only his friend to friend view.
+
 ### Get source code from repo
 ```java
 git checkout step10_done
