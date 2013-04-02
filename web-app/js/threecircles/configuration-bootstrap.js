@@ -2,9 +2,9 @@ var threecircles = threecircles || {};
 
 threecircles.loadConfiguration = (function () {
     threecircles.configuration = {
-        baseURL: "http://localhost:8080/ThreeCircles/",
+        //baseURL: "http://localhost:8080/ThreeCircles/",
         //Uncomment before pushing to cloudfoundry
-        //baseURL: "http://ThreeCircles.cloudfoundry.com/",
+        baseURL: "http://ThreeCircles.cloudfoundry.com/",
         namespace: "threecircles",
         domain:[]
     };

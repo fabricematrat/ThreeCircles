@@ -12,7 +12,36 @@ class CheckinController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+
+    def login() {
+        def receivedUsername = params.j_username
+        def receivedPassword = params.j_password
+        def me = User.findByUsername(receivedUsername)
+
+        //render me as JSON
+
+
+        def listOfCheckins = Checkin.findAllByOwner(me)
+        me.friends.each {
+            def result = Checkin.findAllByOwner(it)
+            if (result.size() > 0) {
+                result.each { itt ->
+                    listOfCheckins << itt
+                }
+            }
+        }
+        def builder = new groovy.json.JsonBuilder()
+        def checkinsJSON = listOfCheckins as JSON
+        def checkinString = checkinsJSON.toString()
+        def info = builder {
+            firstname me.firstname
+            checkins checkinString
+        }
+        String builderString = builder.toString();
+        render builderString
+
+    }
+
     def list() {
       params.max = Math.min(params.max ? params.int('max') : 10, 100)
       render Checkin.list(params) as JSON

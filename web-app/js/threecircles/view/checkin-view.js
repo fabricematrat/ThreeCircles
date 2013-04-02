@@ -10,6 +10,9 @@ threecircles.view.checkinview = function (model, elements) {
     var geolocationBackground = threecirclesconfess.view.geolocation()
 
     // Register events
+
+
+
     that.model.listedItems.attach(function (data) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
@@ -158,6 +161,56 @@ threecircles.view.checkinview = function (model, elements) {
         setTimeout( $.mobile.hidePageLoadingMsg, 3000 );
         event.stopPropagation();
     };
+
+    //-----------------------------------------------------------------------------
+    // TODO submit login
+    //-----------------------------------------------------------------------------
+    $('#submit-login').on('click', function (event) {
+        event.stopPropagation();
+        $('#form-update-user').validationEngine('hide');
+        if($('#form-update-user').validationEngine('validate')) {
+            var obj = grails.mobile.helper.toObject($('#form-update-user').find('input, select'));
+            var newElement = obj;
+            that.loginButtonClicked.notify(newElement, event);
+        }
+    });
+    //-----------------------------------------------------------------------------
+    // end of TODO submit login
+    //-----------------------------------------------------------------------------
+
+    // TO DO register for event loginButtonClicked
+    that.loginButtonClicked = grails.mobile.event();
+
+    // TO DO attach behaviour once event logged (from model) has been raised
+    that.model.logged.attach(function (data, event) {
+        if (data.items.errors) {
+            $.each(data.items.errors, function(index, error) {
+                $('#input-user-' + error.field).validationEngine('showPrompt',error.message, 'fail');
+            });
+            event.stopPropagation();
+        } else if (data.items.message || data.items.error) {
+            showGeneralMessage(data.items.message ? data.items.message : data.items.error, event);
+        } else {
+            if (!data.items.NOTIFIED) {
+                var a = $('<a>');
+                a.attr({
+                    id: 'logged-username',
+                    'data-role': 'button',
+                    'data-transition': 'fade'
+                });
+                a.text(''+ model.username);
+
+                $('#logged-username').replaceWith(a);
+                $('#logged-username').button();
+                $('#list-checkin').empty();
+                var key, items = model.getItems();
+                addAndSort(items);
+                $('#list-checkin').listview('refresh');
+                $.mobile.changePage($('#section-list-checkin'));
+            }
+        }
+    });
+
 
     return that;
 };

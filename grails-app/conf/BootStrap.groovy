@@ -46,7 +46,7 @@ class BootStrap {
         confess.addToFriends(fabrice)
         confess.save()
 
-        Checkin devfestw = new Checkin(description: "devfestw", when: (new Date() - 25).time, place: paris, owner: testUser, photo:  "")
+        Checkin devfestw = new Checkin(description: "devfestw", when: (new Date() - 25).time, place: paris, owner: fabrice, photo:  "")
         devfestw.save()
         devfestw.addToFriends(fabrice)
         devfestw.addToComments(comment)
@@ -54,7 +54,7 @@ class BootStrap {
 
         devfestw.save()
 
-        Checkin greach = new Checkin(description: "greach", when: (new Date() - 69).time, place: madrid, owner: testUser, photo:  "")
+        Checkin greach = new Checkin(description: "greach", when: (new Date() - 69).time, place: madrid, owner: mathieu, photo:  "")
         greach.save()
         greach.addToFriends(fabrice)
         greach.addToComments(comment)

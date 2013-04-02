@@ -19,7 +19,26 @@
 </head>
 <body>
 
-<!-- Home -->
+<!-- login page -->
+<section data-role="page" id="login-page" data-theme="a">
+
+    <!--<img style="display: block;margin: auto;padding:1em" src="img/ThreeCircle.png"/>-->
+
+    <form id="form-update-user" name="form-update-user">
+        <div style="padding-left:3em;padding-right:3em">
+            <input style="text-align: center;" data-theme="e" type="text" class="validate[required]" placeholder="username" name="j_username" id="username" value=""/>
+            <input style="text-align: center;" data-theme="e" type="password" placeholder="password" name="j_password" id="password" value=""/>
+            <br/>
+            <a data-role="button" data-theme="e" id="submit-login">Login</a>
+        </div>
+
+        <input type="hidden" name="id" id="input-user-id"/>
+        <input type="hidden" name="version" id="input-user-version"/>
+        <input type="hidden" name="class" id="input-user-class"/>
+    </form>
+</section>
+
+<!-- Home: timeline -->
 <section data-role="page" id="section-list-checkin"class="flow">
     <div data-role="panel" data-theme="a" id="mypanel">
         <a href="#mypanel" data-role="button"  data-icon="home">Timeline</a>
@@ -37,7 +56,10 @@
                     <input data-theme="c" class="search-header" placeholder="Find a place to go"/>
                 </li>
                 <li class="list-icon">
-                    <a href="#page1" data-role="button" data-icon="bars">&nbsp;</a>
+                    <!---------------------------------------------->
+                    <!-- TODO: add name with id: logged-username -->
+                    <!---------------------------------------------->
+                    <a id="logged-username" href="" data-role="button" data-transition="fade" >&nbsp;</a>
                 </li>
             </ul>
         </div>
@@ -182,11 +204,7 @@
     </div>
 </section>
 
-
-
-
 <!-- user -->
-
 <section data-role="page" id="section-list-user" class="flow">
     <div data-role="panel" data-theme="a" id="mypanel4">
         <a href="#section-list-checkin" data-role="button"  data-icon="home">Timeline</a>
@@ -209,13 +227,6 @@
     </div>
 
 </section>
-
-
-
-
-
-
-
 
 <script src="js/jquery/jquery.validationEngine.js"></script>
     <script src="js/jquery/jquery.validationEngine-en.js"></script>
