@@ -23,12 +23,12 @@
 <section data-role="page" id="section-list-checkin"class="flow">
     <div data-role="panel" data-theme="a" id="mypanel">
         <a href="#mypanel" data-role="button"  data-icon="home">Timeline</a>
-        <a href="place-index.html"  rel="external" data-role="button" data-icon="star">Places</a>
-        <a href="user-index.html"  rel="external" data-role="button" data-icon="alert">Friends</a>
+        <a href="#section-list-place" data-role="button" data-icon="star">Places</a>
+        <a href="#section-list-user"  data-role="button" data-icon="alert">Friends</a>
         <a href="#mypanel" data-role="button" data-icon="grid">Settings</a>
     </div>
     <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
-        <div id="navbar" data-role="navbar" data-iconpos="top">
+        <div id="navbar1" data-role="navbar" data-iconpos="top">
             <ul>
                 <li class="list-icon">
                     <a href="#mypanel" data-role="button" data-icon="bars" class="big">&nbsp;</a>
@@ -88,7 +88,136 @@
     </div>
 </section>
 
-    <script src="js/jquery/jquery.validationEngine.js"></script>
+
+
+
+
+
+<section data-role="page" id="section-list-place"class="flow">
+    <div data-role="panel" data-theme="a" id="mypanel3">
+        <a href="#section-list-checkin" rel="external" data-role="button"  data-icon="home">Timeline</a>
+        <a href="#mypanel3" data-role="button" data-icon="star">Places</a>
+        <a href="#section-list-user" data-role="button" data-icon="alert">Friends</a>
+        <a href="#mypanel3" data-role="button" data-icon="grid">Settings</a>
+    </div>
+    <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
+        <div id="navbar3" data-role="navbar" data-iconpos="top">
+            <ul>
+                <li class="list-icon">
+                    <a href="#mypanel3" data-role="button" data-icon="bars" class="big">&nbsp;</a>
+                </li>
+                <li style="width: 40%">&nbsp;</li>
+                <li class="list-icon">
+                    <a data-role="button"  data-icon="grid" id="list-all-place">List&nbsp;</a>
+                </li>
+                <li class="list-icon">
+                    <a data-role="button" data-icon="star" id="map-all-place">Map&nbsp;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="content" style="display: none;" id="list-place-parent">
+        <ul data-theme="b" class="fs-object" data-role="listview" data-inset="true" data-filter="true" id="list-place-map"/>
+    </div>
+    <div data-role="content" id="map-place-parent">
+        <div style="height: 70%;width: 91%;position: absolute;" id="map-canvas-list-place"></div>
+    </div>
+    <div id="Footer3" data-theme="a" data-role="footer" data-position="fixed" data-id="myFooter">
+        <div id="navbar-footer3" data-role="navbar" data-iconpos="top">
+            <ul>
+                <li class="list-icon">
+                    <a id="add-place" href="#section-show-checkin" data-theme="b" data-icon="edit" data-role="button" data-iconpos="top">
+                        Add</br>
+                    </a>
+                </li>
+                <li style="width: 80%;"><a href="http://3musket33rs.github.com">Cool Web Mobile with 3musket33rs</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<section data-role="page" id="section-show-place" data-theme="a" data-content-theme="a">
+    <div data-role="header" id="show-place" data-position="fixed"  data-theme="b" data-id="myHeader">
+        <a href="#section-list-place" data-icon="arrow-l">Cancel</a>
+        <h1>Place</h1>
+    </div>
+
+
+    <div data-role="panel" data-theme="a" id="mypanel2">
+        <a href="#section-list-checkin" data-role="button"  data-icon="home">Timeline</a>
+        <a href="#mypanel2" data-role="button" data-icon="star">Places</a>
+        <a href="#section-list-user" data-role="button" data-icon="alert">Friends</a>
+        <a href="#mypanel2" data-role="button" data-icon="grid">Settings</a>
+    </div>
+    <div data-role="header" data-position="fixed" data-theme="b">
+        <div id="navbar2" data-role="navbar" data-iconpos="top">
+            <ul>
+                <li class="list-icon"><a href="#section-list-place" data-icon="arrow-l"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content" data-theme="a">
+        <div id="map-canvas-form-place" class="map"></div>
+        <form id="form-update-place" name="form-update-place">
+            <ul data-role="listview" data-inset="true">
+                <li data-role="fieldcontain">
+                    <input type="text" class="validate[required]" name="name" id="input-place-name" placeholder="Name" value=""/>
+                </li>
+                <li data-role="fieldcontain">
+                    <input type="text" class="validate[required]" name="address" id="input-place-address" placeholder="Address" value=""/>
+
+                </li>
+            </ul>
+            <input type="hidden" name="longitude" id="input-place-longitude"/>
+            <input type="hidden" name="latitude" id="input-place-latitude"/>
+            <input type="hidden" name="id" id="input-place-id"/>
+            <input type="hidden" name="version" id="input-place-version"/>
+            <input type="hidden" name="class" id="input-place-class"/>
+
+            <button id="submit-place" data-theme="e">Save it!</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+<!-- user -->
+
+<section data-role="page" id="section-list-user" class="flow">
+    <div data-role="panel" data-theme="a" id="mypanel4">
+        <a href="#section-list-checkin" data-role="button"  data-icon="home">Timeline</a>
+        <a href="#section-list-place" data-role="button" data-icon="star">Places</a>
+        <a href="#mypanel4"  data-role="button" data-icon="alert">Friends</a>
+        <a href="#mypanel4" data-role="button" data-icon="grid">Settings</a>
+    </div>
+    <div data-role="header" data-position="fixed" data-theme="b" data-id="myHeader">
+        <div id="navbar" data-role="navbar" data-iconpos="top">
+            <ul>
+                <li class="list-icon">
+                    <a href="#mypanel4" data-role="button" data-icon="bars" class="big">&nbsp;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content" id="list-user-parent" class="flow">
+        <ul class="fs-object" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search for a friend..." id="list-user"/>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+<script src="js/jquery/jquery.validationEngine.js"></script>
     <script src="js/jquery/jquery.validationEngine-en.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,geometry"></script>
     <script src="js/grails/grailsEvents.js"></script>

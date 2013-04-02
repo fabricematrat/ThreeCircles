@@ -10,12 +10,12 @@ threecircles.view.placeview = function (model, elements) {
     // Register events
     that.model.listedItems.attach(function (data) {
         mapServiceList.emptyMap('map-canvas-list-place');
-        $('#list-place').empty();
+        $('#list-place-map').empty();
         var key, items = model.getItems();
         $.each(items, function(key, value) {
             renderElement(value);
         });
-        $('#list-place').listview('refresh');
+        $('#list-place-map').listview('refresh');
     });
 
     that.model.createdItem.attach(function (data, event) {
@@ -29,7 +29,7 @@ threecircles.view.placeview = function (model, elements) {
             showGeneralMessage(data, event);
         } else {
             renderElement(data.item);
-            $('#list-place').listview('refresh');
+            $('#list-place-map').listview('refresh');
             if (!data.item.NOTIFIED) {
                 $.mobile.changePage($('#section-list-place'));
             }
@@ -47,7 +47,7 @@ threecircles.view.placeview = function (model, elements) {
             showGeneralMessage(data, event);
         } else {
             updateElement(data.item);
-            $('#list-place').listview('refresh');
+            $('#list-place-map').listview('refresh');
             if (!data.item.NOTIFIED) {
                 $.mobile.changePage($('#section-list-place'));
             }
@@ -65,7 +65,7 @@ threecircles.view.placeview = function (model, elements) {
                 $('#place-list-' + data.item.id).parents('li').remove();
                 mapServiceList.removeMarker(data.item.id);
             }
-            $('#list-place').listview('refresh');
+            $('#list-place-map').listview('refresh');
             if (!data.item.NOTIFIED) {
                 $.mobile.changePage($('#section-list-place'));
             }
@@ -241,7 +241,7 @@ threecircles.view.placeview = function (model, elements) {
     };
 
     var renderElement = function (element) {
-        $('#list-place').append(createListItem(element));
+        $('#list-place-map').append(createListItem(element));
     };
 
     var updateElement = function (element) {
