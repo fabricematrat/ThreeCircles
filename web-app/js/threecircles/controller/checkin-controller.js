@@ -6,14 +6,15 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
 
     //var baseURL = "http://localhost:8080/ThreeCircles/Checkin/";
     var baseURL = "http://ThreeCircles.cloudfoundry.com/Checkin/";
+
+    //-----------------------------------------------------------------------------
     // TODO attached a bahavior when loginButtonClicked is raised
-    // call to login function
+    // Do an ajax call (using send method provided)
+    //-----------------------------------------------------------------------------
     view.loginButtonClicked.attach(function (item, context) {
         login(item, context);
     });
 
-    // TODO login function: do an ajax call to CheckinController.login
-    // on success save firstname (returned by server) in data model
     var login = function (data, context) {
 
         var logged = function (data) {
@@ -29,6 +30,9 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
         };
         send(data, baseURL + "login" , callback);
     };
+    //-----------------------------------------------------------------------------
+    // end of TODO attached a bahavior when loginButtonClicked is raised
+    //-----------------------------------------------------------------------------
 
     var send = function (item, url, callback) {
         $.ajax({
@@ -39,7 +43,6 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
             dataType: "json",
             url: url,
             success: function (data) {
-                alert("onsuccessLogin") ;
                 callback(data, item);
             },
             error: function (xhr) {

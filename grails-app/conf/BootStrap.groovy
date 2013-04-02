@@ -6,6 +6,9 @@ import threecircles.Checkin
 class BootStrap {
 
     def init = { servletContext ->
+        //-----------------------------------------------------------------------------
+        // TODO Register yourself and your friends!!
+        //-----------------------------------------------------------------------------
         def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'password')
         testUser.save()
 

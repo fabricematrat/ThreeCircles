@@ -14,32 +14,42 @@ class CheckinController {
     }
 
     def login() {
+        //-----------------------------------------------------------------------------
+        // TODO retrieve user with username and password from param
+        //-----------------------------------------------------------------------------
+        // if username found and password match, find all checkin for me and my friends
+        //-----------------------------------------------------------------------------
+        // else send an error message wrong password
+        //-----------------------------------------------------------------------------
         def receivedUsername = params.j_username
         def receivedPassword = params.j_password
+
         def me = User.findByUsername(receivedUsername)
-
-        //render me as JSON
-
-
-        def listOfCheckins = Checkin.findAllByOwner(me)
-        me.friends.each {
-            def result = Checkin.findAllByOwner(it)
-            if (result.size() > 0) {
-                result.each { itt ->
-                    listOfCheckins << itt
+        if (me && receivedPassword == me.password) {
+            def listOfCheckins = Checkin.findAllByOwner(me)
+            me.friends.each {
+                def result = Checkin.findAllByOwner(it)
+                if (result.size() > 0) {
+                    result.each { itt ->
+                        listOfCheckins << itt
+                    }
                 }
             }
+            def builder = new groovy.json.JsonBuilder()
+            def checkinsJSON = listOfCheckins as JSON
+            def checkinString = checkinsJSON.toString()
+            def info = builder {
+                firstname me.firstname
+                checkins checkinString
+            }
+            String builderString = builder.toString();
+            render builderString
+        } else {
+            render "Error wrong username or password"
         }
-        def builder = new groovy.json.JsonBuilder()
-        def checkinsJSON = listOfCheckins as JSON
-        def checkinString = checkinsJSON.toString()
-        def info = builder {
-            firstname me.firstname
-            checkins checkinString
-        }
-        String builderString = builder.toString();
-        render builderString
-
+        //-----------------------------------------------------------------------------
+        // end of TODO retrieve user with username and password from param
+        //-----------------------------------------------------------------------------
     }
 
     def list() {

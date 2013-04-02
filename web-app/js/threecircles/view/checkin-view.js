@@ -9,10 +9,6 @@ threecircles.view.checkinview = function (model, elements) {
     var geolocationCheckin = threecirclesconfess.view.geolocation();
     var geolocationBackground = threecirclesconfess.view.geolocation()
 
-    // Register events
-
-
-
     that.model.listedItems.attach(function (data) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
@@ -165,7 +161,7 @@ threecircles.view.checkinview = function (model, elements) {
     //-----------------------------------------------------------------------------
     // TODO submit login
     //-----------------------------------------------------------------------------
-    $('#submit-login').on('click', function (event) {
+    $('#submit-login').on('vclick', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
         if($('#form-update-user').validationEngine('validate')) {
@@ -178,10 +174,17 @@ threecircles.view.checkinview = function (model, elements) {
     // end of TODO submit login
     //-----------------------------------------------------------------------------
 
-    // TO DO register for event loginButtonClicked
+     //-----------------------------------------------------------------------------
+    // TODO register for event loginButtonClicked
+    //-----------------------------------------------------------------------------
     that.loginButtonClicked = grails.mobile.event();
+    //-----------------------------------------------------------------------------
+    // end of TODO register for event loginButtonClicked
+    //-----------------------------------------------------------------------------
 
-    // TO DO attach behaviour once event logged (from model) has been raised
+    //-----------------------------------------------------------------------------
+    // TODO attach behaviour once event logged (from model) has been raised
+    //-----------------------------------------------------------------------------
     that.model.logged.attach(function (data, event) {
         if (data.items.errors) {
             $.each(data.items.errors, function(index, error) {
@@ -210,7 +213,9 @@ threecircles.view.checkinview = function (model, elements) {
             }
         }
     });
-
+    //-----------------------------------------------------------------------------
+    // end of TODO attach behaviour once event logged (from model) has been raised
+    //-----------------------------------------------------------------------------
 
     return that;
 };
