@@ -6,7 +6,7 @@ threecircles.view.placeview = function (model, elements) {
     var that = grails.mobile.mvc.view(model, elements);
     var mapServiceList = grails.mobile.map.googleMapService();
     var mapServiceForm = grails.mobile.map.googleMapService();
-    
+
     // Register events
     that.model.listedItems.attach(function (data) {
         mapServiceList.emptyMap('map-canvas-list-place');
@@ -16,6 +16,7 @@ threecircles.view.placeview = function (model, elements) {
             renderElement(value);
         });
         $('#list-place').listview('refresh');
+        mapServiceList.refreshCenterZoomMap();
     });
 
     that.model.createdItem.attach(function (data, event) {
