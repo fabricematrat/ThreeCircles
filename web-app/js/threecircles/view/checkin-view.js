@@ -9,10 +9,6 @@ threecircles.view.checkinview = function (model, elements) {
     var geolocationCheckin = threecirclesconfess.view.geolocation();
     var geolocationBackground = threecirclesconfess.view.geolocation()
 
-    // Register events
-
-
-
     that.model.listedItems.attach(function (data) {
         $('#list-checkin').empty();
         var key, items = model.getItems();
@@ -165,23 +161,22 @@ threecircles.view.checkinview = function (model, elements) {
     //-----------------------------------------------------------------------------
     // TODO submit login
     //-----------------------------------------------------------------------------
-    $('#submit-login').on('click', function (event) {
-        event.stopPropagation();
-        $('#form-update-user').validationEngine('hide');
-        if($('#form-update-user').validationEngine('validate')) {
-            var obj = grails.mobile.helper.toObject($('#form-update-user').find('input, select'));
-            var newElement = obj;
-            that.loginButtonClicked.notify(newElement, event);
-        }
-    });
+
     //-----------------------------------------------------------------------------
     // end of TODO submit login
     //-----------------------------------------------------------------------------
 
+     //-----------------------------------------------------------------------------
     // TO DO register for event loginButtonClicked
-    that.loginButtonClicked = grails.mobile.event();
+    //-----------------------------------------------------------------------------
 
+    //-----------------------------------------------------------------------------
+    // end of TODO register for event loginButtonClicked
+    //-----------------------------------------------------------------------------
+
+    //-----------------------------------------------------------------------------
     // TO DO attach behaviour once event logged (from model) has been raised
+    //-----------------------------------------------------------------------------
     that.model.logged.attach(function (data, event) {
         if (data.items.errors) {
             $.each(data.items.errors, function(index, error) {
@@ -192,25 +187,13 @@ threecircles.view.checkinview = function (model, elements) {
             showGeneralMessage(data.items.message ? data.items.message : data.items.error, event);
         } else {
             if (!data.items.NOTIFIED) {
-                var a = $('<a>');
-                a.attr({
-                    id: 'logged-username',
-                    'data-role': 'button',
-                    'data-transition': 'fade'
-                });
-                a.text(''+ model.username);
-
-                $('#logged-username').replaceWith(a);
-                $('#logged-username').button();
-                $('#list-checkin').empty();
-                var key, items = model.getItems();
-                addAndSort(items);
-                $('#list-checkin').listview('refresh');
-                $.mobile.changePage($('#section-list-checkin'));
+                //TODO
             }
         }
     });
-
+    //-----------------------------------------------------------------------------
+    // end of TODO attach behaviour once event logged (from model) has been raised
+    //-----------------------------------------------------------------------------
 
     return that;
 };
