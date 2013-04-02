@@ -16,6 +16,7 @@ threecircles.view.placeview = function (model, elements) {
             renderElement(value);
         });
         $('#list-place').listview('refresh');
+        mapServiceList.refreshCenterZoomMap();        
     });
 
     that.model.createdItem.attach(function (data, event) {
