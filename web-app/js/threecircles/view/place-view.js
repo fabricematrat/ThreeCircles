@@ -101,6 +101,7 @@ threecircles.view.placeview = function (model, elements) {
         hideListDisplay();
         showMapDisplay();
     });
+
     that.elements.list.on('pageinit', function (e) {
         that.listButtonClicked.notify();
     });

@@ -1,10 +1,11 @@
 var threecircles = threecircles || {};
 threecircles.controller = threecircles.controller || {};
 
-threecircles.controller.checkincontroller = function(feed, model, view) {
-    var that = grails.mobile.mvc.controller(feed, model, view);
+threecircles.controller.checkincontroller = function(feed, model, view, cfg) {
+    var that = grails.mobile.mvc.controller(feed, model, view, cfg);
 
-    var baseURL = "http://localhost:8080/ThreeCircles/Checkin/";
+    var baseURL = cfg.baseURL;
+    //var baseURL = "http://localhost:8080/ThreeCircles/Checkin/";
     //var baseURL = "http://ThreeCircles.cloudfoundry.com/Checkin/";
 
     // TODO attached a bahavior when loginButtonClicked is raised
