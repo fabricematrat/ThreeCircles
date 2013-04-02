@@ -333,14 +333,19 @@ git checkout step7_done
 ```
 
 ## Step8: Put all together
+This step ** does not ** have a TO DO section.
+
+You can rest a bit ;-)
 
 ### Get source code from repo
 ```java
 git checkout step8_done
 ```
+Here is what was done for you:
+
 - in checkin-view.js, generated code has been cleaned to leave only what's needed
-- place-index.html & place-view.js has been modified with CSS. 
-- friend-index.html & friend-view.js has been modified with CSS. 
+- place-index.html & user-index.html has been merge in a single page index.html
+- place-view.js & user-view.js has been cleaned. 
 
 ## Step9: Login
 
@@ -348,13 +353,54 @@ git checkout step8_done
 ```java
 git checkout step9_todo
 ```
+You will get:
+- in **index.html** a new section with id **login-page** has been added for the login form.
+- checkin-model.js and checkin-controller.js new files
+
 ### MVC
-3musket33rs includes a very easy custom MCV in JavaScript.
+3musket33rs includes a very easy custom MCV in JavaScript. As we've seen ealier this MCV catters for the default CRUD operations.
+For exemple see the update flow explained below:
+
+
 ![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/mvc.png "3musket33rs MVC")
-To custom
+
+Most of the time those CRUD operations could be enough for your need. for now we have only extended the view 
+in **checkin-view.js** file.
+
+Now that we want to add a new operation to login. We need to extend Controller to do our cutom ajax call. 
+In the case of login we are not interested in offline mode so we won't implement our feed method. 
+Extending Cotnroller is enough.
+If we want to add data to the model (like let's say the firstname of the user logged)
+we need to extend Model. 
+
 ![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/custom.png "3musket33rs MVC")
 
-### Add login to
+### CheckinController server side
+In CheckinController.groovy:
+- in login method: get user from params 
+- if user not found or wrong password send error message
+- if user found and password ok retrun all my checkins plus the one from my friends
+
+### Custom view
+In **index.html**:
+
+- add a new anchar with id **logged-username**. This anchor will be used to display the firstname of the logged user.
+- on button with id **submit-login** clicked submit login
+- on callback, render the list as previously (**addAnsSort** method), refresh **logged-username** with firstname
+ 
+### Custom Controller
+In **checkin-controller.js**:
+
+- add attached behaviour for **loginButtonClicked** event: this is the place where you actually do the ajax call.
+
+### Custom Model
+In **checkin-model.js**:
+
+- register **logged** event
+- in **login** method store firstname and list of checkins in the model
+
+### Boostrap revisited
+In Boostrap.groovy, register yourself with you name and password and add your friends too.
 
 ### Get source code from repo
 ```java
