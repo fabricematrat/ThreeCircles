@@ -16,13 +16,14 @@ class UserController {
     }
 	
     def list() {
-       if (session["user"]) {
-           def usernameFormSession = session["user"].username
-           def me = User.findByUsername(usernameFormSession)
-           render me.friends as JSON
-       }  else {
-           render User.list() as JSON
-       }
+       //-----------------------------------------------------------------------------
+       // TODO retrieve user from session if found display only his friends
+       //-----------------------------------------------------------------------------
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        render User.list(params) as JSON
+       //-----------------------------------------------------------------------------
+       // end of TODO retrieve user from session if found display only his friends
+       //-----------------------------------------------------------------------------
      }
 
     def save() {

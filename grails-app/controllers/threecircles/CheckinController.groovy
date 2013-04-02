@@ -19,7 +19,13 @@ class CheckinController {
 
         def me = User.findByUsername(receivedUsername)
         if (me && receivedPassword == me.password) {
-        session["user"] = me
+        //-----------------------------------------------------------------------------
+        // TODO add user to session
+        //-----------------------------------------------------------------------------
+
+        //-----------------------------------------------------------------------------
+        // end of TODO add user to session
+        //-----------------------------------------------------------------------------
 
         def listOfCheckins = Checkin.findAllByOwner(me)
         me.friends.each {
