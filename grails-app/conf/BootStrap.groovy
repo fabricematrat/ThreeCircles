@@ -6,13 +6,13 @@ import threecircles.Checkin
 class BootStrap {
 
     def init = { servletContext ->
-        def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'password')
+        def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'me')
         testUser.save()
 
-        User fabrice = new User(firstname: "Fabrice", lastname: "Matrat", username: "fabricematrat", password: "password", enabled: true);
+        User fabrice = new User(firstname: "Fabrice", lastname: "Matrat", username: "fab", password: "me", enabled: true);
         fabrice.save()
 
-        User sebastien = new User(firstname: "Sebastien", lastname: "Blanc", username: "sebastienblanc", password: "password", enabled: true);
+        User sebastien = new User(firstname: "Sebastien", lastname: "Blanc", username: "seb", password: "me", enabled: true);
         sebastien.save()
 
         User mathieu = new User(firstname: "Mathieu", lastname: "Bruyen", username: "mathieubruyen", password: "password", enabled: true);
