@@ -4,8 +4,9 @@ threecircles.controller = threecircles.controller || {};
 threecircles.controller.checkincontroller = function(feed, model, view) {
     var that = grails.mobile.mvc.controller(feed, model, view);
 
-    //var baseURL = "http://localhost:8080/ThreeCircles/Checkin/";
-    var baseURL = "http://ThreeCircles.cloudfoundry.com/Checkin/";
+    var baseURL = "http://localhost:8080/ThreeCircles/Checkin/";
+    //var baseURL = "http://ThreeCircles.cloudfoundry.com/Checkin/";
+
     // TODO attached a bahavior when loginButtonClicked is raised
     // call to login function
     view.loginButtonClicked.attach(function (item, context) {
@@ -39,13 +40,11 @@ threecircles.controller.checkincontroller = function(feed, model, view) {
             dataType: "json",
             url: url,
             success: function (data) {
-                alert("onsuccessLogin") ;
                 callback(data, item);
             },
             error: function (xhr) {
                 var data = [];
-                data['item'] = [];
-                data['item']['message'] = xhr.responseText;
+                data['message'] = xhr.responseText;
                 callback(data, item);
             }
         });

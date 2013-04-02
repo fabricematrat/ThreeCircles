@@ -9,9 +9,6 @@ threecircles.view.checkinview = function (model, elements) {
     var geolocationCheckin = threecirclesconfess.view.geolocation();
     var geolocationBackground = threecirclesconfess.view.geolocation()
 
-    // Register events
-
-
 
     that.model.listedItems.attach(function (data) {
         $('#list-checkin').empty();
@@ -73,7 +70,7 @@ threecircles.view.checkinview = function (model, elements) {
             });
             event.stopPropagation();
         } else if (data.item.message) {
-            showGeneralMessage(data, event);
+            showGeneralMessage(data.item.message, event);
         } else {
             resetForm('form-update-checkin');
 
@@ -156,15 +153,12 @@ threecircles.view.checkinview = function (model, elements) {
         }
     };
 
-    var showGeneralMessage = function(data, event) {
-        $.mobile.showPageLoadingMsg( $.mobile.pageLoadErrorMessageTheme, data.item.message, true );
+    var showGeneralMessage = function(msg, event) {
+        $.mobile.showPageLoadingMsg( $.mobile.pageLoadErrorMessageTheme, msg, true );
         setTimeout( $.mobile.hidePageLoadingMsg, 3000 );
         event.stopPropagation();
     };
 
-    //-----------------------------------------------------------------------------
-    // TODO submit login
-    //-----------------------------------------------------------------------------
     $('#submit-login').on('click', function (event) {
         event.stopPropagation();
         $('#form-update-user').validationEngine('hide');
@@ -174,14 +168,9 @@ threecircles.view.checkinview = function (model, elements) {
             that.loginButtonClicked.notify(newElement, event);
         }
     });
-    //-----------------------------------------------------------------------------
-    // end of TODO submit login
-    //-----------------------------------------------------------------------------
 
-    // TO DO register for event loginButtonClicked
     that.loginButtonClicked = grails.mobile.event();
 
-    // TO DO attach behaviour once event logged (from model) has been raised
     that.model.logged.attach(function (data, event) {
         if (data.items.errors) {
             $.each(data.items.errors, function(index, error) {

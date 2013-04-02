@@ -16,10 +16,10 @@ class CheckinController {
     def login() {
         def receivedUsername = params.j_username
         def receivedPassword = params.j_password
+
         def me = User.findByUsername(receivedUsername)
-
-        //render me as JSON
-
+        if (me && receivedPassword == me.password) {
+        session["user"] = me
 
         def listOfCheckins = Checkin.findAllByOwner(me)
         me.friends.each {
@@ -39,7 +39,9 @@ class CheckinController {
         }
         String builderString = builder.toString();
         render builderString
-
+        } else {
+           render "Error wrong username or password"
+        }
     }
 
     def list() {

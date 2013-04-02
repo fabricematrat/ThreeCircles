@@ -16,9 +16,14 @@ class UserController {
     }
 	
     def list() {
-      params.max = Math.min(params.max ? params.int('max') : 10, 100)
-      render User.list(params) as JSON
-    }
+       if (session["user"]) {
+           def usernameFormSession = session["user"].username
+           def me = User.findByUsername(usernameFormSession)
+           render me.friends as JSON
+       }  else {
+           render User.list() as JSON
+       }
+     }
 
     def save() {
       def jsonObject = JSON.parse(params.user)
