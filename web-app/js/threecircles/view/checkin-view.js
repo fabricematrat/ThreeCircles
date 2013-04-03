@@ -86,6 +86,9 @@ threecircles.view.checkinview = function (model, elements) {
     // user interface actions
     that.elements.list.on('pageinit', function (e) {
         that.listButtonClicked.notify({user: "me"});
+    });
+
+    that.elements.list.on('pageshow', function (e) {
         geolocationBackground.showMapBackground('map_canvas', {}) ;
     });
 
@@ -128,6 +131,10 @@ threecircles.view.checkinview = function (model, elements) {
 
     var resetForm = function (form) {
         $('#textarea-1').val('');
+
+        $('#div-for-upload').css('background-image', 'url("images/camera.png")');
+        $('#input-checkin-photo').attr('data-value', '');
+
         $('input[data-type="date"]').each(function() {
             $(this).scroller('destroy').scroller({
                 preset: 'date',
@@ -145,9 +152,6 @@ threecircles.view.checkinview = function (model, elements) {
             $.each(div.find('input:hidden'), function(id, input) {
                 if ($(input).attr('type') != 'file') {
                     $(input).val('');
-                } else {
-                    $(input).parent().css('background-image', 'url("images/camera.png")');
-                    $(input).attr('data-value', '');
                 }
             });
         }
