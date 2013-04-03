@@ -424,10 +424,6 @@ git checkout step10_done
 ```
 
 ## Step11: In the Cloud
-### Get source code from repo
-```java
-git checkout step11_todo
-```
 ### Create a cloud foundry account
 Sign up at [www.cloudfoundry.com](http://www.cloudfoundry.com)
 
@@ -465,17 +461,8 @@ Simply run the command
 grails prod cf-push
 ```
 
-### Get source code from repo
-```java
-git checkout step11_done
-```
-
 ## Step12: PhoneGap Build
 
-### Get source code from repo
-```java
-git checkout step11_todo
-```
 ### Configure your PhoneGap Build account
 Sign up at [build.phonegap.com](http://build.phonegap.com)
 ### Config.groovy
@@ -490,11 +477,6 @@ Using [3musket33rs](http://3musket33rs.github.com/) PhoneGap Build plugin, simpl
 ```java
 http://localhost:8080/ThreeCircles/app/initBuild
 ```
-Use the Psuh button and refresh from time to time. Once ready use QRcode to download your App.
-
-### Get source code from repo
-```java
-git checkout step12_done
-```
+Use the Psuh button and refresh from time to time. Once ready use QRcode to download your App on build.phonegap.com
 
 ![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/final_app.png "3musket33rs MVC")
