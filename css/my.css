@@ -1,0 +1,174 @@
+.ui-panel-content-wrap {
+    background: #DCDCDC;
+}
+
+.fs-object {
+    border: 1px solid #888;
+    box-shadow: 0 1px 1px 0 #888;
+    background: #EEE;
+}
+
+.list-icon {
+    width:20% !important;
+}
+
+.list-search {
+    width: 60% !important;
+}
+
+.list-search > div.ui-input-text {
+    margin: 5px;
+    border-radius: 0 0 0 0 ;
+}
+
+.list-search > input {
+    padding:12px;
+}
+.ui-btn-corner-all {
+border-radius: 0 0 0 0 !important;    
+}
+.fs-list {
+    list-style-type: none;
+    list-style:none;
+    vertical-align: middle; 
+    margin: 5px;   
+    padding: 5px;
+}
+
+.fs-list img {
+    padding-right: 5px;  
+}
+
+.fs-list, .fs-object {
+    margin-bottom: 20px;
+}
+
+.header {
+    display: table;
+    margin: 5px;
+}
+
+.ownerimage , .placeimage, .description {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.ownerimage img , .placeimage img {
+    height: 5em;
+}
+
+.description {
+    padding-left: 5px;
+}
+
+.name {
+    text-transform: lowercase;
+    font-weight: bold;
+}
+
+.place {
+    font-weight: bold;
+    color: #666;
+}
+
+.address {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.comment {
+    position: relative;
+    margin: 5px;
+}
+
+.comment::before {
+    /* Small triangle */
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    content: "";
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #666;
+}
+
+.comment {
+    padding: 5px;
+    border: 1px solid #888;
+}
+
+.mainimage {
+    display: block;
+    width: 100%;
+}
+
+.date, .commentbutton, .likebutton {
+    border-top: 1px solid #888;
+}
+
+.mainimage ~ .date, .mainimage ~ .commentbutton, .mainimage ~ .likebutton {
+    border-top: 0;
+}
+
+.date, .commentbutton, .likebutton {
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.date {
+	padding-left: 5px;
+    width: 60%;
+}
+
+.commentbutton, .likebutton {
+    width: 20%;
+    text-align: center;
+    border-left: 1px solid #888;
+}
+
+.newfriend {
+    padding: 10px;
+    background: #D3D3D3;
+}
+
+.alone {
+    padding-left: 5px;
+    display: block;
+    background: #D3D3D3;
+    border-top: 1px solid #888;
+}
+
+.search-header {
+    margin-left: 5px !important; 
+}
+
+.map {
+    margin: -15px;
+    margin-bottom : 0px;
+    padding: 25px;
+    height: 12em;
+}
+.middle-map {
+     margin: -15px;
+     margin-bottom : 0px;
+     padding: 25px;
+     height: 14em;
+}
+
+.big-map {
+    margin: -15px;
+    margin-bottom : 0px;
+    padding: 25px;
+    height: 25em;
+}
+
+.list-place a {
+    background-color: #DCDCDC;
+}
+
+/*.ui-page {*/
+    /*-webkit-backface-visibility: hidden;*/
+    /*overflow: hidden;*/
+/*}*/

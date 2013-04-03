@@ -2,29 +2,21 @@ import threecircles.User
 import threecircles.Place
 import threecircles.Comment
 import threecircles.Checkin
-import threecircles.UserRole
-import threecircles.Role
 
 class BootStrap {
 
     def init = { servletContext ->
-        def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
-
-        def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'password')
+        def testUser = new User(firstname: "Corinne", lastname: "Krych", username: 'me', enabled: true, password: 'me')
         testUser.save()
-        UserRole.create testUser, userRole, true
 
-        User fabrice = new User(firstname: "Fabrice", lastname: "Matrat", username: "fabricematrat", password: "password", enabled: true);
+        User fabrice = new User(firstname: "Fabrice", lastname: "Matrat", username: "fab", password: "me", enabled: true);
         fabrice.save()
-        UserRole.create fabrice, userRole, true
 
-        User sebastien = new User(firstname: "Sebastien", lastname: "Blanc", username: "sebastienblanc", password: "password", enabled: true);
+        User sebastien = new User(firstname: "Sebastien", lastname: "Blanc", username: "seb", password: "me", enabled: true);
         sebastien.save()
-        UserRole.create sebastien, userRole, true
 
         User mathieu = new User(firstname: "Mathieu", lastname: "Bruyen", username: "mathieubruyen", password: "password", enabled: true);
         mathieu.save()
-        UserRole.create mathieu, userRole, true
 
         Place nice = new Place(name: "Nice", latitude:43.7, longitude: 7.2, address: "town center" )
         nice.save()
@@ -62,15 +54,12 @@ class BootStrap {
 
         devfestw.save()
 
-        Checkin gr8conf = new Checkin(description: "gr8conf", when: (new Date() - 125).time, place: paris, owner: sebastien, photo:  "")
-        gr8conf.save()
-        gr8conf.addToFriends(fabrice)
-        gr8conf.save()
-
         Checkin greach = new Checkin(description: "greach", when: (new Date() - 69).time, place: madrid, owner: mathieu, photo:  "")
         greach.save()
         greach.addToFriends(fabrice)
         greach.addToComments(comment)
+        greach.addToComments(comment2)
+
         greach.save()
 
     }

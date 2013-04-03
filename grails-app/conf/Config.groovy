@@ -65,7 +65,6 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
@@ -93,13 +92,6 @@ log4j = {
 // Added by the Html5 Mobile Scaffolding plugin:
 grails.converters.json.domain.include.version=true
 
-
-phonegapbuild.username="corinnekrych@gmail.com"
-phonegapbuild.password="password"
+phonegapbuild.username="..."
+phonegapbuild.password="..."
 phonegapbuild.phonegapversion="2.3.0"
-
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'threecircles.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'threecircles.UserRole'
-grails.plugins.springsecurity.authority.className = 'threecircles.Role'
-

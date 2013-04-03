@@ -4,12 +4,8 @@ import grails.converters.deep.JSON
 import org.grails.datastore.mapping.validation.ValidationErrors
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
-import org.springframework.security.access.annotation.Secured
 
-@Secured(['IS_AUTHENTICATED_REMEMBERED'])
 class CheckinController {
-
-    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -17,9 +13,19 @@ class CheckinController {
         redirect(action: "list", params: params)
     }
 
-    def list() {
+    def login() {
+        def receivedUsername = params.j_username
+        def receivedPassword = params.j_password
 
-        User me = User.get(springSecurityService.principal.id)
+        def me = User.findByUsername(receivedUsername)
+        if (me && receivedPassword == me.password) {
+        //-----------------------------------------------------------------------------
+        // TODO add user to session
+        //-----------------------------------------------------------------------------
+        session["user"] = me
+        //-----------------------------------------------------------------------------
+        // end of TODO add user to session
+        //-----------------------------------------------------------------------------
         def listOfCheckins = Checkin.findAllByOwner(me)
         me.friends.each {
             def result = Checkin.findAllByOwner(it)
@@ -31,14 +37,23 @@ class CheckinController {
         }
         def builder = new groovy.json.JsonBuilder()
         def checkinsJSON = listOfCheckins as JSON
-        def checkinString =  checkinsJSON.toString()
-        def info = builder  {
+        def checkinString = checkinsJSON.toString()
+        def info = builder {
             firstname me.firstname
             checkins checkinString
         }
         String builderString = builder.toString();
         render builderString
+        } else {
+           render "Error wrong username or password"
+        }
     }
+
+    def list() {
+      params.max = Math.min(params.max ? params.int('max') : 10, 100)
+      render Checkin.list(params) as JSON
+    }
+
     def save() {
       def jsonObject = JSON.parse(params.checkin)
 
@@ -82,10 +97,9 @@ class CheckinController {
         return
       }
 
-      def asJson = checkinInstance as JSON
-      event topic:"save-checkin", data: asJson.toString()
-      render checkinInstance as JSON
-
+        def asJson = checkinInstance as JSON
+        event topic:"save-checkin", data: asJson.toString()
+        render checkinInstance as JSON
     }
     
     def show() {
@@ -146,7 +160,8 @@ class CheckinController {
         return
       }
       
-      event topic:"update-checkin", data: checkinInstance
+      def asJson = checkinInstance as JSON
+      event topic:"update-checkin", data: asJson.toString()
       render checkinInstance as JSON
     }
 
