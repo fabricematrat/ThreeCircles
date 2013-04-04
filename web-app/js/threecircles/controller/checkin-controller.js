@@ -6,14 +6,10 @@ threecircles.controller.checkincontroller = function(feed, model, view, cfg) {
 
     var baseURL = cfg.baseURL;
 
-    // TODO attached a bahavior when loginButtonClicked is raised
-    // call to login function
     view.loginButtonClicked.attach(function (item, context) {
         login(item, context);
     });
 
-    // TODO login function: do an ajax call to CheckinController.login
-    // on success save firstname (returned by server) in data model
     var login = function (data, context) {
 
         var logged = function (data) {
