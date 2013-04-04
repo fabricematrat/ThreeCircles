@@ -203,6 +203,40 @@ threecircles.view.checkinview = function (model, elements) {
             }
         }
     });
+    
+    
+    $('#section-list-checkin').on('swiperight', function(event) {
+        $('#mypanel').panel('open');
+    });
+
+    $('#section-list-checkin').on('swipeleft', function(event) {
+        $('#mypanel').panel('close');
+    });
+
+    $('#section-show-place').on('swiperight', function(event) {
+        $('#mypanel2').panel('open');
+    });
+
+    $('#section-show-place').on('swipeleft', function(event) {
+        $('#mypanel2').panel('close');
+    });
+
+    $('#section-list-place').on('swiperight', function(event) {
+        $('#mypanel3').panel('open');
+    });
+
+    $('#section-list-place').on('swipeleft', function(event) {
+        $('#mypanel3').panel('close');
+    });
+
+    $('#section-list-user').on('swiperight', function(event) {
+        $('#mypanel4').panel('open');
+    });
+
+    $('#section-list-user').on('swipeleft', function(event) {
+        $('#mypanel4').panel('close');
+    });
+
 
 
     return that;
