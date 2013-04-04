@@ -111,6 +111,12 @@ grails html-generate-all Checkin
 grails run-app
 ```
 
+### Go to URL
+```java
+http://localhost:8080/ThreeCircles/index.html?_debugResources=y
+```
+Note: adding _debugResources=y to reload JS/CSS/HTML updates for resources plugins
+
 ### Get source code from repo
 Before you get the solution push your changes
 ```java
