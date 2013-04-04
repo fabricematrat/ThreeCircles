@@ -1,7 +1,9 @@
 ThreeCircles: step by step tutorial for [ConFESS](https://2013.con-fess.com/)
 --------------------------
-This github repository holds all the step by step tutoreial to build a clone of Fousquare in a few minutes. 
-The application we're going to build will be name ThreeCircle ;-)
+This github repository holds all the step by step tutorial to build a clone of Fousquare in a few minutes. 
+The application we're going to build will be name ThreeCircles ;-)
+
+You will find associated presentation at [http://corinnekrych.github.com/confess/](http://corinnekrych.github.com/confess/)
 
 Speakers
 - [Corinne Krych](http://corinnekrych.github.com/)
