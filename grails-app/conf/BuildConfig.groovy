@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.9.1"
         runtime ":resources:1.1.6"
         build ":tomcat:$grailsVersion"
-        runtime ":database-migration:1.1"
+        //runtime ":database-migration:1.1"
         compile ':cache:1.0.0'
         // http://support.cloudfoundry.com/entries/21014643-Grails-Spring-Security-deployment-problem
         // to fix cf/springsecurity issue
