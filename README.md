@@ -447,7 +447,7 @@ grails install-plugin cloud-foundry
 Configure your global setting
 ```java
 cd ~/.grails
-touch setting.groovy
+touch settings.groovy
 ```
 in settings.grrovy add your cloud foundry credentials
 ```
