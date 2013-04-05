@@ -454,6 +454,10 @@ grails.plugin.cloudfoundry.password="..."
 ```
 ### Change your URL
 in **configuration-bootstrap.js**, comment localhost URL, uncomment your cloud foundry one
+
+Be creative and choose your own doamin name (we have already taken threecircles.cloudfoundry.com so do not try this one)
+Change it here with fiverectangles.cloudfoundry.com or twobubbles.cloudfoundry.com, sixtriangles.cloudfoundry.com
+
 ```
 threecircles.loadConfiguration = (function () {
     threecircles.configuration = {
@@ -470,6 +474,7 @@ Simply run the command
 ```
 grails prod cf-push
 ```
+When prompted for a domain name on cloudfoundry, use the one you choose just below.
 
 ## Step12: PhoneGap Build
 
