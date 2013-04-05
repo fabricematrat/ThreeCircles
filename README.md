@@ -72,7 +72,7 @@ in plugins
         runtime ":resources:1.1.6"
         build ":tomcat:$grailsVersion"
         runtime ":database-migration:1.1"
-        compile ':cache:1.0.0'
+        compile ":cache:1.0.0"
         compile ":webxml:1.4.1"
     }
 ```
