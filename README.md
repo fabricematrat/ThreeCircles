@@ -1,7 +1,7 @@
 ThreeCircles: step by step tutorial for [ConFESS](https://2013.con-fess.com/)
 --------------------------
-This github repository holds all the step by step tutorial to build a clone of Fousquare in a few minutes. 
-The application we're going to build will be name ThreeCircles ;-)
+This github repository holds all the step by step tutorial to build a clone of Foursquare in a few minutes. 
+The application we're going to build will be named ThreeCircles ;-)
 
 You will find associated presentation at [http://corinnekrych.github.com/confess/](http://corinnekrych.github.com/confess/)
 
@@ -14,7 +14,7 @@ We're presenting you the work done by [3musket33rs](http://3musket33rs.github.co
 ## Setup
 ### GitHub Repos
 #### With Confess VM Environment
-In the vm, given to you, you will find in ~/work a clone of this repository and 3musketeers plugins
+In the vm, given to you, you will find in ~/work a clone of this repository and 3musket33rs plugins
 Please update this version
 ```java
 cd ~/work/html5-scaffolding-plugin
@@ -37,12 +37,12 @@ The step by step tutorial works with git branches. For each step you will find a
 Here will be the list of git commands you will need to know
 ```java
 git checkout stepXX_todo // To enter in the stepXX_todo branch
-git branch // to check in which branch you are
-git status // to know which files you modified in the current branch
-git add ... // to add files to be committed
+git branch               // to check in which branch you are
+git status               // to know which files you modified in the current branch
+git add -A               // to add files to be committed
 git commit -m "Some usefull comments" //To commit locally your changes
-git pull // to fetch the latest changes from the remote repo
-git push // to send your committed changes to the remote repo
+git pull                 // to fetch the latest changes from the remote repo
+git push                 // to send your committed changes to the remote repo if you did a fork
 ```
 
 ## Step1: Scaffolding
@@ -51,7 +51,7 @@ git push // to send your committed changes to the remote repo
 ```java
 git checkout step1_todo
 ```
-In this branch there is only one grails command that has been executed
+In this branch there is only one Grails command that has been executed
 ```java
 grails create-app ThreeCircles
 ```
@@ -115,13 +115,15 @@ grails run-app
 ```java
 http://localhost:8080/ThreeCircles/index.html?_debugResources=y
 ```
-Note: adding _debugResources=y to reload JS/CSS/HTML updates for resources plugins
+Note: adding _debugResources=y to reload JavaScript/CSS/HTML updates for resources plugins
 
 ### Get source code from repo
 Before you get the solution push your changes
 ```java
-git add -a -m "your changes"
-git push
+git status                   // to check the list of files changed or added
+git add -A                   // to accept all changes
+git commit -m "your changes" // to commit to local repo
+git push                     // to push to remote repo if you did fork
 ```
 and if you want to check the solution
 ```java
@@ -137,6 +139,7 @@ and search for TODO in grails-app/conf/Bootstrap.groovy
 ### In BootStrap.groovy
 - add several users
 - add some places
+
 ```java
         Place wien = new Place(name: "Wein", 
                                latitude:48.217349004974416, 
@@ -159,8 +162,6 @@ grails run-app
 ```java
 git checkout step2_done
 ```
-or see the solution
-[Solution Step2](https://github.com/fabricematrat/solution_step2.md)
 
 ## Step3: Render timeline with mock picture
 
@@ -182,12 +183,12 @@ Search for TODO in the project
 
 ### Transform your index.html with css
 - add import css file 
-- in section with id "section-list-checkin" add header as shown in **index-mockup.html**
-- in section with id "section-list-checkin" revisit footer as shown in **index-mockup.html**
-- in section with id myContent, add canvas map (for later use step5)
+- in section with id **section-list-checkin** add header as shown in **index-mockup.html**
+- in section with id **section-list-checkin** revisit footer as shown in **index-mockup.html**
+- in section with id **myContent**, add canvas map (for later use step5)
 
 ### Display dynamic content
-The js file **web-app/js/threecircles/checkin-view.js** contains the JavaScript assocated with your view. 
+The js file **web-app/js/threecircles/checkin-view.js** contains the JavaScript associated with your view. 
 Let's make the content dynamic!
 - Go to the callback associated to that.model.listedItems event:
 Put a breakpoint in checkin-view.js to see the data structure returned by the server
@@ -210,7 +211,7 @@ git checkout step4_todo
 You will get a new file timeline.js that you will complete for the time information.
 ### Add JS file timeline.js
 - go to timeline.js
-Note 3muket33rs JS coding à la Crockford (function first!).
+Note 3musket33rs JS coding à la Crockford (function first!).
 Add a method which takes a Date as long and returns information like:
 *just now* (when under 10mins), *11 min ago*, *2h23 min*, *2 days ago*, *3 months ago* and we don't care when it's over one year.
 - go to checkin-view.js (search for //TODO) add call to newly created method to add time information.
@@ -231,6 +232,7 @@ git checkout step5_todo
 - in index.html, google API  and geolocation.js has been included
 - in index.html, section with id "section-show-checkin" has been refactored to apply CSS and match our use case. 
 - in checkin-view.js, we initialized our maps with
+
 ```java
     $("#section-show-checkin").on( "pageshow", function (event) {
         geolocationSearch.showMapWithPlaces('map_canvas2', "list-place", storeLatLng);
@@ -264,19 +266,19 @@ git checkout step5_done
 ```java
 git checkout step6_todo
 ```
-- In index.html, section with id "checkin" has been refactored to apply CSS and match our use case
-- In checkin-view.js, we initialize our third map (canvas_map3) with
+- In index.html, section with id **checkin** has been refactored to apply CSS and match our use case
+- In checkin-view.js, we initialize our third map **canvas_map3** with
 
 ```java
     $("#checkin").on( "pageshow", function (event) {
         geolocationCheckin.showMap('map_canvas3', that.selectedPlace);
     });
 ```
-- In checkin-view.js, *addAndSort* method added to render timeline with latest checkin first.
-- In geolocation.js, uses [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
+- In checkin-view.js, **addAndSort** method added to render timeline with latest checkin first.
+- In geolocation.js, use [google info window](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow) to render bubble.
 
-### Add behaviour on button id  "checkin-submit"
-- search for // TODO on checkin submit
+### Add behaviour on button id **checkin-submit**
+- search for // TODO 
 - format the object before sending
 
 ```java
@@ -297,7 +299,7 @@ git checkout step6_todo
 ### On created, in checkin-view.js, deal with event push
 
 Event push (Grails plugin using Atmosphere framework) is doing broadcast to all browsers.  
-3musketeers PushManager is dealing with excluding "myself". In order to know in your code if you're the one triggering 
+3musket33rs PushManager is dealing with excluding "myself". In order to know in your code if you're the one triggering 
 created callback you can user the NOTIFIED tag. NOTIFIED boolean is set true when you are notidied of somebody else event.
 In **that.model.createdItem** callback
 - add **resetForm('form-update-checkin')** call to clear the form. 
@@ -329,10 +331,10 @@ No need to re-generate scaffolded view: be carefull not to loose all your work o
 - Photo should have size of 20Mb
 
 ### in geolocation.js, 
-- in the bubble window, add an input of type *file* with id *input-checkin-photo*
+- in the bubble window, add an input of type **file** with id **input-checkin-photo**
 
 ### in checkin-view.js,
-- on *checkin-submit* click send picture within the form
+- on **checkin-submit** click send picture within the form
 - modify **createListItemCustom** to display picture if present
 
 ### Get source code from repo
@@ -377,7 +379,7 @@ in **checkin-view.js** file.
 
 Now that we want to add a new operation to login. We need to extend Controller to do our cutom ajax call. 
 In the case of login we are not interested in offline mode so we won't implement our feed method. 
-Extending Cotnroller is enough.
+Extending Controller is enough.
 If we want to add data to the model (like let's say the firstname of the user logged)
 we need to extend Model. 
 
@@ -445,7 +447,7 @@ Configure your global setting
 cd ~/.grails
 touch setting.groovy
 ```
-in settings.grrovy add your cloud founcdry credentials
+in settings.grrovy add your cloud foundry credentials
 ```
 grails.plugin.cloudfoundry.username="..."
 grails.plugin.cloudfoundry.password="..."
@@ -480,11 +482,13 @@ phonegapbuild.password="..."
 phonegapbuild.phonegapversion="2.3.0"
 ```
 
-### Pacakge you HTML and JS
+### Package you HTML and JS
 Using [3musket33rs](http://3musket33rs.github.com/) PhoneGap Build plugin, simply go to
 ```java
 http://localhost:8080/ThreeCircles/app/initBuild
 ```
-Use the Psuh button and refresh from time to time. Once ready use QRcode to download your App on build.phonegap.com
+Use the Push button and refresh from time to time. Once ready, use QRcode to download your app onto your phone on [PhoneGap build](http://build.phonegap.com)
+
+## Step: Now Have FUN !!
 
 ![3musket33rs MVC](https://github.com/fabricematrat/ThreeCircles/raw/master/imagesTutorial/final_app.png "3musket33rs MVC")
