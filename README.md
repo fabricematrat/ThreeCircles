@@ -103,10 +103,10 @@ Now, edit generated domain classes and add content according to class diagram
 
 ### Generate HTML5 scaffolding for both controller and views
 ```java
-grails html-generate-all User
-grails html-generate-all Place
-grails html-generate-all Comment
-grails html-generate-all Checkin
+grails html-generate-all threecircles.User
+grails html-generate-all threecircles.Place
+grails html-generate-all threecircles.Comment
+grails html-generate-all threecircles.Checkin
 ```
 ### Run the app
 ```java
