@@ -11,7 +11,7 @@ Speakers
  
 We're presenting you the work done by [3musket33rs](http://3musket33rs.github.com/) team. 
 
-Special thanks to [Mathieu Bruyen](https://github.com/mathbruyen) for his cool proposal on CSS and his [ongoing work on file upload](http://blog.mais-h.eu/blog/2013/03/16/caching-images-in-a-grails-plus-mongodb-plus-angularjs-application/)
+Special thanks to [Mathieu Bruyen](https://github.com/mathbruyen) for his cool proposal on CSS.
 
 ## Setup
 ### GitHub Repos
